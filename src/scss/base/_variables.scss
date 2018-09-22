@@ -1,0 +1,144 @@
+
+// Color
+
+$white:    		#fff;
+$light:				#eee;
+$black:    		#000;
+$grey: 				#697479;
+$blue: 				#084887;
+$green: 			#56BF00;
+$yellow: 			#FFCC42;
+$red: 				#D33115;
+$purple:			#5F0F40;
+
+$theme-purple: #320A28;
+$theme-orange: #F7B267;
+$theme-red:		 #EF476F;
+$theme-black:  #1F2D3D;
+
+$primary-color: $theme-purple;
+
+$google-color: #DB4437;
+$github-color: #24292E;
+
+$grey-100: 		#C3C7C9;
+$grey-150:		#CCC;
+$grey-200: 		#91999D;
+$grey-300: 		#697479;
+$grey-400: 		#5A676C;
+$grey-500: 		#4A585E;
+$grey-trans:  rgba(255,255,255, .5);
+
+$colors: (
+	"grey": 	$grey,
+	"blue": 	$blue,
+	"green": 	$green,
+	"yellow":	$yellow,
+	"red":		$red,
+	"purple": $purple,
+	"white":  $white,
+	"black":  $black,
+	"light": $light,
+
+	"theme-purple": $theme-purple,
+	"theme-orange": $theme-orange,
+	"theme-red": $theme-red,
+);
+
+// Semi Transparent Colors
+
+$semiTrans: rgba(0,0,0,.65);
+
+// Button colors
+
+$btn-colors: (
+	"primary": 	$blue,
+	"secondary":$green,
+	"success": 	$green,
+	"danger": 	$red,
+	"warning": 	$yellow,
+	"action": 	$primary-color,
+	"alt-action": $theme-orange,
+	"alt-back": $theme-red,
+	"google": $google-color,
+	"github": $github-color,
+);
+
+// Typography
+
+$main-font:   'Raleway', sans-serif;
+$accent: 			'Nunito', sans-serif;
+$document:		'Noto Serif JP', sans-serif;
+$heading-font: $main-font;
+$body-font: $accent;
+
+// Recommended sizes
+
+$tiny: 				.75em;
+$sml:  				.90em;
+$initial: 			1em;
+$main: 				1.125em;
+$mid:  				1.25em;
+$mdm:  				1.6em;
+$mod:  				1.9em;
+$lrg:  				2.5em;
+
+$sizes: (
+	"tiny": 	$tiny,
+	"sml": 		$sml,
+	"initial":$initial,
+	"main": 	$main,
+	"mid": 		$mid,
+	"mdm": 		$mdm,
+	"mod": 		$mod,
+	"lrg": 		$lrg,
+);
+
+// Border Radius
+
+$br: 	 .25em;
+
+// Box Shadow
+
+$box-shadow1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$box-shadow2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$box-shadow3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$box-shadow4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+$box-shadow5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+// Breakpoints
+
+$bp-tiny: 40em;
+$bp-sml:  48em;
+$bp-mdm:  62.5em;
+$bp-lrg:  75em;
+
+$break-points: (
+	"tiny": $bp-tiny,
+	"sml":  $bp-sml,
+	"mdm":  $bp-mdm,
+	"lrg":  $bp-lrg
+);
+
+// z-index
+$z-0: 0;
+$z-05: 5;
+$z-1: 10;
+$z-2: 20;
+$z-3: 30;
+$z-4: 40;
+$z-5: 50;
+
+// Grid 
+
+$columns: 12;
+$limited-grid-size: 75em;
+$padded-grid-padding: .75em;
+
+// button types
+
+$btn-types: "full" "icon" "round" "long" "adder";
+
+// Panel types
+
+$panel-types: "basic" "responsive";

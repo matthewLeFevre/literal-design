@@ -1,0 +1,31 @@
+.settings__container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  background-color: $theme-black;
+
+}
+.settings__form {
+  display: block;
+  padding: 25px;
+  margin-top: 50px;
+}
+.settings__close {
+  @include flex(row, nowrap, center, center);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: $theme-orange;
+  border-radius: 0 0 $br 0;
+  color: $light;
+  font-size: $mdm;
+}
+.settings {}
+.settings {}
+.settings {}
+.settings {}

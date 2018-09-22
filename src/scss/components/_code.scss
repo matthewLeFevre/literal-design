@@ -1,0 +1,22 @@
+pre {
+  height: auto;
+  background-color: $black;
+}
+
+code {
+  padding: 2em;
+  display: block;
+  color: $white;
+  overflow-x: scroll;
+  font-family: monospace;
+}
+
+.t { color: $red;}        /*css - id, decorator */
+.a { color: $yellow;}  /*css - property */
+.s { color: $white;}     /*css - value */
+.c { color: $grey-100;}    /*css - comment */
+.k { color: $blue;}    /*css - n/a*/
+.p { color: $blue;}   /*css - n/a*/
+.o { color: $yellow;}   /*css - n/a*/
+.n { color: $green;}     /*css - n/a*/
+.l { color: $blue;}      /*css - class */

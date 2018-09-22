@@ -1,0 +1,31 @@
+.txt-center {
+  text-align: center;
+}
+
+$directions: "left" "right" "top" "bottom" "all";
+.spacing {
+  @each $direction in $directions {
+    @if $direction != "all" {
+      &--#{$direction} {
+        $spacers: 10;
+        $spaces: 1;
+        @while $spaces <= $spacers {
+          &--#{$spaces} {
+            margin-#{$direction}: $spaces + rem !important;
+          }
+          $spaces: $spaces + 1;
+        }
+      }
+    } @else {
+      $spacers: 10;
+      $spaces: 1;
+      @while $spaces <= $spacers {
+        &--#{$spaces} {
+          margin: $spaces + rem !important;
+        }
+        $spaces: $spaces + 1;
+      }
+    }
+    
+  }
+}

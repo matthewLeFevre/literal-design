@@ -1,0 +1,52 @@
+.display-card {
+  @include flex(row, nowrap, flex-start, center);
+  height: 50px;
+  width: 100%;
+  max-width: 260px;
+  margin: .5em auto;
+  border-radius: $br;
+  overflow: hidden;
+  box-shadow: $box-shadow1;
+  background-color: $light;
+}
+
+.display-card__group {
+  padding: .5em;
+}
+.display-card__wrapper {}
+.display-card__title {
+  color: $theme-purple;
+  font-family: $accent;
+}
+.display-card__settings {
+  @include flex(row, nowrap, center, center);
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  background-color: $grey;
+  color: $light;
+  cursor: pointer;
+  border: none;
+}
+.display-card__body {
+  @include flex(column, nowrap, center, flex-start);
+  flex-grow: 1;
+  cursor: pointer;
+  height: 100%;
+  padding: 6px;
+  text-decoration: none;
+  & > .date {
+    font-size: $tiny;
+    font-family: $accent;
+    color: $theme-red;
+  }
+}
+.display-card__img {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+.display-card__img__wrap {
+  width: 50px;
+}

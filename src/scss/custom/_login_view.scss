@@ -1,0 +1,45 @@
+.login {
+  position: relative;
+
+  @include flex(row, nowrap, center, center);
+
+  background-image: url("https://images.unsplash.com/photo-1519602985774-5ca448b50061?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2e2f29c31b5091093cbc64554c509a91&auto=format&fit=crop&w=1868&q=80");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $z-05;
+
+    background-color: $grey-trans;
+  }
+}
+
+.login__form {
+  @include bp-tiny {
+    @include form('form--limited', 275px);
+    position: relative;
+    overflow-y: hidden;
+    border-radius: $br;
+  };
+  display: block;
+  padding: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $light;
+  z-index: $z-1;
+  overflow-y: scroll;
+}
+
+.login__btn-area {
+  @include flex(row, nowrap, space-between, center);
+}

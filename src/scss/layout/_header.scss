@@ -1,0 +1,21 @@
+.header {
+  @include flex (row, nowrap, flex-start, center);
+  padding-left: 1em;
+  position: relative;
+  height: 60px;
+  
+  background-color: $theme-purple;
+  border-bottom: 2px solid $theme-red;
+}
+
+.logo {
+  font-size: $mdm;
+  color: $light;
+  // display: block;
+  font-weight: 900;
+  vertical-align: middle;
+}
+.logo__icon {
+  font-weight: 500;
+  margin-left: .5em;
+}

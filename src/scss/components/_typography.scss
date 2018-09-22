@@ -1,0 +1,33 @@
+h1 { font-size: $lrg;}
+.heading--primary {
+  font-size: $lrg;
+  color: $theme-purple;
+}
+.heading--primary--accent {
+  font-size: $lrg;
+  color: $theme-orange;
+}
+.heading--primary--italic {
+  font-size: $lrg;
+  color: $theme-purple;
+  font-style: italic;
+}
+.section__heading--primary{ font-size: $lrg;}
+h2 { font-size: $mod;}
+.section__heading--secondary { font-size: $mod;}
+h3 { font-size: $mdm;}
+.section__heading--tertiary { font-size: $mdm;}
+h4 { font-size: $initial;}
+.section__heading--quatro { font-size: $initial;}
+h5 { font-size: $main;}
+h6 { font-size: $sml;}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { 
+  font-family: $heading-font;
+  line-height: 130%;
+}
