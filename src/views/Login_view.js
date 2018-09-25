@@ -6,7 +6,7 @@ class Login extends Component {
     return(
       <section className="col--12 page__full-height login">
         <form className="login__form">
-          <h1 className="heading--primary">Logo</h1>
+          <h1 className="primary-heading">Login</h1>
           <fieldset className="form__field">
             <label className="label--text">Username</label>
             <input type="text" placeholder="Username/Email" className="input--text full breath"/>

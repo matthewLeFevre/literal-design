@@ -578,12 +578,12 @@ body {
   padding-left: 1em;
   position: relative;
   height: 60px;
-  background-color: #320A28;
+  background-color: #eee;
   border-bottom: 2px solid #EF476F; }
 
 .logo {
   font-size: 1.6em;
-  color: #eee;
+  color: #320A28;
   font-weight: 900;
   vertical-align: middle; }
 
@@ -1414,7 +1414,8 @@ code {
     right: 0;
     bottom: 0;
     z-index: 5;
-    background-color: rgba(255, 255, 255, 0.5); }
+    background-color: #320A28;
+    opacity: .75; }
 
 .login__form {
   display: block;

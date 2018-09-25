@@ -6,6 +6,7 @@ class SignUp extends Component {
     return(
       <section className="col--12 page__full-height login">
       <form className="login__form">
+        <h1 className="primary-heading">SignUp</h1>
         <fieldset className="form__field">
           <label className="label--text">Username</label>
           <input type="text" placeholder="Username/Email" className="input--text full breath"/>
@@ -22,7 +23,7 @@ class SignUp extends Component {
           </label>
         </fieldset>
         <fieldset className="form__field">
-          <Link to="/login" className="btn tiny alt-back breath">
+          <Link to="/login" className="btn tiny alt-action breath">
             <i className="fas fa-arrow-left"></i> To Login
           </Link>
           <button className="btn tiny action breath">Create Account</button>

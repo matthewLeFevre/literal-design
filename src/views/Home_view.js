@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 const Home = (props) => {
   return (
     <section className="col--12">
-      <div className="home__banner">
-        <h1>Style Guides <span>On the Web</span></h1>
+      <div className="home__banner txt-center">
+        <h1>Style Guides <span className="tiny">On the Web</span></h1>
       </div>
       <div className="home__section bg-light">
         <div className="home__section__item">

@@ -41,6 +41,11 @@ class Nav extends Component {
           <li className="nav__item" onClick={this.toggleNav}>
             <Link className="nav__link" to="/about">About</Link>
           </li>
+          {this.props.userIsLoggedIn
+            ? <li className="nav__item" onClick={this.toggleNav}>
+                <Link className="nav__link" to="/dashboard">Dashboard</Link>
+              </li>
+            : ''}
         </ul>
         <div className="nav__btn" onClick={this.toggleNav}>
           <i className="fas fa-bars" />

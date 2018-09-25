@@ -4,13 +4,15 @@
   position: relative;
   height: 60px;
   
-  background-color: $theme-purple;
+  // background-color: $theme-purple;
+  background-color: $light;
   border-bottom: 2px solid $theme-red;
 }
 
 .logo {
   font-size: $mdm;
-  color: $light;
+  color: $theme-purple;
+  // color: $light;
   // display: block;
   font-weight: 900;
   vertical-align: middle;

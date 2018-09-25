@@ -112,7 +112,7 @@ class Dashboard extends Component {
     return(
       <section className="col--12 page__full-height grid--nested">
       {this.state.projectSettings 
-        ? <ProjectSettings saveProject={this.saveProject} closeSettings={this.closeSettings} projectData={this.state.projectData} updateProject={this.updateProject} deleteProject={this.deleteProject}/>
+        ? <ProjectSettings saveProject={this.saveProject} closeSettings={this.closeSettings} projectData={this.state.projectData} deleteProject={this.deleteProject}/>
         : ''}
         <div className="col--12 dashboard__section" id="projects">
           <div className="dashboard__section__heading">
@@ -145,7 +145,7 @@ const Project = (props) => {
   let date = new Date(props.project.projectCreated);
   return(
     <li className="display-card">
-      <Link to={`/dashboard/${props.project.projectTitle}`} className="display-card__body">
+      <Link to={`/dashboard/${props.project.projectId}`} className="display-card__body">
         <h4 className="display-card__title">{props.project.projectTitle}</h4>
         <span className="date">{date.toDateString()}</span>
       </Link>
@@ -192,10 +192,8 @@ class ProjectSettings extends Component {
       break;
     }
   }
-  sendProject() {
-    console.log('got here');
-    this.props.saveProject(this.state);
-  }
+  sendProject() {this.props.saveProject(this.state);}
+  
   render(){
     let projectStatus = false;
     if(this.state.projectStatus === 'public') {
@@ -209,7 +207,7 @@ class ProjectSettings extends Component {
         <form className="settings__form">
           <h3 className="section__heading--tertiary txt-white">Project Settings</h3>
           <fieldset className="form__field">
-            <label className="label--text txt-white">Username</label>
+            <label className="label--text txt-white">Title</label>
             <input onChange={this.changeProject} type="text" name="projectTitle" className="input--text mid full" defaultValue={this.props.projectData.projectTitle}/>
           </fieldset>
           <fieldset className="form__field">

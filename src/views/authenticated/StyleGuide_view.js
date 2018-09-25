@@ -10,6 +10,7 @@ class StyleGuideView extends Component {
     super(props);
 
     this.state = {
+      styleGuide: {},
       sections: [
         {title: "Introduction"},
         {title: "Color Guide"},
@@ -17,11 +18,24 @@ class StyleGuideView extends Component {
       ],
     }
   }
+  componentDidMount() {
+    fetch(`${Global.url}?controller=styleGuide&action=getStyleGuideById&styleGuideId=${this.props.match.params.styleGuideId}`)
+    .then(res => res.json())
+    .then(res => {
+      if(res.status === "success") {
+        this.setState({
+          styleGuide: res.data[0],
+        });
+      }
+    });
+  }
   render() {
+    // console.log(this.props.match.params.projectId)
     return(
       <div className="col--12 dashboard__section" id="projects">
         <div className="dashboard__section__heading">
-          <h2 className="dashboard__section__title">{this.props.match.params.styleGuideTitle}</h2>
+          <h2 className="dashboard__section__title">{this.state.styleGuide.styleGuideTitle}</h2>
+          <p></p>
         </div>
         <div className="dashboard__section__sub-heading">
           <h3 className="dashboard__section__sub-title">Sections</h3>

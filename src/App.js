@@ -25,7 +25,7 @@ class App extends Component {
         userId: "1",
         userStatus: "user",
         userEmail: "test@test.com",
-        userName: "test",
+        userName: "matthewLefevre95",
         apiToken: "1234"
       }
     }
@@ -34,7 +34,7 @@ class App extends Component {
     return (
      <BrowserRouter>
       <div className="app__container">
-        <Header />
+        <Header userData={this.state.userData} userIsLoggedIn={this.state.userIsLoggedIn}/>
           <main className="grid">
             <Switch>
               <Route
@@ -56,7 +56,7 @@ class App extends Component {
 
               <Route
                 exact={true}
-                path="/dashboard/:projectTitle"
+                path="/dashboard/:projectId"
                 render={(props) => <ProjectView userData={this.state.userData} {...props} />} />
 
               {/* <Route
@@ -65,7 +65,7 @@ class App extends Component {
 
               <Route
                 exact={true}
-                path="/dashboard/:projectTitle/:styleGuideTitle"
+                path="/dashboard/:projectId/:styleGuideId"
                 render={(props) => <StyleGuideView userData={this.state.userData} {...props} />} />
 
               {/* <Route
@@ -74,12 +74,12 @@ class App extends Component {
 
               <Route
                 exact={true}
-                path="/dashboard/:projectTitle/:styleGuideTitle/:sectionTitle"
+                path="/dashboard/:projectId/:styleGuideId/:sectionTitle"
                 render={(props) => <SectionView userData={this.state.userData} edit={false} {...props} />} />
 
               <Route
                 exact={true}
-                path="/dashboard/:projectTitle/:styleGuideTitle/:sectionTitle/edit"
+                path="/dashboard/:projectId/:styleGuideId/:sectionTitle/edit"
                 render={(props) => <SectionView userData={this.state.userData} edit={true} {...props} />} />
 
               {/* <Route
