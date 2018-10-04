@@ -18,7 +18,10 @@ h2 { font-size: $mod;}
 h3 { font-size: $mdm;}
 .section__heading--tertiary { font-size: $mdm;}
 h4 { font-size: $initial;}
-.section__heading--quatro { font-size: $initial;}
+.section__heading--quatro { 
+  font-size: $initial;
+  margin: 1em 0;
+}
 h5 { font-size: $main;}
 h6 { font-size: $sml;}
 

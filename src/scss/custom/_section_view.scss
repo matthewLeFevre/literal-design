@@ -64,3 +64,93 @@
   right: 1em;
   top: 8em;
 }
+
+.section--edit__view {
+  padding: 1em;
+  min-width: 270px;
+  max-width: 620px;
+  margin: 0 auto;
+  @include bp($sml) {
+    margin: 0 1em;
+  }
+}
+
+.section--edit__fieldset {
+  outline: 0;
+  border: 0;
+  max-width: 600px;
+}
+.section--edit__heading__label {}
+.section--edit__group {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: .5em 0;
+}
+.section--edit__heading {
+  @include transition;
+  width: calc(100% - 14px);
+  padding: .2em;
+  font-size: $mdm;
+  border-radius: $br;
+  border: solid $theme-black 2px;
+  outline: none;
+  &:hover {
+    border-color: #62A8E5;
+  }
+}
+.section--edit__btn {
+  @include transition;
+  border: 0;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: $red;
+  color: $light;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  &:hover {
+    background-color: $theme-orange;
+  }
+}
+
+.section--edit__textBox {
+  min-height: 150px;
+  @include transition;
+  width: calc(100% - 14px);
+  padding: .2em;
+  font-size: $initial;
+  border-radius: $br;
+  border: solid $theme-black 2px;
+  outline: none;
+  &:hover {
+    border-color: #62A8E5;
+  }
+}
+
+
+.section__nav__link {
+  display: block;
+  // height: 25px;
+  text-decoration: none;
+  color: $theme-black;
+  padding: .5em;
+  &:hover {
+    text-decoration: underline;
+    background-color: $white;
+  }
+  &.active {
+    background-color: $white;
+  }
+}
+
+.section__nav__list {
+  padding: 1em;
+  list-style: none;
+  text-align: left;
+}

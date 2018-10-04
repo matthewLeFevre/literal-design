@@ -45,6 +45,24 @@ class Globals {
     return body;
   }
 
+  createRequestBody(controller, action, payload) {
+    let body = {
+      controller: controller,
+      action: action,
+      payload: payload,
+    }
+    let req = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(body),
+    }
+
+    return req;
+  }
+
   concatArray(arr1, arr2) {
     return arr1.concat(arr2);
   }

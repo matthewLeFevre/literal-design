@@ -9,6 +9,7 @@ import Login from './views/Login_view';
 import SignUp from './views/SignUp_view';
 import Home from './views/Home_view';
 import About from './views/About_view';
+import StyleGuideDetailView from './views/StyleGuideDetail_view';
 
 import Dashboard from './views/authenticated/Dashboard_view';
 import ProjectView from './views/authenticated/Project_view';
@@ -34,7 +35,8 @@ class App extends Component {
     return (
      <BrowserRouter>
       <div className="app__container">
-        <Header userData={this.state.userData} userIsLoggedIn={this.state.userIsLoggedIn}/>
+        { this.state.userIsLoggedIn ? '' :<Header userData={this.state.userData} userIsLoggedIn={this.state.userIsLoggedIn}/>}
+        {/* <Header userData={this.state.userData} userIsLoggedIn={this.state.userIsLoggedIn}/> */}
           <main className="grid">
             <Switch>
               <Route
@@ -53,6 +55,10 @@ class App extends Component {
               {/* <Route
                 path="/blog"
                 render={(props) => <Blog />} /> */}
+
+              <Route
+                path="/styleguides/detail"
+                render={(props) => <StyleGuideDetailView />} />
 
               <Route
                 exact={true}
@@ -74,12 +80,12 @@ class App extends Component {
 
               <Route
                 exact={true}
-                path="/dashboard/:projectId/:styleGuideId/:sectionTitle"
+                path="/dashboard/:projectId/:styleGuideId/:sectionId"
                 render={(props) => <SectionView userData={this.state.userData} edit={false} {...props} />} />
 
               <Route
                 exact={true}
-                path="/dashboard/:projectId/:styleGuideId/:sectionTitle/edit"
+                path="/dashboard/:projectId/:styleGuideId/:sectionId/edit"
                 render={(props) => <SectionView userData={this.state.userData} edit={true} {...props} />} />
 
               {/* <Route
@@ -129,7 +135,7 @@ class App extends Component {
               
             </Switch>
           </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
      </BrowserRouter>
     );

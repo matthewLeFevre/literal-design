@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 import Globals from '../../services/Global_service';
+import ProjectHeader from '../../components/ProjectHeader_comp';
 
 const Global = new Globals();
 
 class ProjectView extends Component {
   constructor(props) {
     super(props);
+    this.toggleNav = this.toggleNav.bind(this);
     this.createStyleGuide = this.createStyleGuide.bind(this);
     this.deleteStyleGuide = this.deleteStyleGuide.bind(this);
     this.saveStyleGuide = this.saveStyleGuide.bind(this);
@@ -17,8 +19,14 @@ class ProjectView extends Component {
       styleGuideSettings: false,
       styleGuideData: {},
       styleGuides: [],
-      projectData: {}
+      projectData: {},
+      toggle: false,
     }
+  }
+  toggleNav() {
+    this.setState((prevState) => ({
+      toggle: !prevState.toggle,
+    }))
   }
   componentDidMount() {
     fetch(`${Global.url}?controller=project&action=getProjectById&projectId=${this.props.match.params.projectId}`)
@@ -59,14 +67,12 @@ class ProjectView extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.status === 'success') {
-        console.log(res.data);
         this.setState({styleGuides: res.data});
       }
     });
   } 
 
   saveStyleGuide(styleGuideData) {
-    console.log(styleGuideData);
     let data = {'styleGuideId': this.state.styleGuideData.styleGuideId,
                 'styleGuideTitle': styleGuideData.styleGuideTitle,
                 'styleGuideStatus': styleGuideData.styleGuideStatus,
@@ -79,7 +85,6 @@ class ProjectView extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.status === 'success') {
-        console.log(res.data);
         this.setState({
           styleGuideSettings: false,
           styleGuideData: {},
@@ -88,41 +93,60 @@ class ProjectView extends Component {
       }
     });
   }
-  deleteStyleGuide() {}
+  deleteStyleGuide(e) {
+    let styleGuideId = e.target.value;
+    let data = {'styleGuideId': styleGuideId, 'projectId':this.props.match.params.projectId, 'apiToken': this.props.userData.apiToken};
+    let body = Global.createBody('styleGuide', 'deleteStyleGuide', data);
+    let req = Global.createRequest(body);
+
+    fetch(Global.url, req)
+    .then(res => res.json())
+    .then(res => {
+      if(res.status === 'success') {
+        this.setState({
+          styleGuideSettings: false,
+          styleGuideData: {},
+          styleGuides: res.data,
+        });
+      }
+    });
+  }
+
   render() {
     return (
-      <div className="col--12 dashboard__section" id="projects">
-      {this.state.styleGuideSettings 
-        ? <Settings 
-            save={this.saveStyleGuide}
-            delete={this.deleteStyleGuide}
-            closeSettings={this.closeSettings}
-            data={this.state.styleGuideData}
-          />
-        : ''}
-        <div className="dashboard__section__heading">
-          <h2 className="dashboard__section__title">{this.state.projectData.projectTitle}</h2>
+      <div className="col--12 grid--nested" id="projects">
+      <ProjectHeader toggleNav={this.toggleNav} projectData={this.state.projectData}/>
+      <ProjectNav toggleNav={this.toggleNav} toggle={this.state.toggle} ProjectData={this.props.ProjectData}/>
+      <div className="col--12 col--sml--8">
+        {this.state.styleGuideSettings 
+          ? <Settings 
+              save={this.saveStyleGuide}
+              delete={this.deleteStyleGuide}
+              closeSettings={this.closeSettings}
+              data={this.state.styleGuideData}
+            />
+          : ''}
+          <div className="dashboard__section__sub-heading">
+            <h3 className="dashboard__section__sub-title">Style Guides</h3>
+          </div>
+          <ul className="display-card__group">
+            {this.state.styleGuides.map(
+              (guide) => {
+                return <StyleGuides 
+                    history={this.props.history} 
+                    key={Global.createRandomKey()}  
+                    guide={guide} 
+                    settings={this.styleGuideSettings}
+                  />
+              }
+            )}
+            <li>
+              <button onClick={this.createStyleGuide} type="button" className="btn adder initial">
+                <i className="fas fa-plus-circle"></i>
+              </button>
+            </li>
+          </ul>
         </div>
-        <div className="dashboard__section__sub-heading">
-          <h3 className="dashboard__section__sub-title">Style Guides</h3>
-        </div>
-        <ul className="display-card__group">
-          {this.state.styleGuides.map(
-            (guide) => {
-              return <StyleGuides 
-                  history={this.props.history} 
-                  key={Global.createRandomKey()}  
-                  guide={guide} 
-                  settings={this.styleGuideSettings}
-                />
-            }
-          )}
-          <li>
-            <button onClick={this.createStyleGuide} type="button" className="btn adder initial">
-              <i className="fas fa-plus-circle"></i>
-            </button>
-          </li>
-        </ul>
       </div>
     );
   }
@@ -243,4 +267,26 @@ class Settings extends Component {
     </div>
     );
   }
+}
+
+const ProjectNav = (props) => {
+  return(
+    <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
+      <div className="nav--auth__header">
+        <div className="nav--auth__toggle"
+             onClick={props.toggleNav}>
+          <i className="fas fa-arrow-left"></i>
+        </div>
+        <Link to="/dashboard" className="nav--auth__header__btn">
+          <i className="fas fa-th"></i>
+          <span>Dashboard</span>
+        </Link>
+      </div>
+      <div className="nav--auth__body">
+        <h4 className="section__heading--quatro">What do you want to do with your project?</h4>
+        <button type="button" className="btn primary breath">Edit</button>
+        <button type="button" className="btn danger breath">Delete</button>
+      </div>
+    </nav>
+  );
 }

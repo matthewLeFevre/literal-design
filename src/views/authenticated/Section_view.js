@@ -1,93 +1,84 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 import EditableTextBox from '../../reusable/EditableTextBox_comp';
 
 import Globals from '../../services/Global_service';
+import SectionHeader from '../../components/SectionHeader_comp';
 
 const Global = new Globals();
 
 class SectionView extends Component {
   constructor(props) {
     super(props);
-    this.handleSave = this.handleSave.bind(this);
-    this.saveCompleted = this.saveCompleted.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.toggleNav = this.toggleNav.bind(this);
     this.state = {
-      components: [
-        {type: "heading", text: "This is a heading", order: "1", id:"kljlaisfj"},
-        {type: "text_box", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elitx ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", order: "2", id:"kljlaisfj"},
-        {type: "text_box", text: "This is the content of my text box", order: "2", id:"kljlaisfj"},
-        {type: "text_box", text: "This is the content of my text box", order: "2", id:"kljlaisfj"},
-        {type: "color_pallet", order: "3", id:"kljlaisfj"},
-        // {type: "image", src:"https://images.unsplash.com/photo-1537027277825-12f85d063e6e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=498521c2590a48c2ad84aa2d1c42ad62&auto=format&fit=crop&w=700&q=80", order:"4", id:"somethingrandom"}
-      ],
+      items: [],
+      section: {},
+      sections: [],
       save: false,
+      toggle: false,
     }
-
-    this.saveData = this.saveData.bind(this);
   }
 
-  saveData (e) {
-    let value = e.target.value;
+  toggleNav() {
+    this.setState((prevState) => ({
+      toggle: !prevState.toggle,
+    }))
   }
 
-  handleSave() { this.setState({save: true}); }
+  addItem(e) {
+    let item = e.target.value;
 
-  saveCompleted() { 
-    this.setState({save: false});
-    this.props.history.goBack; 
   }
 
+  componentDidMount() {
+    // grabs the indivudual section
+    fetch(`${Global.url}?controller=section&action=getSectionAndItemsBySectionId&sectionId=${this.props.match.params.sectionId}`)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        items: res.data.items,
+        section: res.data.section[0],
+      });
+    });
+
+    // Grabs all other sections
+    fetch(`${Global.url}?controller=section&action=getSectionsByStyleGuideId&styleGuideId=${this.props.match.params.styleGuideId}`)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        sections: res.data,
+      });
+    });
+  }
   render() {
-    let editToggle = "";
-    let addToggle ="";
-
-    if(this.props.edit) {
-      editToggle = <button type="button" onClick={this.handleSave} className="section__btn--edit btn primary icon tiny">
-                    <i className="fas fa-save"></i>
-                  </button>;
-      addToggle = <button type="button" className="btn adder initial">
-                    <i className="fas fa-plus-circle"></i>
-                  </button>;
-    } else {
-      editToggle = <Link to={`${this.props.history.location.pathname}/edit`} className="section__btn--edit btn action icon tiny">
-                    <i className="fas fa-pen"></i>
-                  </Link>;
-    }
-
     return(
-      <div className="col--12">
-        {editToggle}
-        { this.state.components
-          ? this.state.components.map(
-            (component) => {
-              switch(component.type) {
-                case "heading":
-                  return <SectionHeading save={this.state.save} saveCompleted={this.saveCompleted} edit={this.props.edit} key={Global.createRandomKey()} HeadingData={component} />;
-                  break;
-                case "text_box":
-                  return <SectionTextBox save={this.state.save} saveCompleted={this.saveCompleted} edit={this.props.edit} key={Global.createRandomKey()} textBoxData={component} />;
-                  break;
-                case "color_pallet":
-                  return <SectionColorPallet edit={this.props.edit} key={Global.createRandomKey()} colorPalletData={component} />;
-                  break;
-                case "font":
-                  return <SectionFont edit={this.props.edit} key={Global.createRandomKey()} FontData={component} />;
-                  break;
-                case "code_component":
-                  return <SectionCodeComponent edit={this.props.edit} key={Global.createRandomKey()} componentData={component} />;
-                  break;
-                case "image":
-                  return <SectionImage edit={this.props.edit} key={Global.createRandomKey()} ImageData={component} />;
-                  break;
-                default:
-                  return '';
-                  break;
-              }
+      <div className="col--12 grid--nested">
+        <SectionHeader match={this.props.match} section={this.state.section} toggleNav={this.toggleNav}/>
+        <SectionNav match={this.props.match} sections={this.state.sections} toggleNav={this.toggleNav} toggle={this.state.toggle} section={this.state.section}/>
+        <form className="section--edit__view col--12 col--sml--8">
+          <h2>{this.state.section.sectionTitle}</h2>
+          { this.state.items.map((item) =>{
+            if(item.itemType === "heading") {
+              return <HeadingEdit heading={item}  key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "textBox") {
+              return <TextBoxEdit textBox={item}  key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "image") {
+              return (<ImageEdit image={item}  key={Global.createRandomKey()}/>);
+            } else if(item.itemType === "colorPallet") {
+              return <ColorPalletEdit colorPallet={item} key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "font") {
+              return <FontEdit font={item}  key={Global.createRandomKey()}/>;
             }
-          )
-        : ''}
-        {addToggle}
+          })
+          
+        }
+          <button onClick={this.createSection} type="button" className="btn adder initial">
+            <i className="fas fa-plus-circle"></i>
+          </button>
+        </form>
       </div>
     );
   }
@@ -95,71 +86,73 @@ class SectionView extends Component {
 
 export default SectionView;
 
-const SectionHeading = (props) => {
-  if(!props.edit) {
-    return (
-      <div className="section__heading__wrapper">
-        <h3 className="section__heading">{props.headingData.text}</h3>
-      </div>
-    );
-  } else {
-    return (
-      <div className="section__heading__wrapper">
-        <span className="section__tag">Heading</span>
-        <input type="text" onChange={props.saveData}  className="mdm input--text full" defaultValue={props.data.text} />
-      </div>
-    );
-  }
-}
-
-const SectionTextBox = (props) => {
-  if(!props.edit) {
-    return(
-      <div className="section__text-box">
-        {props.data.text}
-      </div>
-    );
-  } else {
-    return(
-      <div className="section__text-box">
-        <span className="section__tag">Text Box</span>
-        <EditableTextBox data={props.data.text} saveData={props.saveData} />
-      </div>
-      
-    );
-  }
-  
-}
-const SectionImage = (props) => {
-  return <img className="section__img" src={props.data.src} />
-}
-class SectionColorPallet extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      groups: [
-        {title: Global.createRandomKey(), order: "1", showTitle: true},
-        {title: Global.createRandomKey(), order: "2", showTitle: true},
-        {title: Global.createRandomKey(), order: "3", showTitle: true},
-      ],
-    }
-  }
-  render(){
-    return (
-    <div className="section__color-pallet"></div>
-    )
-  }
-}
-const SectionFont = (props) => {
+const HeadingEdit = (props) => {
   return (
-  <div></div>);
+    <fieldset className="section--edit__fieldset">
+      <label className="section--edit__label">Heading</label>
+      <div className="section--edit__group">
+        <input type="text" className="section--edit__heading" defaultValue={props.heading.headingText} />
+        <button type="button" className="section--edit__btn">
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
+    </fieldset>
+  );
 }
-const SectionCodeComponent = (props) => {
-  return <div></div>
+const TextBoxEdit = (props) => {
+  return (
+    <fieldset className="section--edit__fieldset">
+      <label className="section--edit__label">Textbox</label>
+      <div className="section--edit__group">
+        <div className="section--edit__textBox" contentEditable defaultValue={props.textBox.textBoxText}></div>
+        <button type="button" className="section--edit__btn">
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
+    </fieldset>
+  );
 }
-const SectionColorRow = (props) => {
-  return <div></div>
-}
-const SectionColorSwatch = (props) => {
-  return <div></div>
+const FontEdit = (props) => {}
+const ImageEdit = (props) => {}
+const ColorPalletEdit = (props) => {}
+
+const SectionNav = (props) => {
+  return(
+    <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
+      <div className="nav--auth__header">
+        <div className="nav--auth__toggle"
+             onClick={props.toggleNav}>
+          <i className="fas fa-arrow-left"></i>
+        </div>
+        <div className="nav--auth__header__btns">
+          <Link to={`/dashboard/${props.match.params.projectId}/${props.match.params.styleGuideId}`} className="nav--auth__header__btn">
+          <i className="fas fa-mortar-pestle"></i>
+            <span>Style Guide</span>
+          </Link>
+          <Link to={`/dashboard/${props.match.params.projectId}`} className="nav--auth__header__btn">
+          <i className="fas fa-project-diagram"></i>
+            <span>Project</span>
+          </Link>
+          <Link to="/dashboard" className="nav--auth__header__btn">
+            <i className="fas fa-th"></i>
+            <span>Dashboard</span>
+          </Link>
+        </div>
+      </div>
+      <div className="nav--auth__body">
+        <h4 className="section__heading--quatro">StyleGuide Sections</h4>
+        <ul className="section__nav__list">
+          {props.sections.map( section => {
+            return(<li key={Global.createRandomKey()} >
+              <NavLink activeClassName="active" className="section__nav__link" 
+                    onClick={props.toggleNav} 
+                    to={`/dashboard/${props.match.params.projectId}/${props.match.params.styleGuideId}/${section.sectionId}`}>{section.sectionTitle}</NavLink></li>)
+          })}
+        </ul>
+        <h4 className="section__heading--quatro">What do you want to do with your section?</h4>
+        <button type="button" className="btn primary breath">Edit</button>
+        <button type="button" className="btn danger breath">Delete</button>
+      </div>
+    </nav>
+  );
 }

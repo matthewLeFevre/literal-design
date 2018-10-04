@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 import Globals from '../../services/Global_service';
+import UserHeader from '../../components/UserHeader_comp';
 
 const Global = new Globals();
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.toggleNav = this.toggleNav.bind(this);
     this.createProject = this.createProject.bind(this);
     this.saveProject = this.saveProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
@@ -17,7 +19,14 @@ class Dashboard extends Component {
       projectSettings: false,
       projectData: {},
       projects: [],
+      toggle: false,
     }
+  }
+
+  toggleNav() {
+    this.setState((prevState) => ({
+      toggle: !prevState.toggle,
+    }))
   }
 
   componentDidMount() {
@@ -56,7 +65,6 @@ class Dashboard extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.status === 'success') {
-        console.log(res.data);
         this.setState({projects: res.data});
       }
     });
@@ -77,7 +85,6 @@ class Dashboard extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.status === 'success') {
-        console.log(res.data);
         this.setState({
           projectSettings: false,
           projectData: {},
@@ -88,7 +95,6 @@ class Dashboard extends Component {
   }
 
   deleteProject(e) {
-    console.log(e.target.value);
     let projectId = e.target.value;
     let data = {'projectId': projectId, 'userId': this.props.userData.userId, 'apiToken': this.props.userData.apiToken};
     let body = Global.createBody('project', 'deleteProject', data);
@@ -97,7 +103,6 @@ class Dashboard extends Component {
     fetch(Global.url, req)
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       if(res.status === 'success') {
         this.setState({
           projectSettings: false,
@@ -110,11 +115,14 @@ class Dashboard extends Component {
 
   render() {
     return(
-      <section className="col--12 page__full-height grid--nested">
+      <section className="col--12 grid--nested">
+      <UserHeader toggleNav={this.toggleNav} userData={this.props.userData}/>
+       <UserNav toggleNav={this.toggleNav} toggle={this.state.toggle} userData={this.props.userData}/>
       {this.state.projectSettings 
         ? <ProjectSettings saveProject={this.saveProject} closeSettings={this.closeSettings} projectData={this.state.projectData} deleteProject={this.deleteProject}/>
         : ''}
-        <div className="col--12 dashboard__section" id="projects">
+        <div className="col--12 col--sml--6" id="projects">
+          
           <div className="dashboard__section__heading">
             <h2 className="dashboard__section__title">Projects</h2>
           </div>
@@ -237,4 +245,17 @@ class ProjectSettings extends Component {
       </div>
     );
   }
+}
+
+const UserNav = (props) => {
+  return(
+    <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
+      <div className="nav--auth__header">
+        <div className="nav--auth__toggle"
+             onClick={props.toggleNav}>
+          <i className="fas fa-arrow-left"></i>
+        </div>
+      </div>
+    </nav>
+  );
 }
