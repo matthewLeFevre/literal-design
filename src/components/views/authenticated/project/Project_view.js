@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-import Globals from '../../services/Global_service';
-import ProjectHeader from '../../components/ProjectHeader_comp';
+import Globals from '../../../services/Global_service';
+import ProjectHeader from './ProjectHeader_comp';
 
 const Global = new Globals();
 

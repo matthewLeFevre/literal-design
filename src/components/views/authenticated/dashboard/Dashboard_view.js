@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 
-import Globals from '../../services/Global_service';
-import UserHeader from '../../components/UserHeader_comp';
+import Project from './ProjectBox_comp';
+import ProjectSettings from './ProjectSettings_comp';
+import UserNav from './UserNav_comp';
+import UserHeader from './UserHeader_comp';
+
+import Globals from '../../../services/Global_service';
 
 const Global = new Globals();
 
@@ -149,113 +152,7 @@ class Dashboard extends Component {
 
 export default Dashboard;
 
-const Project = (props) => {
-  let date = new Date(props.project.projectCreated);
-  return(
-    <li className="display-card">
-      <Link to={`/dashboard/${props.project.projectId}`} className="display-card__body">
-        <h4 className="display-card__title">{props.project.projectTitle}</h4>
-        <span className="date">{date.toDateString()}</span>
-      </Link>
-      <button type="button" value={props.project.projectId} onClick={props.projectSettings} className="display-card__settings">
-      <i className="fas fa-cog"></i>
-      </button>
-    </li>
-  );
-}
 
-class ProjectSettings extends Component {
-  constructor(props) {
-    super(props);
-    this.changeProject = this.changeProject.bind(this);
-    this.sendProject = this.sendProject.bind(this);
-    this.state= {
-      projectTitle: '',
-      projectDescription: '',
-      projectStatus: 'private',
-    };
-  }
-  componentDidMount() {
-    this.setState({
-      projectTitle: this.props.projectData.projectTitle,
-      projectStatus: this.props.projectData.projectStatus,
-    })
-  }
-  changeProject(e) {
-    let name = e.target.name;
-    let target = e.target;
-    switch(name) {
-      case 'projectTitle':
-        this.setState({projectTitle: target.value});
-      break;
-      case 'projectDescription':
-        this.setState({projectDescription: target.value});
-      break;
-      case 'projectStatus':
-        if(target.checked) {
-          this.setState({projectStatus: 'public'});
-        } else {
-          this.setState({projectStatus: 'private'});
-        }
-      break;
-    }
-  }
-  sendProject() {this.props.saveProject(this.state);}
-  
-  render(){
-    let projectStatus = false;
-    if(this.state.projectStatus === 'public') {
-      projectStatus = true;
-    }
-    return(
-      <div className="settings__container">
-        <div className="settings__close" onClick={this.props.closeSettings}>
-          <i className="fas fa-arrow-left"></i>
-        </div>
-        <form className="settings__form">
-          <h3 className="section__heading--tertiary txt-white">Project Settings</h3>
-          <fieldset className="form__field">
-            <label className="label--text txt-white">Title</label>
-            <input onChange={this.changeProject} type="text" name="projectTitle" className="input--text mid full" defaultValue={this.props.projectData.projectTitle}/>
-          </fieldset>
-          <fieldset className="form__field">
-            <label className="label--text txt-white">Description</label>
-            <textarea onChange={this.changeProject} type="text" name="projectDescription" className="input--textarea initial" defaultValue={this.props.projectData.projectDescription}/>
-          </fieldset>
-          <fieldset className="form__field">
-            <label className="label--text txt-white">Public</label>
-            <label className="label--switch breath">
-              {projectStatus
-                ? <input name="projectStatus"
-                    checked              
-                    onChange={this.changeProject} 
-                    className="input--switch" type="checkbox" />
-                : <input name="projectStatus"              
-                  onChange={this.changeProject} 
-                  className="input--switch" type="checkbox" />}
-              
-              <span className="input--switch__slider"></span>
-            </label>
-          </fieldset>
-          <fieldset className="form__field">
-            <button className="btn alt-action breath" type="button" onClick={this.sendProject} value={this.props.projectData.projectId}>Save</button>
-            <button className="btn danger breath" type="button" onClick={this.props.deleteProject} value={this.props.projectData.projectId}>Delete</button>
-          </fieldset>
-        </form>
-      </div>
-    );
-  }
-}
 
-const UserNav = (props) => {
-  return(
-    <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
-      <div className="nav--auth__header">
-        <div className="nav--auth__toggle"
-             onClick={props.toggleNav}>
-          <i className="fas fa-arrow-left"></i>
-        </div>
-      </div>
-    </nav>
-  );
-}
+
+

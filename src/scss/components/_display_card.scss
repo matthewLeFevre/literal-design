@@ -29,6 +29,17 @@
   cursor: pointer;
   border: none;
 }
+.display-card__delete {
+  @include flex(row, nowrap, center, center);
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  background-color: $red;
+  color: $light;
+  cursor: pointer;
+  border: none;
+}
 .display-card__body {
   @include flex(column, nowrap, center, flex-start);
   flex-grow: 1;

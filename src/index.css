@@ -1362,6 +1362,20 @@ h6 {
   cursor: pointer;
   border: none; }
 
+.display-card__delete {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  background-color: #D33115;
+  color: #eee;
+  cursor: pointer;
+  border: none; }
+
 .display-card__body {
   display: flex;
   flex-flow: column nowrap;
@@ -1625,7 +1639,10 @@ code {
 .section--edit__fieldset {
   outline: 0;
   border: 0;
-  max-width: 600px; }
+  max-width: 600px;
+  margin-bottom: 1rem; }
+  .section--edit__fieldset:last-child {
+    margin-bottom: 2rem; }
 
 .section--edit__group {
   position: relative;
@@ -1673,6 +1690,37 @@ code {
   outline: none; }
   .section--edit__textBox:hover {
     border-color: #62A8E5; }
+
+.section--edit__heading--field {
+  transition: all 300ms ease-in-out;
+  border: none;
+  font-size: 1.9em;
+  border-left: 2px solid #EF476F;
+  padding: .25em;
+  margin-bottom: 1em;
+  width: 100%; }
+  .section--edit__heading--field:focus {
+    outline: none;
+    border-color: #56BF00; }
+  .section--edit__heading--field.readonly {
+    border: none;
+    padding: 0; }
+
+.section--edit__description--field {
+  height: 135px;
+  width: 100%;
+  resize: none;
+  border: none;
+  background-color: #eee;
+  padding: .5em;
+  font-size: 1em; }
+  .section--edit__description--field:focus {
+    background-color: white;
+    outline: none; }
+  .section--edit__description--field.readonly {
+    background-color: transparent; }
+    .section--edit__description--field.readonly:focus {
+      background-color: transparent; }
 
 .section__nav__link {
   display: block;
@@ -1921,3 +1969,11 @@ code {
   border-radius: 0 0 0.25em 0;
   color: #eee;
   font-size: 1.6em; }
+
+.settings__header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1em;
+  height: 60px; }

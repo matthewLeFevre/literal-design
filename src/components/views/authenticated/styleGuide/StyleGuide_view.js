@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-import Globals from '../../services/Global_service';
-import StyleGuideHeader from '../../components/StyleGuideHeader_comp';
+import Globals from '../../../services/Global_service';
+import StyleGuideHeader from './StyleGuideHeader_comp';
 
 const Global = new Globals();
 
@@ -11,6 +11,7 @@ class StyleGuideView extends Component {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
     this.createSection = this.createSection.bind(this);
+    this.deleteSection = this.deleteSection.bind(this);
     this.state = {
       sections: [],
       nextItemOrder: 0,
@@ -57,6 +58,23 @@ class StyleGuideView extends Component {
       }
     });
   }
+  saveSection() {}
+  deleteSection(e) {
+    let data = {'sectionId': e.target.value, 
+                'styleGuideId': this.state.styleGuide.styleGuideId, 
+                'apiToken': this.props.userData.apiToken};
+    let body = Global.createBody('section', 'deleteSection', data);
+    let req = Global.createRequest(body);
+    fetch(Global.url, req)
+    .then(res => res.json())
+    .then(res => {
+      if(res.status === 'success') {
+        this.setState({
+          sections: res.data,
+        });
+      }
+    })
+  }
   render() {
     return(
       <div className="col--12 grid--nested" id="projects">
@@ -69,7 +87,7 @@ class StyleGuideView extends Component {
           <ul className="display-card__group">
             {this.state.sections.map(
               (guides) => {
-                return <Sections history={this.props.history} key={Global.createRandomKey()} sectionData={guides} />
+                return <Sections deleteSection={this.deleteSection} history={this.props.history} key={Global.createRandomKey()} sectionData={guides} />
               }
             )}
             <li>
@@ -88,14 +106,14 @@ class StyleGuideView extends Component {
 const Sections = (props) => {
   return(
     <li className="display-card">
-      <div className="display-card__img__wrap">
-        <img src="https://images.unsplash.com/photo-1519687231281-b25ebe1037c4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=53f92b745564a13d75475ce66455d209&auto=format&fit=crop&w=634&q=80" alt="#" className="display-card__img" />
-      </div>
       <Link to={`${props.history.location.pathname}/${props.sectionData.sectionId}`} className="display-card__body">
         <h4 className="display-card__title">{props.sectionData.sectionTitle}</h4>
       </Link>
-      <button type="button" data-id={props.title} data-type="project" onClick={props.dataTest} className="display-card__settings">
-      <i className="fas fa-cog"></i>
+      <button type="button" 
+        value={props.sectionData.sectionId}
+        onClick={props.deleteSection} 
+        className="display-card__delete">
+        <i className="fas fa-times"></i>
       </button>
     </li>
   );

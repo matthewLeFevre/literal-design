@@ -65,6 +65,8 @@
   top: 8em;
 }
 
+
+
 .section--edit__view {
   padding: 1em;
   min-width: 270px;
@@ -74,11 +76,14 @@
     margin: 0 1em;
   }
 }
-
 .section--edit__fieldset {
   outline: 0;
   border: 0;
   max-width: 600px;
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 2rem;
+  }
 }
 .section--edit__heading__label {}
 .section--edit__group {
@@ -118,7 +123,6 @@
     background-color: $theme-orange;
   }
 }
-
 .section--edit__textBox {
   min-height: 150px;
   @include transition;
@@ -130,6 +134,40 @@
   outline: none;
   &:hover {
     border-color: #62A8E5;
+  }
+}
+.section--edit__heading--field {
+  @include transition;
+  border: none;
+  font-size: $mod;
+  border-left: 2px solid $theme-red;
+  padding: .25em;
+  margin-bottom: 1em;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: $green;
+  }
+  &.readonly {
+    border: none;
+    padding: 0;
+  }
+}
+.section--edit__description--field {
+  height: 135px;
+  width: 100%;
+  resize: none;
+  border: none;
+  background-color: $light;
+  padding: .5em;
+  font-size: $initial;
+  &:focus {
+    background-color: white;
+    outline: none;
+  }
+  &.readonly {
+    background-color: transparent;
+    &:focus{background-color: transparent;}
   }
 }
 
@@ -148,7 +186,6 @@
     background-color: $white;
   }
 }
-
 .section__nav__list {
   padding: 1em;
   list-style: none;

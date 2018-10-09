@@ -6,7 +6,6 @@
   right: 0;
   overflow-y: scroll;
   background-color: $theme-black;
-
 }
 .settings__form {
   display: block;
@@ -25,7 +24,11 @@
   color: $light;
   font-size: $mdm;
 }
-.settings {}
+.settings__header {
+  @include flex (row, nowrap, flex-start, center);
+  padding-left: 1em;
+  height: 60px;
+}
 .settings {}
 .settings {}
 .settings {}

@@ -25,7 +25,6 @@
 .header--auth {
   @include flex (row, nowrap, flex-start, center);
   padding-left: 1em;
-  // position: relative;
   height: 60px;
 }
 

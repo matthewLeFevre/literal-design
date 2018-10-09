@@ -24,9 +24,6 @@
   @include flex(row, nowrap, space-between, center);
   border-bottom: $light 1px solid;
   padding: .5em 0;
-  @include bp-sml {
-    
-  }
 }
 .styleGuide__nav__drop-toggle {}
 .styleGuide__nav__body {
@@ -36,9 +33,6 @@
   &.open {
     max-height: 300px;
   }
-  // @include bp-sml {
-  //   position: fixed;
-  // }
 }
 .styleGuide__nav__section__list {}
 .styleGuide__nav__section {
