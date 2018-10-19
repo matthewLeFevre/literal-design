@@ -21,6 +21,12 @@ class Globals {
     return id;
   }
 
+  htmlDecode(input){
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
   createRequest(data) {
 
     let req = {

@@ -21,3 +21,29 @@
   border-left: 3px solid $theme-orange;
   font-style: italic;
 }
+
+.user-info {
+  padding: 1em;
+  margin: 1em;
+  background-color: $grey-150;
+  border-radius: $br;
+}
+.user__avatar {
+  @include flex(column, nowrap, center, center);
+  margin-top: 1em;
+}
+.user__avatar__img {
+  height: 100px;
+  width: 100px;
+  vertical-align: middle;
+  
+}
+.user__avatar__img__wrapper {
+  overflow: hidden;
+  border-radius: 50px;
+  background-color: white;
+  margin-bottom: 1em;
+  box-shadow: $box-shadow1;
+}
+.user__avatar__name {}
+.user__avatar__name__wrapper {}

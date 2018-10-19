@@ -53,8 +53,8 @@ class App extends Component {
 
 
               <Route
-                path="/styleguides/detail"
-                render={(props) => <StyleGuideDetailView />} />
+                path="/styleguides/detail/:styleGuideId/:sectionId"
+                render={(props) => <StyleGuideDetailView {...props} />} />
 
               <Route
                 exact={true}

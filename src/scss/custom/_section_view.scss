@@ -84,31 +84,41 @@
   &:last-child {
     margin-bottom: 2rem;
   }
+
+  &.editableItem {
+
+  }
+
+  &:hover .section--edit__nav--btn {
+    opacity: 1;
+  }
 }
 .section--edit__heading__label {}
 .section--edit__group {
   position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include flex(row, nowrap, flex-start, flex-start);
   margin: .5em 0;
 }
 .section--edit__heading {
   @include transition;
-  width: calc(100% - 14px);
-  padding: .2em;
+  width: calc(100% - 80px);
+  padding: .5em 0;
+  padding-left: $initial;
   font-size: $mdm;
-  border-radius: $br;
-  border: solid $theme-black 2px;
+  border: none;
+  border-left: solid $red 2px;
   outline: none;
   &:hover {
     border-color: #62A8E5;
+  }
+  &.editing{
+    background-color: $light;
   }
 }
 .section--edit__btn {
   @include transition;
   border: 0;
-  border-radius: 100%;
+  border-radius: 0  0  0 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,23 +129,104 @@
   position: absolute;
   cursor: pointer;
   right: 0;
+  top: 0;
   &:hover {
     background-color: $theme-orange;
   }
 }
 .section--edit__textBox {
-  min-height: 150px;
+  min-height: 50px;
   @include transition;
-  width: calc(100% - 14px);
-  padding: .2em;
+  width: calc(100% - 80px);
+  padding: .5em 0;
+  padding-left: 1em;
+  border-left: solid 2px $red;
   font-size: $initial;
-  border-radius: $br;
-  border: solid $theme-black 2px;
+  // border-radius: $br;
+  // border: solid $theme-black 2px;
   outline: none;
   &:hover {
     border-color: #62A8E5;
   }
+  &.editing {
+    min-height: 150px;
+    background-color: $light;
+  }
 }
+
+.section--edit__colorPallet {
+  min-height: 150px;
+  @include transition;
+  width: calc(100% - 80px);
+  padding: .5em 0;
+  padding-left: 1em;
+  border-left: solid 2px $red;
+  font-size: $initial;
+  outline: none;
+  @include bp-sml {
+		@include flex(column, wrap, flex-start, flex-start);
+		overflow-x: scroll;
+	}
+  &:hover {
+    border-color: #62A8E5;
+  }
+  &.editing {
+    background-color: $light;
+  }
+}
+
+.section--edit__colorGroup {
+  margin: 1em 0;
+	@include bp-sml {
+    margin: 0;
+		@include flex(row, nowrap, flex-start, flex-start);
+	}
+}
+
+.section--edit__colorSwatch {
+  @include flex(row, nowrap, flex-start, flex-start);
+	@include bp-sml {
+		display: block;
+		margin: .75em;
+		background-color: white;
+		border-radius: 4px;
+		overflow: hidden;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		width: 130px;
+	}
+}
+.section--edit__colorSwatch__fill {
+  width: 90px;
+	height: 90px;
+
+	@include bp-sml {
+		width: auto;
+	}
+
+
+	&.mark {
+		border: 3px dashed $white;
+	}
+}
+.section--edit__colorSwatch__detail {
+  flex-grow: 1;
+	min-height: 90px;
+	// border-bottom: 3px solid $grey-200;
+	@include bp-sml {
+		min-height: 0;
+		width: auto;
+		border: none;
+	}
+	padding: 0 .5em;
+}
+.section--edit__colorSwatch__title,
+.section--edit__colorSwatch__hex,
+.section--edit__colorSwatch__var,
+.section--edit__colorSwatch__rgb {
+  display: block;
+	font-size: $tiny;
+}
+
 .section--edit__heading--field {
   @include transition;
   border: none;
@@ -151,8 +242,10 @@
   &.readonly {
     border: none;
     padding: 0;
+    margin: 0;
   }
 }
+
 .section--edit__description--field {
   height: 135px;
   width: 100%;
@@ -167,6 +260,7 @@
   }
   &.readonly {
     background-color: transparent;
+    height: auto;
     &:focus{background-color: transparent;}
   }
 }
@@ -186,8 +280,75 @@
     background-color: $white;
   }
 }
+
 .section__nav__list {
   padding: 1em;
   list-style: none;
   text-align: left;
 }
+
+.itemSelect{
+  // position: absolute;
+  width: 220px;
+  background-color: $grey;
+  display: block;
+  
+  z-index: $z-1;
+  border-radius: $br;
+  @include bp-sml {
+    width: 300px;
+  }
+  &.open{
+    display: block;
+  }
+}
+
+.itemSelect__list{
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1em;
+}
+.itemSelect__item{
+  @include flex(column, nowrap, center, center);
+  @include transition;
+  height: 70px;
+  width: 80px;
+  margin: .25rem;
+  font-size: $mid;
+  color: $grey;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: $br;
+  cursor: pointer;
+  &:hover {
+    opacity: .8;
+  }
+  span {
+    font-size: $tiny;
+    margin-top: 4px;
+  }
+}
+
+.section--edit__nav {
+  width: 80px;
+  height: 100%;
+  @include flex(row, nowrap, space-between, center);
+}
+
+.section--edit__nav--btn {
+  @include flex(row, nowrap, center, center);
+  @include transition;
+  width: 40px;
+  height: 40px;
+  font-size: $sml;
+  opacity: .3;
+  cursor: pointer;
+  &.grab {
+    cursor: grab;
+  }
+}
+

@@ -32,6 +32,7 @@ class ProjectView extends Component {
     fetch(`${Global.url}?controller=project&action=getProjectById&projectId=${this.props.match.params.projectId}`)
     .then(res => res.json())
     .then(res => {
+      console.log(res.data[0][0]);
       this.setState({
         projectData: res.data[0][0],
         styleGuides: res.data[1]
@@ -116,8 +117,8 @@ class ProjectView extends Component {
     return (
       <div className="col--12 grid--nested" id="projects">
       <ProjectHeader toggleNav={this.toggleNav} projectData={this.state.projectData}/>
-      <ProjectNav toggleNav={this.toggleNav} toggle={this.state.toggle} ProjectData={this.props.ProjectData}/>
-      <div className="col--12 col--sml--8">
+      <ProjectNav toggleNav={this.toggleNav} toggle={this.state.toggle} projectData={this.state.projectData}/>
+      <div className="col--12 col--sml--6">
         {this.state.styleGuideSettings 
           ? <Settings 
               save={this.saveStyleGuide}
@@ -270,6 +271,7 @@ class Settings extends Component {
 }
 
 const ProjectNav = (props) => {
+  console.log(props);
   return(
     <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
       <div className="nav--auth__header">
@@ -286,6 +288,7 @@ const ProjectNav = (props) => {
         <h4 className="section__heading--quatro">What do you want to do with your project?</h4>
         <button type="button" className="btn primary breath">Edit</button>
         <button type="button" className="btn danger breath">Delete</button>
+        <p>{props.projectData.projectDescription}</p>
       </div>
     </nav>
   );
