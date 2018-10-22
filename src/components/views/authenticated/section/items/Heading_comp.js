@@ -94,9 +94,11 @@ class Heading extends Component {
             readOnly={this.state.edit ? false : true}
             className={`section--edit__heading ${this.state.edit ? 'editing' : ''}`} 
             defaultValue={this.props.heading.headingText} />
-          <button type="button" className="section--edit__btn" onClick={this.deleteHeading}>
-            <i className="fas fa-times"></i>
-          </button>
+          { this.state.edit ? 
+            <button type="button" className="section--edit__btn" onClick={this.deleteHeading}>
+              <i className="fas fa-times"></i>
+            </button>
+            : ''}
         </div>
         { this.state.edit ? <div className="section--edit__fieldset">
           <button type="button" 

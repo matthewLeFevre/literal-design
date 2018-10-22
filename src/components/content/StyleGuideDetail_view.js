@@ -10,6 +10,7 @@ class StyleGuideDetailView extends React.Component {
 
     this.state = {
       sections: [],
+      items: [],
     //   sections: [
     //     { sectionTitle: "Introduction", 
     //       itemOrder: "1", 
@@ -103,17 +104,15 @@ class StyleGuideDetailView extends React.Component {
     fetch(`${Global.url}?controller=section&action=getSectionAndItemsBySectionId&sectionId=${this.props.match.params.sectionId}`)
     .then( res => res.json())
     .then( res => {
-      let section = res.data.section[0];
-      section.items = res.data.items;
-      console.log(section);
       this.setState({
-        sections: section,
+        sections: res.data.section[0],
+        items: res.data.items,
       });
     });
   }
 
   render() {
-    console.log(this.state.sections);
+    console.log(this.state.items);
     return (
       <section className="styleGuide__container col--12">
         <nav className="styleGuide__nav">
@@ -139,27 +138,27 @@ class StyleGuideDetailView extends React.Component {
           <div className="styleGuide__sectionTitle__container">
             <h2 className="styleGuide__sectionTitle">{this.state.sections.sectionTitle}</h2>
           </div>
-          {/* {this.state.sections[0].items.map((item) =>{
-            if(item.type === "heading") {
-              return <h3 className="styleGuide__sectionHeading">{item.headingText}</h3>;
-            } else if(item.type === "textBox") {
-              return <div className="styleGuide__sectionTextBox">{item.textBoxText}</div>;
-            } else if(item.type === "image") {
-              return (<div className ="styleGuide__sectionImage__container">
+          {this.state.items.map((item) =>{
+            if(item.itemType === "heading") {
+              return <h3 className="styleGuide__sectionHeading" key={Global.createRandomKey()}>{item.headingText}</h3>;
+            } else if(item.itemType === "textBox") {
+              return <TextBox item={item} />;
+            } else if(item.itemType === "image") {
+              return (<div className ="styleGuide__sectionImage__container" key={Global.createRandomKey()}>
                 <img className="styleGuide__sectionImage" alt="fill in this with some useful data" src={item.imageUrl}/>
               </div>);
-            } else if(item.type === "colorPallet") {
-              return <ColorPallet item={item} />;
-            } else if(item.type === "font") {
+            } else if(item.itemType === "colorPallet") {
+              return <ColorPallet item={item}  key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "font") {
               let fontStyle = item.fontValue;
               return (
-                <div>
+                <div key={Global.createRandomKey()}>
                   <link href={item.fontUrl} rel="stylesheet"/>
                   <h2 style={{fontFamily: fontStyle}}>Lorem ipsum dolor sit amet</h2>
                 </div>
               );
             }
-          })} */}
+          })}
         </article>
       </section>
     );
@@ -192,4 +191,19 @@ const ColorPallet = (props) => {
       })}
     </div>
   );
+}
+
+class TextBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.textBox = React.createRef();
+  }
+  componentDidMount() {
+    this.textBox.current.innerHTML = Global.htmlDecode(this.props.item.textBoxText);
+  }
+  render() {
+    return(
+      <div className="styleGuide__sectionTextBox" ref={this.textBox}></div>
+    );
+  }
 }

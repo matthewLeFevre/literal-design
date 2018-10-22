@@ -1,0 +1,41 @@
+.search__bar{
+  @include flex(row, nowrap, flex-start, center);
+  padding-left: 1em;
+  height: 60px;
+}
+
+.styleGuides__container{
+  @include flex(row, wrap, center, flex-start);
+  padding: 1em;
+}
+
+.styleGuides__entry {
+  display: block;
+  max-width: 260px;
+  border-radius: $br;
+  background-color: $theme-orange;
+  padding: 1em;
+  text-decoration: none;
+  color: $theme-black;
+  margin-bottom: 1em;
+
+  @include bp-tiny {
+    margin-left: 1em;
+  }
+
+  @include bp-sml {
+    max-width: 290px;
+  }
+}
+.styleGuides__entry__title {
+  font-size: $mdm;
+}
+.styleGuides__entry__date {
+  font-size: $sml;
+  opacity: .8;
+}
+.styleGuides__entry__description {
+  margin-top: .5em;
+  line-height: 130%;
+}
+

@@ -7,6 +7,7 @@ import Footer from './components/static/Footer_comp';
 import Login from './components/static/Login_view';
 import SignUp from './components/static/SignUp_view';
 import Home from './components/static/Home_view';
+import StyleGuidesView from './components/content/StyleGuides_view';
 import StyleGuideDetailView from './components/content/StyleGuideDetail_view';
 
 import Dashboard from './components/views/authenticated/dashboard/Dashboard_view';
@@ -51,6 +52,10 @@ class App extends Component {
                 path="/dashboard"
                 render={(props) => <Dashboard userData={this.state.userData} />} />
 
+              <Route
+                path="/styleguides"
+                exact={true}
+                render={(props) => <StyleGuidesView {...props} />} />
 
               <Route
                 path="/styleguides/detail/:styleGuideId/:sectionId"

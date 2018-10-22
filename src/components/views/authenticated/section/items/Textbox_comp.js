@@ -105,9 +105,11 @@ class TextBox extends Component {
           ref={this.textBoxText}
           >
           </div>
-          <button type="button" title="delete textbox" className="section--edit__btn" onClick={this.deleteTextBox}>
-            <i className="fas fa-times"></i>
-          </button>
+          { this.state.edit ? 
+            <button type="button" title="delete textbox" className="section--edit__btn" onClick={this.deleteTextBox}>
+              <i className="fas fa-times"></i>
+            </button>
+          : ''}
         </div>
         { this.state.edit ? <div className="section--edit__fieldset">
           <button type="button" 

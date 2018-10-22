@@ -18,15 +18,11 @@ class SectionView extends Component {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleItem = this.toggleItem.bind(this);
-    this.closeItem = this.closeItem.bind(this);
     this.editSection = this.editSection.bind(this);
     this.cancelEditSection = this.cancelEditSection.bind(this);
     this.saveSection = this.saveSection.bind(this);
     this.handleSection = this.handleSection.bind(this);
     this.nextOrder = this.nextOrder.bind(this);
-    this.createTextBox = this.createTextBox.bind(this);
-    this.createHeading = this.createHeading.bind(this);
-    this.createColorPallet = this.createColorPallet.bind(this);
     this.updateItems = this.updateItems.bind(this);
     this.state = {
       items: [],
@@ -72,33 +68,32 @@ class SectionView extends Component {
     });
   }
 
-  componentWillReceiveProps() {
-
-  }
-
-  
-  
+  /**
+   * Toggles Navigation to go 
+   * back to styleguides or project
+   */
   toggleNav() {
     this.setState((prevState) => ({
       toggle: !prevState.toggle,
     }))
   }
 
+  /**
+   * Toggles Items Avaliable
+   * to be added ot the section
+   */
   toggleItem() {
-    console.log('clicked');
     this.setState((prevState) => ({
-      toggleItem: !prevState.toggle,
+      toggleItem: !prevState.toggleItem,
     }))
   }
 
-  closeItem () {
-    this.setState({
-      toggleItem: false,
-    })
-  }
-
+  /**
+   * Calculates the order for the
+   * next item that will be added to the 
+   * section
+   */
   nextOrder (items) {
-    
     let nextOrder = 0;
     for(let item of items) {
       if(item.itemOrder > nextOrder) {
@@ -112,6 +107,11 @@ class SectionView extends Component {
     return nextOrder;
   }
 
+  /**
+   * Untested - 
+   * Delets the section selected
+   * Not sure what purpose this could have 
+   */
   deleteSection(e) {
     let data = {'sectionId': e.target.value, 
                 'styleGuideId': this.state.styleGuide.styleGuideId, 
@@ -129,6 +129,9 @@ class SectionView extends Component {
     })
   }
 
+  /**
+   * Handles Changes to the Section
+   */
   handleSection(e) {
     let input = e.target.name;
     if(input === "sectionTitle"){
@@ -138,6 +141,10 @@ class SectionView extends Component {
     }
   }
 
+  /**
+   * 'Save Section - since the section
+   *  was already created
+   */
   saveSection() {
     let data = {
       userId: this.props.userData.userId,
@@ -166,105 +173,52 @@ class SectionView extends Component {
     }); 
   }
 
+  /**
+   * Starts the editing of the 
+   * section
+   */
   editSection() {
-    console.log(this.state);
     this.setState({
       edit: true,
-  });
+    });
   }
 
+  /**
+   * Toggles off the section edit
+   */
   cancelEditSection() {
     this.setState({
         edit: false,
     });
   }
 
-  createTextBox() {
-    let data = {
-      'sectionId': this.state.sectionId,
-      'textBoxText': "...",
-      'itemOrder': this.state.nextOrder,
-      'apiToken': this.props.userData.apiToken,
-    }
-    let req = Global.createRequestBody('textBox', 'createTextBox', data);
-    fetch(Global.url, req)
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-      let nextOrder = this.nextOrder(res.data);
-      if(res.status === 'success') {
-        this.setState({
-          items: res.data,
-          toggleItem: false,
-          nextOrder: nextOrder,
-        });
-      }
-    })
-  }
 
-  createHeading() {
-    let data = {
-      'sectionId': this.state.sectionId,
-      'headingText': '...',
-      'itemOrder': this.state.nextOrder,
-      'apiToken': this.props.userData.apiToken,
-    }
-    let req = Global.createRequestBody('heading', 'createHeading', data);
-    fetch(Global.url, req)
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-      let nextOrder = this.nextOrder(res.data);
-      if(res.status === 'success') {
-        this.setState({
-          items: res.data,
-          toggleItem: false,
-          nextOrder: nextOrder,
-        });
-      }
-    })
-  }
-
-  createColorPallet() {
-    let data = {
-      'sectionId': this.state.sectionId,
-      'itemOrder': this.state.nextOrder,
-      'apiToken': this.props.userData.apiToken,
-    }
-    let req = Global.createRequestBody('colorPallet', 'createColorPallet', data);
-    fetch(Global.url, req)
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-      let nextOrder = this.nextOrder(res.data);
-      if(res.status === 'success') {
-        this.setState({
-          items: res.data,
-          toggleItem: false,
-          nextOrder: nextOrder,
-        });
-      }
-    })
-  }
   
+  /**
+   * Updates Items
+   */
   updateItems(items) {
-    this.setState({
+    let nextOrder = this.nextOrder(items);
+    this.setState((prevState) => ({
       items: items,
-    })
+      nextOrder: nextOrder,
+      // toggleItem: !prevState.toggleItem,
+      toggleItem: false,
+    }));
   }
 
   render() {
-    console.log(this.props);
     return(
       <div className="col--12 grid--nested">
         <SectionHeader match={this.props.match} section={this.state} toggleNav={this.toggleNav}/>
         <SectionNav match={this.props.match} sections={this.state.sections} toggleNav={this.toggleNav} toggle={this.state.toggle} section={this.state.section}/>
         <form className="section--edit__view col--12 col--sml--8">
           { this.state.toggleItem 
-            ? <ItemSelect closeItem={this.closeItem} 
-                createTextBox={this.createTextBox}
-                createHeading={this.createHeading}
-                createColorPallet={this.createColorPallet}
+            ? <ItemSelect toggleItem={this.toggleItem} 
+                updateItems={this.updateItems}
+                userData={this.props.userData}
+                nextOrder={this.state.nextOrder}
+                sectionId={this.state.sectionId}
                 /> 
             : ''}
           <fieldset className="section--edit__fieldset">
