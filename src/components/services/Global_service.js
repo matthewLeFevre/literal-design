@@ -72,6 +72,19 @@ class Globals {
   concatArray(arr1, arr2) {
     return arr1.concat(arr2);
   }
+
+  getRequest(query, success) {
+    fetch(`${this.url}${query}`)
+    .then(res => res.json)
+    .then(res => {
+      console.log(res.status);
+      if(res.status === 'success') {
+        success(res.data);
+      } else {
+        // failure(res.message);
+      }
+    })
+  }
 }
 
 //Export Statement

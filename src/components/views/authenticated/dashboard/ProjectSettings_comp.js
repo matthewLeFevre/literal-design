@@ -36,6 +36,8 @@ class ProjectSettings extends Component {
           this.setState({projectStatus: 'private'});
         }
       break;
+      default:
+      break;
     }
   }
 

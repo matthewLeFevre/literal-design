@@ -5,7 +5,7 @@
 .styleGuide__container {
   @include bp-sml {
     @include flex(row, nowrap, flex-start, flex-start);
-    margin: 0 auto;
+    margin: 0 1em;
   }
 }
 
@@ -53,7 +53,7 @@
 
 .styleGuide__section__content__container {
   padding: .75em;
-  max-width: 600px;
+  max-width: 700px;
 }
 .styleGuide__sectionTitle__container {
   padding: 1em 0;
@@ -79,6 +79,7 @@
 }
 
 .styleGuide__colorPallet {
+  margin-bottom: 1.5em;
 	@include bp-sml {
 		@include flex(column, wrap, flex-start, flex-start);
 		overflow-x: scroll;

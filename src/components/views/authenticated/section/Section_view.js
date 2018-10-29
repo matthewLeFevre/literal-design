@@ -270,6 +270,8 @@ class SectionView extends Component {
               return <Font font={item} userData={this.props.userData} updateItems={this.updateItems}  key={Global.createRandomKey()}/>;
             } else if(item.itemType === "colorPallet") {
               return <ColorPallet colorPallet={item} userData={this.props.userData} updateItems={this.updateItems}  key={Global.createRandomKey()}/>;
+            } else {
+              return '';
             }
           })
           

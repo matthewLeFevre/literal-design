@@ -60,7 +60,7 @@ class ProjectView extends Component {
   }
 
   createStyleGuide() {
-    let data = {'projectId': this.props.match.params.projectId, 'styleGuideTitle': 'New Style Guide', 'styleGuideStatus': 'public'};
+    let data = {'projectId': this.props.match.params.projectId, 'styleGuideTitle': 'New Style Guide', 'styleGuideStatus': 'public', "apiToken": this.props.userData.apiToken};
     let body = Global.createBody('styleGuide', 'createStyleGuide', data);
     let req = Global.createRequest(body);
 
@@ -221,6 +221,8 @@ class Settings extends Component {
           this.setState({styleGuideStatus: 'private'});
         }
       break;
+      default:
+      break;
     }
   }
 
@@ -271,7 +273,6 @@ class Settings extends Component {
 }
 
 const ProjectNav = (props) => {
-  console.log(props);
   return(
     <nav className={`nav--auth ${props.toggle ? "open" : ''}`}>
       <div className="nav--auth__header">

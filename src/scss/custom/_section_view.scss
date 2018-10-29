@@ -70,7 +70,7 @@
 .section--edit__view {
   padding: 1em;
   min-width: 270px;
-  max-width: 620px;
+  // max-width: 620px;
   margin: 0 auto;
   @include bp($sml) {
     margin: 0 1em;
@@ -79,6 +79,7 @@
 .section--edit__fieldset {
   outline: 0;
   border: 0;
+  width: 100%;
   max-width: 600px;
   margin-bottom: 1rem;
   &:last-child {
@@ -98,6 +99,8 @@
   position: relative;
   @include flex(row, nowrap, flex-start, flex-start);
   margin: .5em 0;
+  width: 100%;
+  max-width: 620px;
 }
 .section--edit__heading {
   @include transition;
@@ -155,17 +158,19 @@
 }
 
 .section--edit__colorPallet {
-  min-height: 150px;
   @include transition;
-  width: calc(100% - 80px);
+  min-height: 150px;
+  width: 100%;
+  max-width: 520px;
   padding: .5em 0;
   padding-left: 1em;
   border-left: solid 2px $red;
   font-size: $initial;
   outline: none;
-  @include bp-sml {
+  @include bp-tiny {
 		@include flex(column, wrap, flex-start, flex-start);
-		overflow-x: scroll;
+    overflow-x: scroll;
+    max-width: calc(100% - 80px);
 	}
   &:hover {
     border-color: #62A8E5;
@@ -177,29 +182,30 @@
 
 .section--edit__colorGroup {
   margin: 1em 0;
-	@include bp-sml {
-    margin: 0;
+	@include bp-tiny {
 		@include flex(row, nowrap, flex-start, flex-start);
+    margin: 0;
+    max-width: 100%;
 	}
 }
 
 .section--edit__colorSwatch {
   @include flex(row, nowrap, flex-start, flex-start);
-	@include bp-sml {
+	@include bp-tiny {
 		display: block;
 		margin: .75em;
 		background-color: white;
 		border-radius: 4px;
 		overflow: hidden;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-		width: 130px;
+		min-width: 130px;
 	}
 }
 .section--edit__colorSwatch__fill {
   width: 90px;
 	height: 90px;
 
-	@include bp-sml {
+	@include bp-tiny {
 		width: auto;
 	}
 
@@ -212,7 +218,7 @@
   flex-grow: 1;
 	min-height: 90px;
 	// border-bottom: 3px solid $grey-200;
-	@include bp-sml {
+	@include bp-tiny{
 		min-height: 0;
 		width: auto;
 		border: none;

@@ -6,8 +6,7 @@ class Header extends Component {
     return(
       <header className="header">
         
-        <span className="mdm txt-light logo">{this.props.userIsLoggedIn ? this.props.userData.userName : 'Literal Design'}<i className="logo__icon fas fa-vector-square"></i>
-        </span>
+        <span className="mdm txt-light logo">{this.props.userData.userIsLoggedIn ? this.props.userData.userName : 'Leinary'}<i className="logo__icon fas fa-vector-square"></i></span>
         <Nav userData={this.props.userData} userIsLoggedIn={this.props.userIsLoggedIn}/>
       </header>
     );

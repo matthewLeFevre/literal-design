@@ -3,7 +3,8 @@
   background: url("https://images.unsplash.com/photo-1537510280653-94392a751a7c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d0ee6790cd3fe46a4e5ba9f3abed38fa&auto=format&fit=crop&w=1868&q=80");
   background-size: cover;
   background-position: center;
-  height: calc(100vh - 60px);
+  // height: calc(100vh - 60px);
+  height: 100vh;
   @include flex (row, nowrap, center, center);
 
   &:before {

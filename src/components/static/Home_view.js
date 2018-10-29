@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Home = (props) => {
   return (
@@ -9,7 +10,7 @@ const Home = (props) => {
       <div className="home__section bg-light">
         <div className="home__section__item">
           <h2 className="section__heading--secondary">Start using it today!</h2>
-          <button className="btn mid action breath spacing--2">FREE</button>
+          <Link to="login" className="btn mid action breath spacing--2">FREE</Link>
         </div>
       </div>
     </section>

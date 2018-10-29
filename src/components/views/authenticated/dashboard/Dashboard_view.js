@@ -33,7 +33,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    fetch(`${Global.url}?controller=project&action=getProjectsByUserId&userId=1`)
+    fetch(`${Global.url}?controller=project&action=getProjectsByUserId&userId=${this.props.userData.userId}`)
     .then(res => res.json())
     .then(res => {
       this.setState({ projects: res.data});
@@ -60,7 +60,11 @@ class Dashboard extends Component {
   }
 
   createProject() {
-    let data = {'userId': this.props.userData.userId, 'projectTitle': "New Project", 'projectStatus':'public'};
+    let data = {'userId': this.props.userData.userId, 
+      'projectTitle': "New Project", 
+      'projectStatus':'public',
+      'apiToken': this.props.userData.apiToken,
+    };
     let body = Global.createBody('project', 'createProject', data);
     let req = Global.createRequest(body);
 
@@ -120,11 +124,11 @@ class Dashboard extends Component {
     return(
       <section className="col--12 grid--nested">
       <UserHeader toggleNav={this.toggleNav} userData={this.props.userData}/>
-       <UserNav toggleNav={this.toggleNav} toggle={this.state.toggle} userData={this.props.userData}/>
+      <UserNav toggleNav={this.toggleNav} toggle={this.state.toggle} userData={this.props.userData}/>
       {this.state.projectSettings 
         ? <ProjectSettings saveProject={this.saveProject} closeSettings={this.closeSettings} projectData={this.state.projectData} deleteProject={this.deleteProject}/>
         : ''}
-        <div className="col--12 col--sml--6" id="projects">
+        <div className="col--12 col--sml--6 dashboard__container" id="projects">
           
           <div className="dashboard__section__heading">
             <h2 className="dashboard__section__title">Projects</h2>

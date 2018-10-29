@@ -31,8 +31,8 @@ class StyleGuideView extends Component {
         let itemOrder = 0;
         for(let section of res.data[1] ) {
           
-          if( parseInt(section.itemOrder) > itemOrder) {
-            itemOrder = parseInt(section.itemOrder);
+          if( Number(section.itemOrder) > itemOrder) {
+            itemOrder = Number(section.itemOrder);
           }
         } 
         itemOrder = itemOrder + 1;

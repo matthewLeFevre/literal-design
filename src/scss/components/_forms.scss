@@ -49,9 +49,9 @@
 
 .input--text {
     border: 0;
-    padding: .35em;
+    padding: .5em;
     background-color: $white;
-    border:  $blue 2px solid;
+    border:  $grey-300 2px solid;
     // border-radius: $br;
     &:focus {
         outline-color: 0;

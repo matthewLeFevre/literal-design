@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Globals from '../services/Global_service';
 
 const Global = new Globals();
@@ -11,92 +11,7 @@ class StyleGuideDetailView extends React.Component {
     this.state = {
       sections: [],
       items: [],
-    //   sections: [
-    //     { sectionTitle: "Introduction", 
-    //       itemOrder: "1", 
-    //       items: [
-    //         {type: "textBox",
-    //           textBoxText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    //           itemOrder: "1",
-    //         },
-    //         {type: "image",
-    //           imageUrl: "https://images.unsplash.com/photo-1538218952949-2f5dda4a9156?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b79a9c7314dd5ca8eac2f187902ceca2&auto=format&fit=crop&w=1952&q=80",
-    //           itemOrder: "2"
-    //         },
-    //         {type: "heading",
-    //           headingText: "How to Contribute",
-    //           itemOrder: "3",
-    //         },
-    //         {type: "textBox",
-    //           textBoxText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    //           itemOrder: "4",
-    //         },
-    //         {type: "image",
-    //           imageUrl: "https://images.unsplash.com/photo-1538218952949-2f5dda4a9156?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b79a9c7314dd5ca8eac2f187902ceca2&auto=format&fit=crop&w=1952&q=80",
-    //           itemOrder: "2"
-    //         },
-    //         {type: "heading",
-    //           headingText: "How to Contribute",
-    //           itemOrder: "3",
-    //         },
-    //         {type: "textBox",
-    //           textBoxText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    //           itemOrder: "4",
-    //         },
-    //         {type: "image",
-    //           imageUrl: "https://images.unsplash.com/photo-1538218952949-2f5dda4a9156?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b79a9c7314dd5ca8eac2f187902ceca2&auto=format&fit=crop&w=1952&q=80",
-    //           itemOrder: "2"
-    //         },
-    //         {type: "heading",
-    //           headingText: "How to Contribute",
-    //           itemOrder: "3",
-    //         },
-    //         {type: "textBox",
-    //           textBoxText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    //           itemOrder: "4",
-    //         },
-    //       {type: "heading",
-    //         headingText: "Brand Colors",
-    //         itemOrder: "1",
-    //       },
-    //       {type: "textBox",
-    //         textBoxText: "Brand colors are hugely important that is why we have selected the following colors very carefully. Use only the colors listed below and out of those colors use primarily the main brand colors."
-    //       },
-    //       {type: "colorPallet",
-    //         colorPalletTitle: "Brand Colors",
-    //         colorGroups: [
-    //           {itemOrder: '1',
-    //             colorSwatches: [
-    //               {itemOrder: '1', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '2', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '3', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '3', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '3', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '3', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //             ]
-    //           },
-    //           {itemOrder: '1',
-    //             colorSwatches: [
-    //               {itemOrder: '1', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '2', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"},
-    //               {itemOrder: '3', colorSwatchHex: '#735CDD', colorSwatchRGB: 'rgb(115, 92, 221)', colorSwatchTitle: 'Purple', colorSwatchVar: "$color"}
-    //             ]
-    //           }
-    //         ]
-    //       }, 
-    //       {type: "font",
-    //       fontUrl: "https://fonts.googleapis.com/css?family=Srisakdi",
-    //       fontValue: `'Srisakdi', cursive`,
-    //       itemOrder: "6",
-    //       }
-    //     ]},
-      // { sectionTitle: "Typography Guide", itemOrder:"2"},
-      // { sectionTitle: "Image Guide", itemOrder:"2"},
-    //   ],
-      styleGuide: {
-        styleGuideTitle: "Blue Rim Guide",
-        styleGuideDescription: "lorem Ipsum Dolor sit amet",
-      }
+      styleGuide: {}
     }
   }
 
@@ -109,6 +24,15 @@ class StyleGuideDetailView extends React.Component {
         items: res.data.items,
       });
     });
+
+    fetch(`${Global.url}?controller=styleGuide&action=getStyleGuideById&styleGuideId=${this.props.match.params.styleGuideId}`)
+    .then( res => res.json())
+    .then( res => {
+      console.log(res.data[0][0]);
+      this.setState({
+        styleGuide: res.data[0][0],
+      });
+    });
   }
 
   render() {
@@ -117,7 +41,7 @@ class StyleGuideDetailView extends React.Component {
       <section className="styleGuide__container col--12">
         <nav className="styleGuide__nav">
           <div className="styleGuide__nav__header">
-            <h1 className="styleGuide__title">{this.state.styleGuide.styleGuideTitle}</h1>
+            <h1 className="styleGuide__title"><Link to={`/styleguides/detail/${this.state.styleGuide.styleGuideId}`}>{this.state.styleGuide.styleGuideTitle}</Link></h1>
             <span className="styleGuide__nav__drop-toggle">
               <i className="fas fa-bars" />
             </span>
@@ -142,7 +66,7 @@ class StyleGuideDetailView extends React.Component {
             if(item.itemType === "heading") {
               return <h3 className="styleGuide__sectionHeading" key={Global.createRandomKey()}>{item.headingText}</h3>;
             } else if(item.itemType === "textBox") {
-              return <TextBox item={item} />;
+              return <TextBox key={Global.createRandomKey()} item={item} />;
             } else if(item.itemType === "image") {
               return (<div className ="styleGuide__sectionImage__container" key={Global.createRandomKey()}>
                 <img className="styleGuide__sectionImage" alt="fill in this with some useful data" src={item.imageUrl}/>
@@ -157,6 +81,8 @@ class StyleGuideDetailView extends React.Component {
                   <h2 style={{fontFamily: fontStyle}}>Lorem ipsum dolor sit amet</h2>
                 </div>
               );
+            } else {
+              return '';
             }
           })}
         </article>
@@ -171,12 +97,10 @@ const ColorPallet = (props) => {
   return (
     <div className="styleGuide__colorPallet">
       <h4>{props.item.colorPalletTitle}</h4>
-      {props.item.colorGroups.map((group) =>{
-        return (
         <div className="styleGuide__colorGroup">
-          {group.colorSwatches.map((color) => {
+          {props.item.colorSwatches.map((color) => {
             return (
-              <figure className="styleGuide__colorSwatch">
+              <figure key={Global.createRandomKey()} className="styleGuide__colorSwatch">
 			          <div className="styleGuide__colorSwatch__fill" style={{backgroundColor: color.colorSwatchHex}}/>
 			          <figcaption className="styleGuide__colorSwatch__detail">
 				          <span className="styleGuide__colorSwatch__title">{color.colorSwatchTitle}</span>
@@ -187,8 +111,6 @@ const ColorPallet = (props) => {
             );
           })}
         </div>
-        );
-      })}
     </div>
   );
 }

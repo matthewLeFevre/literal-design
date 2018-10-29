@@ -1,4 +1,7 @@
 .dashboard {}
+.dashboard__container{
+  padding: 1em;
+}
 .dashboard__banner {}
 .dashboard__section {}
 .dashboard__section__sub-heading {
@@ -6,11 +9,11 @@
   margin: .5em 0;
 }
 .dashboard__section__heading {
-  padding: .3em 1em;
+  padding: .3em 0;
 }
 .dashboard__section__title {
   display: block;
-  padding-left: 1rem;
+  // padding-left: 1rem;
   // border-bottom: 3px dashed $theme-purple;
   // color: $theme-red;
   color: $theme-black;
@@ -24,9 +27,10 @@
 
 .user-info {
   padding: 1em;
-  margin: 1em;
+  margin: 1em auto;
   background-color: $grey-150;
   border-radius: $br;
+  max-width: 280px;
 }
 .user__avatar {
   @include flex(column, nowrap, center, center);

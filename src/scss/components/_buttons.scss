@@ -60,7 +60,8 @@
 			} @else if $type == "long" {
 				padding: .75em 5em;
 			} @else if $type == "adder" {
-				width: 260px;
+				width: 100%;
+				max-width: 600px;
 				margin: .25em auto;
 				display: block;
 				background-color: $light;

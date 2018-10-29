@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Nav extends Component {
   constructor(props) {
@@ -36,12 +36,15 @@ class Nav extends Component {
             <Link className="nav__link" to="/">Home</Link>
           </li>
           <li className="nav__item" onClick={this.toggleNav}>
-            <Link className="nav__link" to="/login">Login</Link>
+            <Link className="nav__link" to="/styleguides">StyleGuides</Link>
+          </li>
+          <li className="nav__item" onClick={this.toggleNav}>
+            <Link className="nav__link" to="/login">Login / Sign-up</Link>
           </li>
           <li className="nav__item" onClick={this.toggleNav}>
             <Link className="nav__link" to="/about">About</Link>
           </li>
-          {this.props.userIsLoggedIn
+          {this.props.userData.userIsLoggedIn
             ? <li className="nav__item" onClick={this.toggleNav}>
                 <Link className="nav__link" to="/dashboard">Dashboard</Link>
               </li>

@@ -2,7 +2,7 @@
   @include flex(row, nowrap, flex-start, center);
   height: 50px;
   width: 100%;
-  max-width: 260px;
+  max-width: 600px;
   margin: .5em auto;
   border-radius: $br;
   overflow: hidden;
@@ -12,6 +12,7 @@
 
 .display-card__group {
   padding: .5em;
+  list-style: none;
 }
 .display-card__wrapper {}
 .display-card__title {
