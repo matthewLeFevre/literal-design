@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import Globals from '../services/Global_service';
+import Globals from '../../../services/Global_service';
+import SectionPublicNav from './Section_public_nav';
 
 const Global = new Globals();
 
-class StyleGuideDetailView extends React.Component {
+class SectionPublicView extends React.Component {
   constructor(props) {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
@@ -69,38 +69,27 @@ class StyleGuideDetailView extends React.Component {
 
   render() {
     return (
-      <section className="styleGuide__container col--12">
-        <nav className="styleGuide__nav">
-          <div className="styleGuide__nav__header">
-            <h1 className="styleGuide__title"><Link to={`/styleguides/detail/${this.state.styleGuide.styleGuideId}`}>{this.state.styleGuide.styleGuideTitle}</Link></h1>
-            <span className="styleGuide__nav__drop-toggle" onClick={this.toggleNav}>
-              <i className="fas fa-bars" />
-            </span>
-          </div>
-          <div className={this.state.sectionNavToggle ? "styleGuide__nav__body open" : "styleGuide__nav__body"}>
-            <ul className="styleGuide__nav__section__list">
-              {this.state.allSections.map((section) => {
-                return(
-                  <li className="styleGuide__nav__section" key={Global.createRandomKey()}>
-                    <Link to={`/styleguides/detail/${this.state.styleGuide.styleGuideId}/${section.sectionId}`} className="styleGuide__nav__section__link"><i className="styleGuide__nav__section__link__arrow fas fa-chevron-right"/>&nbsp;{section.sectionTitle}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </nav>
-        <article className="styleGuide__section__content__container">
-          <div className="styleGuide__sectionTitle__container">
-            <h2 className="styleGuide__sectionTitle">{this.state.sections.sectionTitle}</h2>
+      <section className="section--public__container col--12">
+
+        <SectionPublicNav 
+          sectionNavToggle={this.state.sectionNavToggle}
+          toggleNav={this.toggleNav}
+          styleGuideTitle={this.state.styleGuide.styleGuideTitle}
+          allSections={this.state.allSections} 
+          match={this.props.match}/>
+
+        <article className="section--public__content">
+          <div className="section--public__title-container">
+            <h2>{this.state.sections.sectionTitle}</h2>
           </div>
           {this.state.items.map((item) =>{
             if(item.itemType === "heading") {
-              return <h3 className="styleGuide__sectionHeading" key={Global.createRandomKey()}>{item.headingText}</h3>;
+              return <h3 className="section--public__heading" key={Global.createRandomKey()}>{item.headingText}</h3>;
             } else if(item.itemType === "textBox") {
               return <TextBox key={Global.createRandomKey()} item={item} />;
             } else if(item.itemType === "image") {
-              return (<div className ="styleGuide__sectionImage__container" key={Global.createRandomKey()}>
-                <img className="styleGuide__sectionImage" alt="fill in this with some useful data" src={item.imageUrl}/>
+              return (<div className ="section--public__img-container" key={Global.createRandomKey()}>
+                <img className="section--public__img" alt="fill in this with some useful data" src={item.imageUrl}/>
               </div>);
             } else if(item.itemType === "colorPallet") {
               return <ColorPallet item={item}  key={Global.createRandomKey()}/>;
@@ -122,21 +111,21 @@ class StyleGuideDetailView extends React.Component {
   }
 }
 
-export default StyleGuideDetailView;
+export default SectionPublicView;
 
 const ColorPallet = (props) => {
   return (
-    <div className="styleGuide__colorPallet">
+    <div className="section--public__colorPallet">
       <h4>{props.item.colorPalletTitle}</h4>
-        <div className="styleGuide__colorGroup">
+        <div className="section--public__colorGroup">
           {props.item.colorSwatches.map((color) => {
             return (
-              <figure key={Global.createRandomKey()} className="styleGuide__colorSwatch">
-			          <div className="styleGuide__colorSwatch__fill" style={{backgroundColor: color.colorSwatchHex}}/>
-			          <figcaption className="styleGuide__colorSwatch__detail">
-				          <span className="styleGuide__colorSwatch__title">{color.colorSwatchTitle}</span>
-                  <span className="styleGuide__colorSwatch__hex">HEX: {color.colorSwatchHex}</span>
-                  <span className="styleGuide__colorSwatch__var">SCSS: {color.colorSwatchVar}</span>
+              <figure key={Global.createRandomKey()} className="section--public__colorSwatch">
+			          <div className="section--public__colorSwatch-fill" style={{backgroundColor: color.colorSwatchHex}}/>
+			          <figcaption className="seciton--public__colorSwatch-detail">
+				          <span className="section--public__colorSwatch-title">{color.colorSwatchTitle}</span>
+                  <span className="section--public__colorSwatch-hex">HEX: {color.colorSwatchHex}</span>
+                  <span className="section--public__colorSwatch-var">SCSS: {color.colorSwatchVar}</span>
 			          </figcaption>
 		          </figure>
             );

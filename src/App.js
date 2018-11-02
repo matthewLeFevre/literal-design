@@ -10,7 +10,8 @@ import SignUp from './components/static/SignUp_view';
 import Home from './components/static/Home_view';
 import StyleGuidesView from './components/content/StyleGuides_view';
 import StyleGuideLiveView from './components/content/StyleGuideLive_view';
-import StyleGuideDetailView from './components/content/StyleGuideDetail_view';
+// import StyleGuideDetailView from './components/content/StyleGuideDetail_view';
+import SectionPublicView from './components/views/public/section_public_view/Section_public_view';
 
 import Dashboard from './components/views/authenticated/dashboard/Dashboard_view';
 import ProjectView from './components/views/authenticated/project/Project_view';
@@ -97,7 +98,7 @@ class App extends Component {
 
               <Route
                 path="/styleguides/detail/:styleGuideId/:sectionId"
-                render={(props) => <StyleGuideDetailView {...props} />} />
+                render={(props) => <SectionPublicView {...props} />} />
 
               <Route
                 exact={true}

@@ -69,12 +69,6 @@ class ItemSelect extends Component {
     })
   }
 
-  /**
-   * @todo Create Font 
-   * @todo Create code block
-   * @todo Create Notification
-   */
-
   render() {
     return (
       <div className="modal__container">
@@ -90,23 +84,23 @@ class ItemSelect extends Component {
               <i className="fas fa-vector-square"></i>
               <span>Textbox</span>
             </li>
-            <li className="itemSelect__item">
+            {/* <li className="itemSelect__item">
               <i className="fas fa-font"></i>
               <span>Font</span>
             </li>
             <li className="itemSelect__item">
               <i className="fas fa-image"></i>
               <span>Image</span>
-            </li>
+            </li> */}
             <li className="itemSelect__item"
               onClick={this.createColorPallet}>
               <i className="fas fa-th-large"></i>
               <span>Pallet</span>
             </li>
-            <li className="itemSelect__item">
+            {/* <li className="itemSelect__item">
               <i className="fas fa-th-large"></i>
               <span>Code</span>
-            </li>
+            </li> */}
           </ul>
           <fieldset className="form__field">
             <button onClick={this.props.toggleItem} 

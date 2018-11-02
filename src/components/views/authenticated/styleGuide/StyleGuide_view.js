@@ -28,37 +28,47 @@ class StyleGuideView extends Component {
     fetch(`${Global.url}?controller=styleGuide&action=getStyleGuideById&styleGuideId=${this.props.match.params.styleGuideId}`)
     .then(res => res.json())
     .then(res => {
-        let itemOrder = 0;
-        for(let section of res.data[1] ) {
-          
-          if( Number(section.itemOrder) > itemOrder) {
-            itemOrder = Number(section.itemOrder);
-          }
-        } 
-        itemOrder = itemOrder + 1;
+       let nextOrder = this.nextOrder(res.data[1]);
         this.setState({
           styleGuide: res.data[0][0],
           sections: res.data[1],
-          nextItemOrder: itemOrder,
+          nextItemOrder: nextOrder,
         });
     });
   }
+
+  nextOrder (items) {
+    let nextOrder = 0;
+    for(let item of items) {
+      if(item.itemOrder > nextOrder) {
+        nextOrder = item.itemOrder;
+      }
+    }
+    nextOrder++;
+    return nextOrder;
+  }
+
   createSection() {
-    let data = {'styleGuideId': this.props.match.params.styleGuideId, 'sectionTitle': "New Section", "itemOrder": this.state.nextItemOrder, 'apiToken': this.props.userData.apiToken};
+    let data = {'styleGuideId': this.props.match.params.styleGuideId, 
+                'sectionTitle': "New Section", 
+                "itemOrder": this.state.nextItemOrder, 
+                'apiToken': this.props.userData.apiToken};
     let body = Global.createBody('section', 'createSection', data);
     let req = Global.createRequest(body);
     fetch(Global.url, req)
     .then(res => res.json())
     .then(res => {
+      console.log(res.data);
       if(res.status === 'success') {
+        let nextOrder = this.nextOrder(res.data);
         this.setState( prevState => ({
           sections: res.data,
-          nextItemOrder: prevState.nextItemOrder + 1,
+          nextItemOrder: nextOrder,
         }));
       }
     });
   }
-  saveSection() {}
+
   deleteSection(e) {
     let data = {'sectionId': e.target.value, 
                 'styleGuideId': this.state.styleGuide.styleGuideId, 
