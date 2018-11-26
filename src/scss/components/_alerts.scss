@@ -4,8 +4,10 @@
     min-width: 300px;
     padding: 1em;
     top: 2em;
-    left: 10vw;
-    right: 10vw;
+    // left: 10vw;
+    // right: 10vw;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: $z-5;
     border-radius: $br;
 

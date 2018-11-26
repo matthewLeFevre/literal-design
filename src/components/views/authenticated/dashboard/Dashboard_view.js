@@ -130,8 +130,8 @@ class Dashboard extends Component {
         : ''}
         <div className="col--12 col--sml--6 dashboard__container" id="projects">
           
-          <div className="dashboard__section__heading">
-            <h2 className="dashboard__section__title">Projects</h2>
+          <div className="dashboard__section__sub-heading">
+            <h2 className="dashboard__section__sub-title">Projects</h2>
           </div>
           <ul className="display-card__group">
             {this.state.projects.map(

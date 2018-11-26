@@ -32,9 +32,23 @@ $nav-options: "sticky" "full-page" "responsive";
             background-color: $light;
         }
 
-        & > .nav__list {
+        & > .nav__list {height: auto;}
+        @include bp-sml {
             height: auto;
+            width:auto;
+            background-color: transparent;
         }
+    }
+
+    @include bp-sml {
+        display: block;
+        height: auto;
+        width: auto;
+        position: static;
+        z-index: $z-05;
+        margin-left: 1em;
+        height: 100%;
+        & > .nav__btn { display: none;}
     }
 }
 .nav__btn {
@@ -58,9 +72,15 @@ $nav-options: "sticky" "full-page" "responsive";
     height: 0;
     overflow: hidden;
     width: 250px;
+    list-style: none;
+    @include bp-sml {
+        @include flex(row, nowrap, flex-start, center);
+        height: 100%;
+        width: auto;
+    }
 }
 .nav__link {
-    @include transition();
+    @include transition(color);
     color: $grey-trans;
     text-decoration: none;
     font-size: $mid;
@@ -70,10 +90,27 @@ $nav-options: "sticky" "full-page" "responsive";
     justify-content: flex-start;
     align-items: center;
     height: 45px;
+    border: 0;
     border-left: 1px solid $theme-purple;
-
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
     &:hover {
         color: $theme-red;
         border-color: $theme-red;
+    }
+    @include bp-sml {
+        font-size: $initial;
+        height: 60px;
+        border: none;
+        padding: 0 1em;
+        color: $light;
+    }
+
+    &.hide--sml {
+        @include bp-sml {
+            display: none;
+        }
     }
 }

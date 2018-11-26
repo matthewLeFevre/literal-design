@@ -5,28 +5,37 @@
 }
 
 .styleGuides__container{
-  @include flex(column, nowrap, flex-start, center);
+  @include flex(row, wrap, center, flex-start);
   padding: 1em;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .styleGuides__entry {
-  @include bp-sml {
-    @include flex(row, nowrap, flex-start, flex-start);
+  width: 100%;
+  @include bp-tiny {
+    width: 250px;
   }
-  min-width: 250px;
-  width: 70%;
-  max-width: 700px;
   border-radius: $br;
-  background-color: $theme-purple;
-  padding: .75em;
+  background-color: $light;
   text-decoration: none;
-  color: $white;
-  margin-bottom: 1em;
-
+  color: $theme-black;
+  margin: 1em;
+  overflow: hidden;
+}
+.styleGuide__entry__link {
+  text-decoration: none;
+  color: $theme-black;
+  padding: .75em;
+  // height: 130px;
+  display: block;
+  overflow: hidden;
 }
 .styleGuides__entry__title {
   font-size: $main;
   min-width: 150px;
+  color: $theme-purple;
+  &:hover {text-decoration: underline;}
 }
 .styleGuides__entry__date {
   font-size: $tiny;
@@ -35,5 +44,19 @@
 .styleGuides__entry__description {
   margin-top: .5em;
   line-height: 130%;
+  font-size: $sml;
+}
+.styleGuide__entry__author {
+  padding: .75em;
+  // background-color: $theme-purple;
+  // color: $theme-red;
+  a {
+    @include transition(color);
+    text-decoration: none;
+    color: $theme-black;
+    &:hover {
+      color: $grey-100;
+    }
+  }
 }
 

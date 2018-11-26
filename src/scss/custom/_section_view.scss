@@ -137,102 +137,6 @@
     background-color: $theme-orange;
   }
 }
-.section--edit__textBox {
-  min-height: 50px;
-  @include transition;
-  width: calc(100% - 80px);
-  padding: .5em 0;
-  padding-left: 1em;
-  border-left: solid 2px $red;
-  font-size: $initial;
-  // border-radius: $br;
-  // border: solid $theme-black 2px;
-  outline: none;
-  &:hover {
-    border-color: #62A8E5;
-  }
-  &.editing {
-    min-height: 150px;
-    background-color: $light;
-  }
-}
-
-.section--edit__colorPallet {
-  @include transition;
-  min-height: 150px;
-  width: 100%;
-  max-width: 520px;
-  padding: .5em 0;
-  padding-left: 1em;
-  border-left: solid 2px $red;
-  font-size: $initial;
-  outline: none;
-  @include bp-tiny {
-		@include flex(column, wrap, flex-start, flex-start);
-    overflow-x: scroll;
-    max-width: calc(100% - 80px);
-	}
-  &:hover {
-    border-color: #62A8E5;
-  }
-  &.editing {
-    background-color: $light;
-  }
-}
-
-.section--edit__colorGroup {
-  margin: 1em 0;
-	@include bp-tiny {
-		@include flex(row, nowrap, flex-start, flex-start);
-    margin: 0;
-    max-width: 100%;
-	}
-}
-
-.section--edit__colorSwatch {
-  @include flex(row, nowrap, flex-start, flex-start);
-	@include bp-tiny {
-		display: block;
-		margin: .75em;
-		background-color: white;
-		border-radius: 4px;
-		overflow: hidden;
-		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-		min-width: 130px;
-	}
-}
-.section--edit__colorSwatch__fill {
-  width: 90px;
-	height: 90px;
-
-	@include bp-tiny {
-		width: auto;
-	}
-
-
-	&.mark {
-		border: 3px dashed $white;
-	}
-}
-.section--edit__colorSwatch__detail {
-  flex-grow: 1;
-	min-height: 90px;
-	// border-bottom: 3px solid $grey-200;
-	@include bp-tiny{
-		min-height: 0;
-		width: auto;
-		border: none;
-	}
-	padding: 0 .5em;
-}
-.section--edit__colorSwatch__title,
-.section--edit__colorSwatch__hex,
-.section--edit__colorSwatch__var,
-.section--edit__colorSwatch__rgb {
-  display: block;
-	font-size: $tiny;
-}
-
 .section--edit__heading--field {
   @include transition;
   border: none;
@@ -253,7 +157,8 @@
 }
 
 .section--edit__description--field {
-  height: 135px;
+  min-height: 135px;
+  max-height: 200px;
   width: 100%;
   resize: none;
   border: none;
@@ -266,8 +171,12 @@
   }
   &.readonly {
     background-color: transparent;
-    height: auto;
+    min-height: 100px;
     &:focus{background-color: transparent;}
+  }
+
+  &.empty {
+    min-height: 0;
   }
 }
 

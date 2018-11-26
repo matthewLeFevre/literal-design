@@ -1,0 +1,3 @@
+Establish the routes to your entire application right off the bat.
+Implement features that need to go throughout the whole application at first.
+Utilize services methods as static to avoid having to instatiate an object every time you want to use it.

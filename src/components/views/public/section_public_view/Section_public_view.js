@@ -1,5 +1,6 @@
 import React from 'react';
 import Globals from '../../../services/Global_service';
+import SyntaxHighlight from '../../../services/Syntax_service';
 import SectionPublicNav from './Section_public_nav';
 
 const Global = new Globals();
@@ -81,6 +82,7 @@ class SectionPublicView extends React.Component {
         <article className="section--public__content">
           <div className="section--public__title-container">
             <h2>{this.state.sections.sectionTitle}</h2>
+            {this.state.sections.sectionDescription ? <p>{Global.htmlDecode(this.state.sections.sectionDescription)}</p> : ''}
           </div>
           {this.state.items.map((item) =>{
             if(item.itemType === "heading") {
@@ -94,13 +96,19 @@ class SectionPublicView extends React.Component {
             } else if(item.itemType === "colorPallet") {
               return <ColorPallet item={item}  key={Global.createRandomKey()}/>;
             } else if(item.itemType === "font") {
-              let fontStyle = item.fontValue;
+              let fontStyle = Global.htmlDecode(item.fontFamily);
               return (
                 <div key={Global.createRandomKey()}>
-                  <link href={item.fontUrl} rel="stylesheet"/>
-                  <h2 style={{fontFamily: fontStyle}}>Lorem ipsum dolor sit amet</h2>
+                  <style>
+                    @import url({item.fontUrl});
+                  </style>
+                  <h2 style={{fontFamily: fontStyle, fontWeight: 500, marginBottom: '1em',}}>A B C D E F G 1 2 3 4 5 ! @ # $ %</h2>
                 </div>
               );
+            }else if(item.itemType === "notice") {
+              return <Notice notice={item} key={item.itemOrder}/>
+            } else if(item.itemType === "code") {
+              return <Code code={item} key={item.itemOrder}/>;
             } else {
               return '';
             }
@@ -123,14 +131,60 @@ const ColorPallet = (props) => {
               <figure key={Global.createRandomKey()} className="section--public__colorSwatch">
 			          <div className="section--public__colorSwatch-fill" style={{backgroundColor: color.colorSwatchHex}}/>
 			          <figcaption className="seciton--public__colorSwatch-detail">
-				          <span className="section--public__colorSwatch-title">{color.colorSwatchTitle}</span>
+				          {color.colorSwatchTitle ? <span className="section--public__colorSwatch-title">{color.colorSwatchTitle}</span> : ''}
                   <span className="section--public__colorSwatch-hex">HEX: {color.colorSwatchHex}</span>
-                  <span className="section--public__colorSwatch-var">SCSS: {color.colorSwatchVar}</span>
+                  {color.colorSwatchVar ? <span className="section--public__colorSwatch-var">SCSS: {color.colorSwatchVar}</span> : ''}
 			          </figcaption>
 		          </figure>
             );
           })}
         </div>
+    </div>
+  );
+}
+
+const Notice = (props) => {
+  let noticeStyle = '';
+  let noticeTitle = '';
+  let noticeIcon = '';
+  let noticeText = Global.htmlDecode(props.notice.noticeText);
+  switch (props.notice.noticeType) {
+    case "success":
+      noticeStyle = "notice positive";
+      noticeIcon = <i className="fas fa-thumbs-up notice__icon txt-green" />;
+      noticeTitle = "Success";
+    break;
+    case "danger":
+      noticeStyle = "notice negative";
+      noticeIcon = <i className="fas fa-times-circle notice__icon txt-red"/>;
+      noticeTitle = "Danger";
+    break;
+    case "info":
+      noticeStyle = "notice neutral";
+      noticeTitle = "info";
+      noticeIcon = <i className="fas fa-info-circle notice__icon txt-blue" />;
+    break;
+    case "warning":
+      noticeStyle = "notice warning";
+      noticeTitle = "Warning";
+      noticeIcon = <i className="fas fa-exclamation-circle notice__icon txt-yellow"/>;
+    break;
+    case "tip":
+      noticeStyle = "notice tip";
+      noticeTitle = "Tip";
+      noticeIcon = <i className="fas fa-hand-peace notice__icon txt-purple"/>;
+    break;
+    case "note":
+      noticeStyle = "notice note";
+      noticeTitle = "Note";
+      noticeIcon = <i className="fas fa-comment note notice__icon txt-purple"/>;
+    break;
+  }
+  return (
+    <div className={noticeStyle}>
+	    {noticeIcon}
+	    <span className="notice__status">{noticeTitle}</span>
+	    <p className="notice__message">{noticeText}</p>
     </div>
   );
 }
@@ -146,6 +200,46 @@ class TextBox extends React.Component {
   render() {
     return(
       <div className="styleGuide__sectionTextBox" ref={this.textBox}></div>
+    );
+  }
+}
+
+class Code extends React.Component {
+  constructor(props) {
+    super(props);
+    this.codeMarkup = React.createRef();
+  }
+
+  componentDidMount() {
+    this.codeMarkup.current.innerHTML =  this.highlightCode(this.props.code.codeLanguage, 
+                                                            this.props.code.codeMarkup);
+  }
+
+  highlightCode(codeLanguage, codeMarkup) {
+    let highlight = '';
+    switch(codeLanguage) {
+      case 'html':
+        highlight = SyntaxHighlight.format_html(codeMarkup);
+        break;
+      case 'css':
+        highlight = SyntaxHighlight.format_css(codeMarkup);
+        break;
+      case 'js':
+        highlight = SyntaxHighlight.format_js(codeMarkup);
+        break;
+      case 'php':
+        highlight = SyntaxHighlight.format_php(codeMarkup);
+        break;
+      default:
+        highlight = '';
+        break;
+    }
+    return highlight;
+  }
+
+  render() {
+    return (
+      <pre><code ref={this.codeMarkup}></code></pre>
     );
   }
 }

@@ -30,16 +30,13 @@ class Nav extends Component {
 
   render() {
     return(
-      <nav className={this.state.nav}>
+      <nav className={ this.props.hide ? `${this.state.nav} hide--sml` : this.state.nav}>
         <ul className="nav__list">
           <li className="nav__item" onClick={this.toggleNav}>
-            <Link className="nav__link" to="/">Home</Link>
+            <Link className="nav__link hide--sml" to="/">Home</Link>
           </li>
           <li className="nav__item" onClick={this.toggleNav}>
             <Link className="nav__link" to="/styleguides">StyleGuides</Link>
-          </li>
-          <li className="nav__item" onClick={this.toggleNav}>
-            <Link className="nav__link" to="/login">Login / Sign-up</Link>
           </li>
           <li className="nav__item" onClick={this.toggleNav}>
             <Link className="nav__link" to="/about">About</Link>
@@ -49,6 +46,11 @@ class Nav extends Component {
                 <Link className="nav__link" to="/dashboard">Dashboard</Link>
               </li>
             : ''}
+          <li className="nav__item" onClick={this.toggleNav}>
+            {this.props.userData.userIsLoggedIn
+              ? <button type="button" className="nav__link" onClick={this.props.onLogout}><i className="fas fa-lock" />&nbsp;Logout</button>
+              : <Link className="nav__link" to="/login"><i className="fas fa-unlock" />&nbsp;Login</Link>}
+          </li>
         </ul>
         <div className="nav__btn" onClick={this.toggleNav}>
           <i className="fas fa-bars" />

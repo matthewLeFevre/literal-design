@@ -1,0 +1,23 @@
+.section--edit__imgUrl {
+  @include transition;
+  width: 100%;
+  display: block;
+  padding: .5em 0;
+  padding-left: $initial;
+  font-size: $main;
+  border: none;
+  border-left: solid $red 2px;
+  outline: none;
+  background-color: $light;
+  &:hover {
+    border-color: #62A8E5;
+  }
+}
+.section--edit__img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+.section--edit__img-form {
+  width: calc(100% - 80px);
+}
+.section--edit__img-container {}

@@ -90,9 +90,9 @@ class StyleGuideView extends Component {
       <div className="col--12 grid--nested" id="projects">
         <StyleGuideHeader toggleNav={this.toggleNav} styleGuide={this.state.styleGuide} match={this.props.match}/>
         <StyleGuideNav match={this.props.match} toggleNav={this.toggleNav} toggle={this.state.toggle} StyleGuide={this.props.StyleGuide}/>
-        <div className="col--12 col--sml--6">
+        <div className="col--12 col--sml--6 dashboard__container">
           <div className="dashboard__section__sub-heading">
-            <h3 className="dashboard__section__sub-title">Sections</h3>
+            <h2 className="dashboard__section__sub-title">Sections</h2>
           </div>
           <ul className="display-card__group">
             {this.state.sections.map(

@@ -1,0 +1,40 @@
+.styleGuide--live__container {
+  @include bp-sml {
+    @include flex(row, nowrap, center, center);
+  }
+}
+
+.styleGuide--live__view {
+  
+  width: 100vw;
+  height: calc(100vh - 60px);
+  padding: 1em 2em;
+  margin: 0  auto;
+  background-color: $light;
+  @include bp-sml {
+    border-radius: $br2;
+    margin: 0;
+    max-height: 600px;
+    max-width: 600px;
+  }
+}
+
+.styleGuide--live__information {
+  h1 {}
+  p { padding: 1em; }
+}
+.styleGuide--live__list {
+  padding: 2em;
+  li a {
+    text-decoration: none;
+    font-size: $main;
+    font-weight: 700;
+    color: $theme-black;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  @include bp-sml {
+    padding: 1em;
+  }
+}

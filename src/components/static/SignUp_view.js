@@ -10,9 +10,9 @@ class SignUp extends Component {
     super(props);
     this.state = {
       userIsRegistered: false,
-      userName: null,
-      userEmail: null,
-      userPassword: null,
+      userName: '',
+      userEmail: '',
+      userPassword: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,7 +31,7 @@ class SignUp extends Component {
 
   handleRegister() {
     if(this.state.userEmail == null || this.state.userPassword == null) {
-      window.alert("password or email have not been included")
+      this.props.handleAlert("Password, email and username are required.", "error");
     } else {
       const data = {
           userEmail: this.state.userEmail,
@@ -43,11 +43,17 @@ class SignUp extends Component {
       .then(response => response.json())
       .then(data => {
         if(data.status === "success") {
-          // this.props.handleAlert(data.message, "success");
-          window.alert(data.message);
+          this.props.handleAlert(data.message, "success");
+          this.setState((prevstate) => ({
+            userPassword: '',
+            userEmail: '',
+            userName: '',
+          }));
         } else {
-          // this.props.handleAlert(data.message, "error");
-          window.alert(data.message);
+          this.props.handleAlert(data.message, "failure");
+          this.setState((prevstate) => ({
+            userPassword: '',
+          }));
         }
       });
     }
@@ -63,17 +69,20 @@ class SignUp extends Component {
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userName" 
-            className="input--text full breath"/>
+            className="input--text full breath"
+            value={this.state.userName}/>
           <label className="label--text">Email - Required</label>
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userEmail" 
-            className="input--text full breath"/>
+            className="input--text full breath"
+            value={this.state.userEmail}/>
           <label className="label--text">Password - Required</label>
           <input type="password" 
             onChange={this.handleInputChange} 
             name="userPassword"
-            className="input--text full breath"/>
+            className="input--text full breath"
+            value={this.state.userPassword}/>
           {/* <label className="label--text">Confirm Password</label>
           <input type="password" userPassword placeholder="Password" className="input--text full breath"/> */}
         </fieldset>

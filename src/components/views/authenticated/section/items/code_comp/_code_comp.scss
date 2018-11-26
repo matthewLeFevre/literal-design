@@ -1,0 +1,41 @@
+/* 
+* Configure how your code will be highlighted
+*
+* Change the variables to effect the different 
+* highlightable behavior
+*/
+
+.code--edit__fieldset {
+  transition: all 300ms ease-in-out;
+  width: calc(100% - 80px);
+  // padding: .5em 0;
+  padding-left: 1em;
+  border-left: solid 2px #D33115;
+  min-height: 50px;
+  &:hover {
+    border-color: #62A8E5;
+  }
+}
+
+.code-edit__code {
+  margin: .5em 0;
+}
+
+.code--edit__select {
+  display: block;
+  padding: 0.5em;
+  border: 0;
+  background-color: $light;
+  transition: background-color 300ms ease-in-out;
+  &:focus {
+    outline: 0;
+    background-color: #ccc;
+  }
+  &.full {
+    display: block;
+    width: 100%;
+  }
+  &.breath {
+    margin: 0.25em 0;
+  }
+}

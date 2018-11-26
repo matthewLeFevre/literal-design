@@ -1,14 +1,23 @@
 pre {
   height: auto;
-  background-color: $black;
+  background-color: $light;
+  white-space: pre;
+  tab-size: 2;
+  // padding-left: 1em;
+  overflow: hidden;
+  border-radius: $br2;
+  box-shadow: $box-shadow1;
 }
 
 code {
-  padding: 2em;
+  padding: 1em;
   display: block;
-  color: $white;
-  overflow-x: scroll;
+  color: $light;
+  overflow-x: auto;
+  background-color: $theme-black;
   font-family: monospace;
+  line-height: 130%;
+  font-size: $sml;
 }
 
 .t { color: $red;}        /*css - id, decorator */
@@ -19,4 +28,4 @@ code {
 .p { color: $blue;}   /*css - n/a*/
 .o { color: $yellow;}   /*css - n/a*/
 .n { color: $green;}     /*css - n/a*/
-.l { color: $blue;}      /*css - class */
+.l { color: $green;}      /*css - class */

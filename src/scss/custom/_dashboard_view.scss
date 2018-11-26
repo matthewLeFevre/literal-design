@@ -28,9 +28,6 @@
 .user-info {
   padding: 1em;
   margin: 1em auto;
-  background-color: $grey-150;
-  border-radius: $br;
-  max-width: 280px;
 }
 .user__avatar {
   @include flex(column, nowrap, center, center);

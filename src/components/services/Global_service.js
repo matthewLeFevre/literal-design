@@ -27,6 +27,12 @@ class Globals {
     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
   }
 
+  htmlEncode(input) {
+    let elt = document.createElement('span'); 
+    elt.textContent = input; 
+    return elt.innerHTML;
+  }
+
   createRequest(data) {
 
     let req = {

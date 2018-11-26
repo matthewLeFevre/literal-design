@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import Globals from '../../../services/Global_service';
 
 const Global = new Globals();
@@ -18,7 +18,7 @@ const SectionPublicNav = (props) => {
           {props.allSections.map((section) => {
             return(
               <li className="section--public__nav-item" key={Global.createRandomKey()}>
-                <Link to={`/styleguides/detail/${props.match.params.styleGuideId}/${section.sectionId}`} className="section--public__nav-link"><i className="section--public__nav-arrow fas fa-chevron-right"/>&nbsp;{section.sectionTitle}</Link>
+                <NavLink activeClassName="active" to={`/styleguides/detail/${props.match.params.styleGuideId}/${section.sectionId}`} className="section--public__nav-link" onClick={props.toggleNav}><i className="section--public__nav-arrow fas fa-chevron-right"/>&nbsp;{section.sectionTitle}</NavLink>
               </li>
             );
           })}

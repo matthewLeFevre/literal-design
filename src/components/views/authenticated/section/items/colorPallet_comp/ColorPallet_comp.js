@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Globals from '../../../../services/Global_service';
+import Globals from '../../../../../services/Global_service';
+import SwatchCreator from './SwatchCreator_comp';
 
 const Global = new Globals();
 
@@ -58,7 +59,7 @@ class colorPallet extends Component {
       'colorPalletId': this.props.colorPallet.colorPalletId,
       'sectionId': this.props.colorPallet.sectionId,
       'apiToken': this.props.userData.apiToken,
-      'itemOrder': '1',
+      'itemOrder': "1",
       'colorSwatchTitle': this.state.title,
       'colorSwatchHex': this.state.hex,
       'colorSwatchRgb': this.state.rgb,
@@ -107,7 +108,7 @@ class colorPallet extends Component {
   render(){
     console.log(this.props.colorPallet);
     return (
-      <fieldset className="section--edit__fieldset">
+      <fieldset className="section--edit__fieldset colorPallet-edit">
       {this.state.edit ? <label className="section--edit__label">Color Pallet</label> : ''}
         <div className="section--edit__group">
           <div className="section--edit__nav">
@@ -129,6 +130,13 @@ class colorPallet extends Component {
                 {this.props.colorPallet.colorSwatches.map( swatch => {
                   return (<ColorSwatch edit={this.state.edit} deleteSwatch={this.deleteColorSwatch} key={Global.createRandomKey()} swatch={swatch} />);
                 })}
+                {this.state.edit 
+                  ? <button type="button" 
+                    title="Create New Color Swatch"
+                    className="swatch-create__btn" 
+                    onClick={this.toggleSwatch}>
+                      <i className="fas fa-plus-circle"></i>
+                    </button> : ''}
               </div>
           </div>
           { this.state.edit ? 
@@ -136,14 +144,8 @@ class colorPallet extends Component {
               <i className="fas fa-times"></i>
             </button>
             : ''}
-          
         </div>
         {this.state.swatch ? <SwatchCreator onChange={this.onChange} toggleSwatch={this.toggleSwatch} createSwatch={this.createColorSwatch}/> : ''}
-        { this.state.edit ? <div className="section--edit__fieldset">
-          <button type="button" 
-            className="btn success breath" 
-            onClick={this.toggleSwatch}>Add Color</button>
-        </div> : ''}
       </fieldset>
     );
   }
@@ -161,7 +163,7 @@ const ColorSwatch = (props) => {
         { props.swatch.colorSwatchVar ? <span  className="section--edit__colorSwatch__var">{props.swatch.colorSwatchVar}</span> : ''}
         { props.swatch.colorSwatchRgb ? <span  className="section--edit__colorSwatch__rgb">{props.swatch.colorSwatchRgb}</span> : ''}
         { props.edit ? <button type="button" 
-                               className="btn full breath danger" 
+                               className="btn breath danger tiny spacing--1" 
                                value={props.swatch.colorSwatchId} 
                                onClick={props.deleteSwatch}>Delete</button> : ''}
       </figcaption>
@@ -169,33 +171,5 @@ const ColorSwatch = (props) => {
   );
 }
 
-const SwatchCreator = (props) => {
-  return ( 
-    <div>
-      <fieldset className="form__field spacing--top--2">
-        <h4>New Color Swatch</h4>
-      </fieldset>
-      <fieldset className="form__field">
-        <label className="label--text main">Title</label>
-        <input className="input--text breath initial full" type="text" placeholder="monkey blue" onChange={props.onChange} name='title' />
-        <label className="label--text main">HEX * Required</label>
-        <input className="input--text breath initial full" type="text" placeholder="#0034ff" onChange={props.onChange} name='hex'/>
-        <label className="label--text main">RGB</label>
-        <input className="input--text breath initial full" type="text" placeholder="rgb(0, 10, 255)" onChange={props.onChange} name='rgb'/>
-        <label className="label--text main">Variable</label>
-        <input className="input--text breath initial full" type="text" placeholder="$monekyBlue" onChange={props.onChange} name='var'/>
-      </fieldset>
-      <fieldset className="section--edit__fieldset">
-        <button className="btn breath danger" 
-                type="button"
-                onClick={props.toggleSwatch}
-        >Cancel</button>
-        <button className="btn breath primary" 
-                type="button"
-                onClick={props.createSwatch}
-        >Create</button>
-      </fieldset>
-    </div>
-  );
-}
+
 

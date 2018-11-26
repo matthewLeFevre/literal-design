@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Globals from '../../../../services/Global_service';
+import Globals from '../../../../../services/Global_service';
 
 const Global = new Globals();
 
@@ -80,6 +80,16 @@ class TextBox extends Component {
     });
   }
 
+  handleEdit(e) {
+    let action = e.target.value;
+    if (action === 'createlink') {
+      let url = prompt('Enter the link here: ', 'http://');
+      document.execCommand(action, false, url);
+    } else {
+      document.execCommand(action, false, null);
+    }
+  }
+
   render(){
     return (
       <fieldset className="section--edit__fieldset">
@@ -111,6 +121,15 @@ class TextBox extends Component {
             </button>
           : ''}
         </div>
+          <div className={this.state.edit ? "textbox-edit__toolbar" : "display-none"}>
+            <p className="textbox-edit__button icon primary">Formatting</p>
+            <button value="bold" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className=' fas fa-bold'></i></button>
+            <button value="italic" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className=' fas fa-italic'></i></button>
+            <button value="underline" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className=' fas fa-underline'></i></button>
+            <button value="insertUnorderedList" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className="fas fa-list-ul"></i></button>
+            <button value="insertOrderedList" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className="fas fa-list-ol"></i></button>
+            <button value="createlink" onClick={this.handleEdit} type="button" className="textbox-edit__button icon primary"><i className="fas fa-link"></i></button>
+          </div>
         { this.state.edit ? <div className="section--edit__fieldset">
           <button type="button" 
             className="btn success breath" 

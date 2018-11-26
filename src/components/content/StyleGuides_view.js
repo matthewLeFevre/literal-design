@@ -31,8 +31,8 @@ class StyleGuidesView extends React.Component {
   }
   render() {
     return (
-      <section className="col--12">
-        <div className="search__bar bg-light">
+      <section className="col--12 page__full-height">
+        <div className="search__bar">
           <label className="form__label">Search StyleGuides</label>
           <input type="text" className="input--text spacing--left--1" onChange={this.updateSearch} placeholder="Lienary Guide..." />
         </div>
@@ -42,13 +42,23 @@ class StyleGuidesView extends React.Component {
             if(guide.styleGuideTitle.includes(this.state.search)){
               let date = new Date(guide.styleGuideCreated);
               return (
-                <Link to={`/styleguides/detail/${guide.styleGuideId}`} className="styleGuides__entry" key={Global.createRandomKey()}>
-                  <div>
+                <div className="styleGuides__entry">
+                <Link to={`/styleguides/detail/${guide.styleGuideId}`} className="styleGuide__entry__link" key={Global.createRandomKey()}>
+                <div>
                     <h2 className="styleGuides__entry__title">{guide.styleGuideTitle}</h2>
                     <span className="styleGuides__entry__date">{date.toDateString()}</span>
                   </div>
-                  <p className="styleGuides__entry__description"><strong>Description :</strong> {guide.styleGuideDescription}</p>
+                  { guide.styleGuideDescription ?<div>
+                    <h3 className="txt-theme-red sml spacing--top--1">Description:</h3>
+                      <p className="styleGuides__entry__description">{guide.styleGuideDescription}</p>
+                    </div> : ''}
                 </Link>
+                <div className="styleGuide__entry__author">
+                  <h4 className="sml"> Author:&nbsp;
+                    <Link to="/login">{guide.userName}</Link>
+                  </h4>
+                </div>
+              </div>
               );
             } else {
               return '';
@@ -56,13 +66,24 @@ class StyleGuidesView extends React.Component {
           } else {
             let date = new Date(guide.styleGuideCreated);
             return (
-              <Link to={`/styleguides/detail/${guide.styleGuideId}`} className="styleGuides__entry" key={Global.createRandomKey()}>
+              <div className="styleGuides__entry">
+                <Link to={`/styleguides/detail/${guide.styleGuideId}`} className="styleGuide__entry__link" key={Global.createRandomKey()}>
                 <div>
-                  <h2 className="styleGuides__entry__title">{guide.styleGuideTitle}</h2>
-                  <span className="styleGuides__entry__date">{date.toDateString()}</span>
+                    <h2 className="styleGuides__entry__title">{guide.styleGuideTitle}</h2>
+                    <span className="styleGuides__entry__date">{date.toDateString()}</span>
+                  </div>
+                  { guide.styleGuideDescription ?<div>
+                    <h3 className="txt-theme-red sml spacing--top--1">Description:</h3>
+                      <p className="styleGuides__entry__description">{guide.styleGuideDescription}</p>
+                    </div> : ''}
+                </Link>
+                <div className="styleGuide__entry__author">
+                  <h4 className="sml"> Author:&nbsp;
+                    <Link to="/login">{guide.userName}</Link>
+                  </h4>
                 </div>
-                <p className="styleGuides__entry__description"><strong>Description :</strong> {guide.styleGuideDescription}</p>
-              </Link>
+              </div>
+                  
             );
           }
         })}

@@ -118,7 +118,7 @@ class ProjectView extends Component {
       <div className="col--12 grid--nested" id="projects">
       <ProjectHeader toggleNav={this.toggleNav} projectData={this.state.projectData}/>
       <ProjectNav toggleNav={this.toggleNav} toggle={this.state.toggle} projectData={this.state.projectData}/>
-      <div className="col--12 col--sml--6">
+      <div className="col--12 col--sml--6 dashboard__container">
         {this.state.styleGuideSettings 
           ? <Settings 
               save={this.saveStyleGuide}
@@ -128,7 +128,7 @@ class ProjectView extends Component {
             />
           : ''}
           <div className="dashboard__section__sub-heading">
-            <h3 className="dashboard__section__sub-title">Style Guides</h3>
+            <h2 className="dashboard__section__sub-title">Style Guides</h2>
           </div>
           <ul className="display-card__group">
             {this.state.styleGuides.map(

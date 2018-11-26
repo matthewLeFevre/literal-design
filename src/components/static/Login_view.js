@@ -22,7 +22,7 @@ class Login extends Component {
   }
   handleLogin() {
     if( this.state.userEmail === null || this.state.userPassword === null) {
-      window.alert("please fill in both username and password fields");
+      this.props.handleAlert("Please fill in both username and password fields");
     } else {
       let data = {
         'userEmail': this.state.userEmail,
@@ -35,9 +35,9 @@ class Login extends Component {
       .then(res => res.json())
       .then(res => {
         if(res.status === 'failure') {
-          window.alert(res.message);
+          this.props.handleAlert(res.message, 'failure');
         } else {
-          window.alert(res.message);
+          this.props.handleAlert(res.message, 'success');
           this.props.onLogin(res.data);
         }
       })

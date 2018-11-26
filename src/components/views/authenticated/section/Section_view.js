@@ -5,11 +5,13 @@ import SectionHeader from './SectionHeader_comp';
 import SectionNav from './SectionNav_comp';
 import ItemSelect from './ItemSelect_comp';
 
-import TextBox from './items/Textbox_comp';
+import TextBox from './items/textbox_comp/Textbox_comp';
 import Heading from './items/Heading_comp';
-import Font from './items/Font_comp';
-import Image from './items/Image_comp';
-import ColorPallet from './items/ColorPallet_comp';
+import Font from './items/font_comp/Font_comp';
+import Image from './items/image_comp/Image_comp';
+import Notice from './items/notice_comp/Notice_comp';
+import ColorPallet from './items/colorPallet_comp/ColorPallet_comp';
+import Code from './items/code_comp/Code_comp';
 
 const Global = new Globals();
 
@@ -30,7 +32,7 @@ class SectionView extends Component {
       sectionTitle: '',
       itemOrder: '',
       sectionCreated: '',
-      sectionDescription: '',
+      sectionDescription: undefined,
       edit: false,
       sections: [],
       save: false,
@@ -52,7 +54,7 @@ class SectionView extends Component {
         sectionId: res.data.section[0].sectionId,
         sectionTitle: res.data.section[0].sectionTitle,
         sectionCreated: res.data.section[0].sectionCreated,
-        sectionDescription: 'section descriptions are not yet implimented',
+        sectionDescription: res.data.section[0].sectionDescription,
         itemOrder: res.data.section[0].itemOrder,
         nextOrder: nextOrder,
       });
@@ -79,7 +81,7 @@ class SectionView extends Component {
         sectionId: res.data.section[0].sectionId,
         sectionTitle: res.data.section[0].sectionTitle,
         sectionCreated: res.data.section[0].sectionCreated,
-        sectionDescription: 'section descriptions are not yet implimented',
+        sectionDescription: res.data.section[0].sectionDescription,
         itemOrder: res.data.section[0].itemOrder,
         nextOrder: nextOrder,
       });
@@ -94,7 +96,7 @@ class SectionView extends Component {
   toggleNav() {
     this.setState((prevState) => ({
       toggle: !prevState.toggle,
-    }))
+    }));
   }
 
   /**
@@ -104,7 +106,7 @@ class SectionView extends Component {
   toggleItem() {
     this.setState((prevState) => ({
       toggleItem: !prevState.toggleItem,
-    }))
+    }));
   }
 
   /**
@@ -114,12 +116,17 @@ class SectionView extends Component {
    */
   nextOrder (items) {
     let nextOrder = 0;
-    for(let item of items) {
-      if(item.itemOrder > nextOrder) {
-        nextOrder = item.itemOrder;
+    let numbers = [];
+    if(items.length > 0) {
+      for(let item of items) {
+        numbers.push(item.itemOrder);
       }
+      nextOrder = Math.max(...numbers);
+      nextOrder++;
+    } else {
+      nextOrder = 1;
     }
-    nextOrder++;
+    console.log(nextOrder);
     return nextOrder;
   }
 
@@ -153,7 +160,7 @@ class SectionView extends Component {
     if(input === "sectionTitle"){
       this.setState({sectionTitle: e.target.value});
     } else {
-      this.setState({section: {sectionDescription: e.target.value}});
+      this.setState({sectionDescription: e.target.value});
     }
   }
 
@@ -166,6 +173,7 @@ class SectionView extends Component {
       userId: this.props.userData.userId,
       sectionId: this.state.sectionId,
       sectionTitle: this.state.sectionTitle,
+      sectionDescription: this.state.sectionDescription,
       apiToken: this.props.userData.apiToken,
       itemOrder: this.state.itemOrder,
     }
@@ -227,7 +235,7 @@ class SectionView extends Component {
       <div className="col--12 grid--nested">
         <SectionHeader match={this.props.match} section={this.state} toggleNav={this.toggleNav}/>
         <SectionNav match={this.props.match} sections={this.state.sections} toggleNav={this.toggleNav} toggle={this.state.toggle} section={this.state.section}/>
-        <form className="section--edit__view col--12 col--sml--8">
+        <form className="section--edit__view col--12 col--sml--8 dashboard__container">
           { this.state.toggleItem 
             ? <ItemSelect toggleItem={this.toggleItem} 
                 updateItems={this.updateItems}
@@ -249,11 +257,11 @@ class SectionView extends Component {
           <fieldset className="section--edit__fieldset">
             {this.state.edit ? <label className="section--edit__label">Section Description</label> : ''}
             <div className="section--edit__group">
-              <textarea className={this.state.edit ? "section--edit__description--field" : "section--edit__description--field readonly"} 
+              <textarea className={this.state.edit ? "section--edit__description--field" :  this.state.sectionDescription ? "section--edit__description--field readonly" : "section--edit__description--field readonly empty" } 
                         readOnly={this.state.edit ? false : true} 
                         placeholder="Edit to give this section a description"
                         onChange={this.handleSection}
-                        defaultValue={this.state.sectionDescription}
+                        value={this.state.sectionDescription}
                         ></textarea>
             </div>
           </fieldset>
@@ -262,7 +270,7 @@ class SectionView extends Component {
               <button type="button"
               className={`btn breath ${this.state.edit ?  'success': 'primary icon'}`} 
               onClick={this.state.edit ? this.saveSection : this.editSection}>
-                {this.state.edit ? 'Save Section Info' : <span><i className="fas fa-edit"></i>&nbsp;Edit</span>}
+                {this.state.edit ? 'Save Section Info' : <span><i className="fas fa-edit"></i>&nbsp;Edit Section Info</span>}
               </button>
               {this.state.edit ? 
                 <button type="button"
@@ -285,6 +293,10 @@ class SectionView extends Component {
               return <Font font={item} userData={this.props.userData} updateItems={this.updateItems}  key={Global.createRandomKey()}/>;
             } else if(item.itemType === "colorPallet") {
               return <ColorPallet colorPallet={item} userData={this.props.userData} updateItems={this.updateItems}  key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "notice") {
+              return <Notice notice={item} userData={this.props.userData} updateItems={this.updateItems} key={Global.createRandomKey()}/>;
+            } else if(item.itemType === "code"){
+              return <Code code={item} userData={this.props.userData} updateItems={this.updateItems} handleAlert={this.props.handleAlert} key={Global.createRandomKey()} />;
             } else {
               return '';
             }

@@ -10,7 +10,7 @@ const UserNav = (props) => {
         </div>
       </div>
       <section className="user-info">
-        <h3>User Info:</h3>
+        <h3>User Info</h3>
         <figure className="user__avatar">
           <div className="user__avatar__img__wrapper">
             <img className="user__avatar__img" src={User} alt={props.userData.userName}/>

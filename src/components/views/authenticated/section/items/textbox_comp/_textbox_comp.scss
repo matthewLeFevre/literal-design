@@ -1,0 +1,41 @@
+.section--edit__textBox {
+  min-height: 50px;
+  @include transition;
+  width: calc(100% - 80px);
+  padding: .5em 0;
+  padding-left: 1em;
+  border-left: solid 2px $red;
+  font-size: $initial;
+  position: relative;
+  outline: none;
+  &:hover {
+    border-color: #62A8E5;
+  }
+  &.editing {
+    min-height: 150px;
+    background-color: $light;
+  }
+
+  ul, ol { 
+    padding-left: 2em;
+    margin: 1em 0;
+  }
+  a { font-weight: 700;}
+}
+.textbox-edit__toolbar {
+  @include flex(row, nowrap, flex-end, center);
+  text-align: left;
+}
+.textbox-edit__button {
+  @include btn();
+    border-radius: 0;
+    font-size: $sml;
+    &:first-child { 
+      border-radius: $br 0 0 $br;
+      &:hover {
+        opacity: 1;
+        cursor: default;
+      }
+    }
+    &:last-child { border-radius: 0 $br $br 0;}
+}

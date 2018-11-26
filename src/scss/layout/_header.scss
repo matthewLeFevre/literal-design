@@ -1,25 +1,29 @@
 .header {
-  @include flex (row, nowrap, flex-start, center);
-  padding-left: 1em;
+  @include flex (row, nowrap, center, center);
+  padding: 0 1em;
   position: relative;
   height: 60px;
-  
-  // background-color: $theme-purple;
-  background-color: $light;
+  background-color: $theme-purple;
   border-bottom: 2px solid $theme-red;
+  @include bp-sml {
+    @include flex(row, nowrap, space-between, center);
+  }
 }
 
-.logo {
-  font-size: $mdm;
-  color: $theme-purple;
-  // color: $light;
-  // display: block;
-  font-weight: 900;
-  vertical-align: middle;
-}
-.logo__icon {
-  font-weight: 500;
-  margin-left: .5em;
+.header__logo {
+  width: 60px;
+  background-color: $light;
+  border-radius: 8px;
+  padding: 5px;
+  & + span {
+    font-size: $mod;
+    color: $light;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: top;
+    margin-left: .5em;
+  }
+  
 }
 
 .header--auth {
@@ -37,6 +41,7 @@
 .header--auth__nav__toggle {
   height: 40px;
   width: 40px;
+  cursor: pointer;
   @include flex(row, nowrap, center, center);
   @include bp-sml {
     display: none;
@@ -48,8 +53,8 @@
 .nav--auth {
   @include transition;
   z-index: $z-5;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 60px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -77,6 +82,7 @@
 .nav--auth__toggle {
   height: 40px;
   width: 40px;
+  cursor: pointer;
   @include flex(row, nowrap, center, center);
   @include bp-sml {
     display: none;
@@ -87,8 +93,8 @@
   padding-left: 1em;
   padding-right: 1em;
   height: 60px;
-  box-shadow: $box-shadow2;
-  background-color: $grey-150;
+  // box-shadow: $box-shadow2;
+  // background-color: $grey-150;
   @include bp-sml {
     @include flex(row, nowrap, flex-end, center);
   }

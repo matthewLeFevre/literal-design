@@ -1,0 +1,137 @@
+.section--edit__colorPallet {
+  @include transition;
+  min-height: 150px;
+  width: 100%;
+  max-width: 520px;
+  padding: .5em 0;
+  padding-left: 1em;
+  border-left: solid 2px $red;
+  font-size: $initial;
+  outline: none;
+  position: relative;
+  @include bp-tiny {
+		@include flex(column, wrap, flex-start, flex-start);
+    overflow-x: scroll;
+    max-width: calc(100% - 80px);
+	}
+  &:hover {
+    border-color: #62A8E5;
+  }
+  &.editing {
+    // background-color: $light;
+  }
+}
+.section--edit__colorGroup {
+  margin: 1em 0;
+	@include bp-tiny {
+		@include flex(row, nowrap, flex-start, stretch);
+    margin: 0;
+    padding-right: 1.5em;
+	}
+}
+.section--edit__colorSwatch {
+  @include flex(row, nowrap, center, flex-start);
+	@include bp-tiny {
+		display: block;
+		margin: .75em;
+		background-color: white;
+		border-radius: 4px;
+		overflow: hidden;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		min-width: 130px;
+	}
+}
+.section--edit__colorSwatch__fill {
+  width: 90px;
+	height: 90px;
+
+	@include bp-tiny {
+		width: auto;
+	}
+
+
+	&.mark {
+		border: 3px dashed $white;
+	}
+}
+.section--edit__colorSwatch__detail {
+  flex-grow: 1;
+	min-height: 90px;
+	// border-bottom: 3px solid $grey-200;
+	@include bp-tiny{
+		min-height: 0;
+		width: auto;
+		border: none;
+	}
+	padding: 0 .5em;
+}
+.section--edit__colorSwatch__title,
+.section--edit__colorSwatch__hex,
+.section--edit__colorSwatch__var,
+.section--edit__colorSwatch__rgb {
+  display: block;
+	font-size: $tiny;
+}
+.colorPallet-edit {
+  position: relative;
+}
+.swatch-edit__title {
+  color: $theme-purple;
+  margin: .5em;
+  margin-bottom: 0;
+}
+.swatch-edit {
+  @include flex(row, nowrap, center, center);
+  padding: .5em;
+  position: fixed;
+  z-index: $z-1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $semiTrans;
+}
+.swatch-edit__container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 250px;
+  background-color: $light;
+  border-radius: $br;
+  padding: .5em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.swatch-edit__input {
+  @include transition();
+  border: 2px solid $theme-purple;
+  border-radius: $br;
+  padding: .5em;
+  &:focus {
+    outline: none;
+    border-color: $theme-orange;
+  }
+  &.full {
+    width: 100%;
+  }
+}
+.swatch-create__btn {
+  @include flex(row, nowrap, center, center);
+  cursor: pointer;
+  background-color: $light;
+  border-radius: 4px;
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  margin: .25em auto;
+  background-color: #eee;
+  color: #697479;
+  border: none; 
+  margin-top: 1.5em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	@include bp-tiny {
+    margin: .75em;
+    height: auto;
+    min-width: 50px;
+    min-height: 130px;
+    display: block;
+	}
+}
