@@ -1,0 +1,106 @@
+.format_text {
+  padding: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  ul, ol {
+    margin-top: 15px;
+    padding-left: 25px;
+    li {
+      margin: .25em auto;
+      font-size: $initial;
+      @include bp-sml{
+        font-size: $main;
+      }
+    }
+  }
+
+  p, div {
+    line-height: 130%;
+    margin-top: 15px;
+    font-size: $initial;
+    @include bp-sml{
+      font-size: $main;
+    }
+  }
+
+  h1, h2, h3, h4 {
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-size: $mid;
+    @include bp-tiny{
+      font-size: $mdm;
+    }
+    @include bp-sml{
+      font-size: $mod;
+    }
+  }
+
+  h2 {
+    font-size: $main;
+    @include bp-tiny{
+      font-size: $mid;
+    }
+    @include bp-sml{
+      font-size: $mdm;
+    }
+  }
+
+  h3 {
+    font-size: $initial;
+    font-style: italic;
+    @include bp-tiny{
+      font-size: $main;
+    }
+    @include bp-sml{
+      font-size: $mid;
+    }
+  }
+
+  a {
+    color: $blue;
+    &:hover {color: $purple;}
+    &:focus {color: $grey-300;}
+    &:active {color: $grey-300;}
+    &:visited {
+      color: $grey-300;
+    }
+  }
+
+  figure {
+    width: 100%;
+    margin-top: 20px;
+    &.standout {
+      padding: 1em;
+      background-color: $theme-purple;
+      border-radius: $br2;
+      max-width: 600px;
+      margin: 20px auto 0 auto;
+      img {
+        border-radius: $br2;
+      }
+    }
+    .container {
+      max-height: 50vh;
+      overflow: hidden;
+      margin: 0;
+      &.middle { @include flex(row, nowrap, center, center);}
+      &.top { @include flex(row, nowrap, center, flex-start);}
+      &.bottom { @include flex(row, nowrap, center, flex-end);}
+    }
+    img {
+      vertical-align: middle;
+      width: 100%;
+      overflow: hidden;
+    }
+    figcaption {
+      color: $grey-400;
+      font-style: italic;
+      line-height: 130%;
+      margin-top: 10px;
+      font-size: $sml;
+      padding: 0 1em;
+    }
+  }
+}

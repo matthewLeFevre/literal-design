@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../images/leinary logo.svg';
+import {Link} from 'react-router-dom';
 
 const Footer = (props) => {
   return (
@@ -16,18 +17,24 @@ const Footer = (props) => {
             <a href="#" className="footer-group__link">Terms of use</a>
           </li>
           <li className="footer-group__item">
-            <a href="#" className="footer-group__link">Privacy agreement</a>
+            <Link to="/privacy" className="footer-group__link">Privacy Policy</Link>
           </li>
         </ul>
         <ul className="footer-group">
           <li className="footer-group__item">
-            <h4 className="footer-group__title">About</h4>
+            <h4 className="footer-group__title">Info</h4>
+          </li>
+          <li className="footer-group__item">
+            <Link to="/about" className="footer-group__link">About</Link>
+          </li>
+          <li className="footer-group__item">
+            <Link to="/alpha" className="footer-group__link">Alpha</Link>
           </li>
           <li className="footer-group__item">
             <a href="#" className="footer-group__link">The Team</a>
           </li>
           <li className="footer-group__item">
-            <a href="#" className="footer-group__link">Contact</a>
+            <Link to="/contact" className="footer-group__link">Contact</Link>
           </li>
         </ul>
         <ul className="footer-group">

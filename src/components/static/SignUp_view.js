@@ -65,19 +65,25 @@ class SignUp extends Component {
       <form className="login__form">
         <h1 className="primary-heading">SignUp</h1>
         <fieldset className="form__field">
-          <label className="label--text">Username - Required</label>
+          <label className="label--text">Username</label>
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userName" 
             className="input--text full breath"
             value={this.state.userName}/>
-          <label className="label--text">Email - Required</label>
+          <label className="label--text">Email - Required for login</label>
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userEmail" 
             className="input--text full breath"
             value={this.state.userEmail}/>
-          <label className="label--text">Password - Required</label>
+          <label className="label--text">Password</label>
+          <input type="password" 
+            onChange={this.handleInputChange} 
+            name="userPassword"
+            className="input--text full breath"
+            value={this.state.userPassword}/>
+          <label className="label--text">Alpha Key</label>
           <input type="password" 
             onChange={this.handleInputChange} 
             name="userPassword"
@@ -87,7 +93,7 @@ class SignUp extends Component {
           <input type="password" userPassword placeholder="Password" className="input--text full breath"/> */}
         </fieldset>
         <fieldset className="form__field txt-center">
-          <label className="label--text side">Agree to <Link to="/dashboard">Terms</Link></label>
+          <label className="label--text side">Agree to <Link to="/dashboard">Alpha Terms</Link></label>
           <input className="input--checkbox" id="terms" type="checkbox"/>
           <label className="label--checkbox" htmlFor="terms">
             <i className="fas fa-check input__check"></i>
@@ -103,8 +109,8 @@ class SignUp extends Component {
           <button className="btn icon tiny breath github"><i className="fab fa-github"></i> Github</button>
         </fieldset> */}
         <fieldset className="form__field">
-          <Link className="tiny" to="">Terms of Use</Link>
-          <Link className="tiny" to="">Privacy Policy</Link>
+          <Link className="tiny policy__links" to="">Terms of Use</Link>
+          <Link className="tiny policy__links" to="">Privacy Policy</Link>
         </fieldset>
       </form>
     </section>

@@ -1,223 +1,185 @@
-@mixin form ($type, $limit: 300px, $padding: 25px) {
+@mixin form($type, $limit: 300px, $padding: 20px) {
     min-height: 50px;
     min-width: 300px;
     padding: $padding;
     @if $type == "form" {
-        width: 100%;
+      width: 100%;
     } @else if $type == "form--limited" {
-        max-width: $limit;
-        margin: 0 auto;
-    } 
-}
-
-.form {
-    @include form('form');
-}
-
-.form--no-padding {
-    @include form('form', 10px, 0);
-}
-
-.form--tiny {
-    @include form('form--limited', 275px);
-}
-
-.form--sml {
-    @include form('form--limited', 500px);
-}
-.form--lrg {
-    @include form('form--limited', 1000px);
-}
-.form__pair { margin: 1em 0; }
-.form__label { 
-    display: block;
-    &.side {
-        display: inline-block;
+      max-width: $limit;
+      margin: 0 auto;
     }
-}
-.form__field {
-    border: 0;
-    padding: .5em;
-    &:focus {
-        outline-color: 0;
-    }
-    &.full {
-        display: block;
-        width: 100%;
-    }
-}
-
-.input--text {
-    border: 0;
-    padding: .5em;
-    background-color: $white;
-    border:  $grey-300 2px solid;
-    // border-radius: $br;
-    &:focus {
-        outline-color: 0;
-    }
-    &.full {
-        display: block;
-        width: 100%;
-    }
-    &.breath {
-        margin: .25em 0;
-    }
-}
-
-.label--text {
-    display: block;
-    margin-top: .75rem;
-    &.side {
-        display: inline-block;
-        vertical-align: text-bottom;
-        margin-right: 1em;
-    }
-}
-
-.input--radio__group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.input--radio {
-    visibility: hidden;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.input--radio:checked + .label--radio::before {
-    background-color: $black;
-}
-
-.input--radio__set {
-    padding: .5em;
-}
-.label--radio {
-    font-size: $main;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    &:after {
-        content: '';
-        position: absolute;
-        height: $sml;
-        width: $sml;
-        border: $black 1px solid;
-        vertical-align: middle;
-        border-radius: 50%;
-        transition: background-color 200ms ease;
-    }
-    &::before {
-        content: '';
-        position: absolute;
-        height: 11px;
-        width: 11px;
-        background-color: transparent;
-        border-radius: 50%;
-    }
-}
-.label--radio__text {
-    margin-bottom: .5em;
-    display: block;
-}
-
-.label--checkbox {
-    font-size: $mdm;
-    cursor: pointer;
-    @include flex(row, nowrap, center, center);
-    position: relative;
-    display: inline-flex;
-    margin: .25em 0;
-}
-
-.label--checkbox::before {
-    content: '';
-    // display: inline-block;
-    display: block;
-    // position: absolute;
-    height: $sml;
-    width: $sml;
-    border: $grey-500 3px solid;
-    vertical-align: middle;
-    border-radius: 3px;
-    transition: background-color 200ms ease;
-}
-.input--checkbox { 
-    visibility: hidden;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.input--checkbox:checked + .label--checkbox::before {
-    background-color: $green;
-    border-color: $green;
-}
-
-.input--checkbox:checked + .label--checkbox > .input__check {
-    display: block;
-}
-
-.input__check {
-    display: none;
-    position: absolute;
-    font-size: 12px;
-    color: $light;
-}
-
-.input--textarea {
-    border: 0;
-    padding: .35em;
-    background-color: $white;
-    border:  $blue 2px solid;
-    min-height: 100px;
-    max-height: 300px;
-    width: 100%;
-}
-
-.label--switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    input {display: none;}
-    &.breath {
-        margin: .25em 0;
-    }
-}
-.input--switch__slider{
-position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $blue;
-  transition: .4s;
-  &:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
   }
-}
-
-.input--switch:checked + .input--switch__slider{
-    background-color: $green;
-}
-.input--switch:checked + .input--switch__slider:before{
-    transform: translateX(26px);
-}
-
-.input--switch__slider {
-    border-radius: 34px;
-}
-.input--switch__slider:before {
-    border-radius: 50%;
-}
+  
+  .form {
+    @include form("form");
+  }
+  .form--tiny {
+    @include form("form--limited", 275px);
+  }
+  .form--sml {
+    @include form("form--limited", 500px);
+  }
+  .form--lrg {
+    @include form("form--limited", 1000px);
+  }
+  .form--no-padding {
+    @include form("form", 10px, 0);
+  }
+  
+  .form__title {
+    margin-bottom: 0.5em;
+  }
+  .form__heading,
+  .form__sub-heading {
+    margin: 1em 0;
+  }
+  
+  // A field is a form element that generally contains
+  // a label and an input
+  // It can optionally contain as many labels and inputs
+  // as needed and is not limited to one of each
+  .field {
+    margin: 0.5em 0;
+    border: 0;
+    &.full {
+      display: block;
+      width: 100%;
+    }
+  }
+  
+  // A field group facilitates checkbox and
+  // radio button label/inputs each combination
+  // of these should be placed in a field group
+  // to adhere to good coding standards
+  .field__group {
+    @include flex(row, nowrap, space-between, center);
+    width: 100px;
+    margin: 0 auto;
+  }
+  
+  // Labels are meant to be used with every
+  // input element. even checkboxes and
+  // radio inputs dispite their respective
+  // labels that form the cosmetic part
+  .label {
+    display: block;
+    margin-bottom: 0.2em;
+    &.side {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+  }
+  
+  // functional/cosmetic checkbox
+  .label--checkbox {
+    cursor: pointer;
+    font-size: 1.3em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.25em;
+  
+    &::before {
+      content: "";
+      display: block;
+      height: 16px;
+      width: 16px;
+      border: 3px solid grey;
+      vertical-align: middle;
+      border-radius: 3px;
+      background-color: rgba(0, 0, 0, 0.2);
+      transition: all 300ms ease;
+    }
+  }
+  
+  .label--radio {
+    cursor: pointer;
+    font-size: 1.3em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.25em;
+    &:before {
+      content: "";
+      display: block;
+      height: 16px;
+      width: 16px;
+      border: 3px solid grey;
+      vertical-align: middle;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.2);
+      transition: all 300ms ease;
+    }
+  }
+  
+  .input {
+    padding: 0.5em;
+    border: 0;
+    background-color: #eee;
+    transition: background-color 300ms ease-in-out;
+    &:focus {
+      outline: 0;
+      background-color: #ccc;
+    }
+    &.full {
+      display: block;
+      width: 100%;
+    }
+    &.breath {
+      margin: 0.25em 0;
+    }
+  }
+  
+  .input--checkbox {
+    display: none;
+    &:checked + .label--checkbox::before {
+      content: "";
+      font-size: 10px;
+      background-color: grey;
+    }
+  }
+  
+  .input--radio {
+    display: none;
+    &:checked + .label--radio::before {
+      content: "";
+      font-size: 10px;
+      background-color: grey;
+    }
+  }
+  
+  .input--select {
+    padding: 0.5em;
+    border: 0;
+    background-color: #eee;
+    transition: background-color 300ms ease-in-out;
+    &:focus {
+      outline: 0;
+      background-color: #ccc;
+    }
+    &.full {
+      display: block;
+      width: 100%;
+    }
+    &.breath {
+      margin: 0.25em 0;
+    }
+  }
+  .input--textarea {
+    resize: none;
+    min-height: 100px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0.5em;
+    border: 0;
+    background-color: #eee;
+    transition: background-color 300ms ease-in-out;
+    &:focus {
+      outline: 0;
+      background-color: #ccc;
+    }
+    &.full {
+      width: 100%;
+    }
+  }

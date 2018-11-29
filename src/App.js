@@ -8,6 +8,10 @@ import Alert from './components/reusable/Alert_comp';
 import Login from './components/static/Login_view';
 import SignUp from './components/static/SignUp_view';
 import Home from './components/static/Home_view';
+import Contact from './components/views/public/contact/Contact_view';
+import AboutView from './components/views/public/about_view/About_view';
+import AlphaView from './components/views/public/alpha_view/Alpha_view';
+import Privacy from './components/views/public/privacy_view/Privacy_view';
 import StyleGuidesView from './components/content/StyleGuides_view';
 import StyleGuidePublicView from './components/views/public/styleguide_public_view/StyleGuide_public_view';
 import SectionPublicView from './components/views/public/section_public_view/Section_public_view';
@@ -29,22 +33,22 @@ class App extends Component {
     this.state = {
       alert: '',
       showAlert: false,
-      // userData: {
-      //   userIsLoggedIn: false,
-      // }
       userData: {
-        userIsLoggedIn: true,
-        apiToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIn0.E8y8YZearD7KOniGuZw_v76DCdYDl6O5J1zCaDDkCks",
-        userEmail: "matthewlefevre95@gmail.com",
-        userFirstName: null,
-        userId: "1",
-        userIsOnline: null,
-        userJoined: "2018-11-13 21:26:11",
-        userLastName: null,
-        userName: "matthewlefevre",
-        userPassword: "$2y$10$2cDj0TXyAvhtME03jEd9ievDCEKkmQAH36KHi38pb4uG5GKwbEbyy",
-        userStatus: "user",
+        userIsLoggedIn: false,
       }
+      // userData: {
+      //   userIsLoggedIn: true,
+      //   apiToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIn0.E8y8YZearD7KOniGuZw_v76DCdYDl6O5J1zCaDDkCks",
+      //   userEmail: "matthewlefevre95@gmail.com",
+      //   userFirstName: null,
+      //   userId: "1",
+      //   userIsOnline: null,
+      //   userJoined: "2018-11-13 21:26:11",
+      //   userLastName: null,
+      //   userName: "matthewlefevre",
+      //   userPassword: "$2y$10$2cDj0TXyAvhtME03jEd9ievDCEKkmQAH36KHi38pb4uG5GKwbEbyy",
+      //   userStatus: "user",
+      // }
     }
   }
 
@@ -176,6 +180,26 @@ class App extends Component {
                 exact={true}
                 path="/"
                 component={Home} />
+              
+              <Route  
+                exact={true}
+                path="/about"
+                component={AboutView} />
+
+              <Route  
+                exact={true}
+                path="/alpha"
+                component={AlphaView} />
+
+              <Route  
+                exact={true}
+                path="/privacy"
+                component={Privacy} />
+
+              <Route  
+                exact={true}
+                path="/contact"
+                component={Contact} />
               
             </Switch>
           </main>
