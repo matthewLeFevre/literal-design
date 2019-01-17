@@ -4,11 +4,13 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Header from './components/static/Header_comp';
 import Footer from './components/static/Footer_comp';
 import Alert from './components/reusable/Alert_comp';
+import Globals from './components/services/Global_service';
 
 import Login from './components/static/Login_view';
 import SignUp from './components/static/SignUp_view';
 import Home from './components/static/Home_view';
 import Contact from './components/views/public/contact/Contact_view';
+import AlphaTerms from './components/views/public/terms_view/AlphaTerms_view';
 import AboutView from './components/views/public/about_view/About_view';
 import AlphaView from './components/views/public/alpha_view/Alpha_view';
 import Privacy from './components/views/public/privacy_view/Privacy_view';
@@ -20,7 +22,9 @@ import Dashboard from './components/views/authenticated/dashboard/Dashboard_view
 import ProjectView from './components/views/authenticated/project/Project_view';
 import StyleGuideView from './components/views/authenticated/styleGuide/StyleGuide_view';
 import SectionView from './components/views/authenticated/section/Section_view';
+import AlphaTools from './components/views/authenticated/dashboard/AlphaTools_view';
 
+const Global = new Globals();
 
 class App extends Component {
   constructor(props) {
@@ -33,22 +37,17 @@ class App extends Component {
     this.state = {
       alert: '',
       showAlert: false,
-      userData: {
-        userIsLoggedIn: false,
-      }
       // userData: {
-      //   userIsLoggedIn: true,
-      //   apiToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIn0.E8y8YZearD7KOniGuZw_v76DCdYDl6O5J1zCaDDkCks",
-      //   userEmail: "matthewlefevre95@gmail.com",
-      //   userFirstName: null,
-      //   userId: "1",
-      //   userIsOnline: null,
-      //   userJoined: "2018-11-13 21:26:11",
-      //   userLastName: null,
-      //   userName: "matthewlefevre",
-      //   userPassword: "$2y$10$2cDj0TXyAvhtME03jEd9ievDCEKkmQAH36KHi38pb4uG5GKwbEbyy",
-      //   userStatus: "user",
+      //   userIsLoggedIn: false,
       // }
+      userData: {
+        userIsLoggedIn: true,
+        userName:"matthewrlefevre",
+        userJoined:"2018-12-28 21:37:09",
+        userStatus:"user",
+        userId: 12,
+        userEmail:"matthewrlefevre@test.com"
+      }
     }
   }
 
@@ -91,12 +90,22 @@ class App extends Component {
   }
 
   onLogout() {
-    this.setState({
-      userData: {
-        userIsLoggedIn: false,
-      }
+    let data = {
+      userId: this.state.userData.userId,
+      userIsLoggedIn: "no",
+      apiToken: this.state.userData.apiToken,
+    }
+    let req = Global.createRequestBody("user", "logoutUser", data);
+    fetch(Global.url, req)
+    .then(res => res.json())
+    .then(res => {
+      this.handleAlert(res.message, res.status);
+      this.setState({
+        userData: {
+          userIsLoggedIn: false,
+        }
+      });
     });
-    this.handleAlert("Logged out successful", "success");
   }
 
   onRedirect(path) {
@@ -130,7 +139,7 @@ class App extends Component {
                 path="/dashboard"
                 render={(props) =>
                   this.state.userData.userIsLoggedIn
-                    ? <Dashboard userData={this.state.userData} handleAlert={this.handleAlert} />
+                    ? <Dashboard userData={this.state.userData} handleAlert={this.handleAlert} onLogout={this.onLogout}/>
                     : <Redirect to="/login" />
                 }/>
 
@@ -175,6 +184,14 @@ class App extends Component {
                   : <Redirect to="/login" />
                 }/>
 
+              <Route
+                exact={true}
+                path="/alphatools"
+                render={(props) =>
+                  this.state.userData.userIsLoggedIn 
+                  ? <AlphaTools {...props} />
+                  : <Redirect to="/login" />
+                }/>
 
               <Route  
                 exact={true}
@@ -200,6 +217,11 @@ class App extends Component {
                 exact={true}
                 path="/contact"
                 component={Contact} />
+
+              <Route  
+                exact={true}
+                path="/alphaterms"
+                component={AlphaTerms} />
               
             </Switch>
           </main>

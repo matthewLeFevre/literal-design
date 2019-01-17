@@ -20,6 +20,6 @@
 	// Text color
 
 	.txt-#{$color} {
-		color: $value;
+		color: $value !important;
 	}
 }

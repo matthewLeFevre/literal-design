@@ -4,6 +4,7 @@ import Project from './ProjectBox_comp';
 import ProjectSettings from './ProjectSettings_comp';
 import UserNav from './UserNav_comp';
 import UserHeader from './UserHeader_comp';
+import UserSettings from './UserSettings_view';
 
 import Globals from '../../../services/Global_service';
 
@@ -13,6 +14,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
+    this.toggleUserSettings = this.toggleUserSettings.bind(this);
     this.createProject = this.createProject.bind(this);
     this.saveProject = this.saveProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
@@ -23,12 +25,19 @@ class Dashboard extends Component {
       projectData: {},
       projects: [],
       toggle: false,
+      toggleUserSettings: false,
     }
   }
 
   toggleNav() {
     this.setState((prevState) => ({
       toggle: !prevState.toggle,
+    }))
+  }
+
+  toggleUserSettings() {
+    this.setState((prevState) =>({
+      toggleUserSettings: !prevState.toggleUserSettings,
     }))
   }
 
@@ -124,16 +133,23 @@ class Dashboard extends Component {
     return(
       <section className="col--12 grid--nested">
       <UserHeader toggleNav={this.toggleNav} userData={this.props.userData}/>
-      <UserNav toggleNav={this.toggleNav} toggle={this.state.toggle} userData={this.props.userData}/>
+      <UserNav toggleNav={this.toggleNav} toggle={this.state.toggle} userData={this.props.userData} toggleUserSettings={this.toggleUserSettings}/>
       {this.state.projectSettings 
         ? <ProjectSettings saveProject={this.saveProject} closeSettings={this.closeSettings} projectData={this.state.projectData} deleteProject={this.deleteProject}/>
         : ''}
-        <div className="col--12 col--sml--6 dashboard__container" id="projects">
+      {this.state.toggleUserSettings 
+        ? <UserSettings userData={this.props.userData} 
+                        onLogout={this.props.onLogout} 
+                        toggleUserSettings={this.toggleUserSettings}
+                        handleAlert={this.props.handleAlert}/>
+        : ''
+      }
+        <div className="col--12 col--sml--6 page__full-height dashboard__container" id="projects">
           
           <div className="dashboard__section__sub-heading">
             <h2 className="dashboard__section__sub-title">Projects</h2>
           </div>
-          <ul className="display-card__group">
+          <ul className="project-card__group">
             {this.state.projects.map(
               (project) => {
                 return <Project projectSettings={this.projectSettings} 

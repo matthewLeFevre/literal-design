@@ -47,7 +47,6 @@ class SectionView extends Component {
     fetch(`${Global.url}?controller=section&action=getSectionAndItemsBySectionId&sectionId=${this.props.match.params.sectionId}`)
     .then(res => res.json())
     .then(res => {
-      console.log(res.data.items);
       let nextOrder = this.nextOrder(res.data.items);
       this.setState({
         items: res.data.items,
@@ -126,7 +125,6 @@ class SectionView extends Component {
     } else {
       nextOrder = 1;
     }
-    console.log(nextOrder);
     return nextOrder;
   }
 

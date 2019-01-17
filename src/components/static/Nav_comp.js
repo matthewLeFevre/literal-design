@@ -46,6 +46,11 @@ class Nav extends Component {
                 <Link className="nav__link" to="/dashboard">Dashboard</Link>
               </li>
             : ''}
+          {this.props.userData.userIsLoggedIn
+            ? <li className="nav__item" onClick={this.toggleNav}>
+                <Link className="nav__link" to="/alphatools">Alpha Tools</Link>
+              </li>
+            : ''}
           <li className="nav__item" onClick={this.toggleNav}>
             {this.props.userData.userIsLoggedIn
               ? <button type="button" className="nav__link" onClick={this.props.onLogout}><i className="fas fa-lock" />&nbsp;Logout</button>

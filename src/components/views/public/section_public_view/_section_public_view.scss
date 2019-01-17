@@ -15,52 +15,45 @@
 }
 
 .section--public__content {
-  padding: .75em 2em;
   max-width: 700px;
+  @include bp-sml {
+    padding: .75em 2em;
+  }
 }
 
 .section--public__title-container {
-  padding: 1em 0;
+  padding-top: 1em;
   h2 {
     font-size: $mod;
     @include bp-sml {font-size: $lrg;}
   }
   p {
     font-size: $initial;
-    margin: 1em 0;
+    margin-top: 1em;
     @include bp-sml {font-size: $main;}
   }
 }
 
 .section--public__heading {
   position: relative;
-  padding-bottom: .5em;
-  margin-bottom: 1em;
-  // border-bottom: .125em $grey-100 solid;
-  // &:after {
-  //   content: '';
-  //   height: .125em;
-  //   width: 40%;
-  //   background-color: $grey-400;
-  //   position: absolute;
-  //   bottom: -.125em;
-  //   left: 0;
-  // }
-  // &:before {
-  //   content: '';
-  //   height: .125em;
-  //   width: 40%;
-  //   background-color: $grey-200;
-  //   position: absolute;
-  //   bottom: -.125em;
-  //   left: 40%;
-  // }
+  font-size: $mid;
+  margin-top: 30px;
 }
 
 .styleGuide__sectionTextBox {
-  font-size: $sml;
-  margin-bottom: 3em;
+  font-size: $initial;
+  margin-top: 15px;
   line-height: 150%;
+  div {
+    br {
+      display: block;
+      content: ' ';
+      margin-top: 15px;
+    }
+  }
+  ul, ol {
+    padding: 1em 2em;
+  }
 }
 
 .section--public__img-container { max-width: 100%;}
@@ -68,11 +61,12 @@
 .section--public__img {
   max-width: 100%;
   vertical-align: middle;
-  margin-bottom: 1.5em;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 .section--public__colorPallet {
-  margin-bottom: 1.5em;
+  margin-top: 15px;
 	@include bp-sml {
 		@include flex(column, wrap, flex-start, flex-start);
 		overflow-x: scroll;

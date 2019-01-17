@@ -13,8 +13,12 @@ class SignUp extends Component {
       userName: '',
       userEmail: '',
       userPassword: '',
+      alphaKey: "alphaU$er2018",
+      key: '',
+      terms: false,
     }
 
+    this.toggleTerms = this.toggleTerms.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
   }
@@ -29,9 +33,15 @@ class SignUp extends Component {
     });
   }
 
+  toggleTerms() {
+    this.setState((prevState) => ({
+      terms: !prevState.terms,
+    }))
+  }
+
   handleRegister() {
-    if(this.state.userEmail == null || this.state.userPassword == null) {
-      this.props.handleAlert("Password, email and username are required.", "error");
+    if(this.state.userEmail == null || this.state.userPassword == null || this.state.terms === false || this.state.key !== "alphaU$er2018") {
+      this.props.handleAlert("Password, email and username are required. Agreeing to terms of use is also required as well as the alpha key.", "error");
     } else {
       const data = {
           userEmail: this.state.userEmail,
@@ -64,53 +74,51 @@ class SignUp extends Component {
       <section className="col--12 page__full-height login">
       <form className="login__form">
         <h1 className="primary-heading">SignUp</h1>
-        <fieldset className="form__field">
-          <label className="label--text">Username</label>
+        <fieldset className="field">
+          <label className="label">Username</label>
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userName" 
-            className="input--text full breath"
+            className="input full breath"
             value={this.state.userName}/>
-          <label className="label--text">Email - Required for login</label>
+          <label className="label">Email - Required for login</label>
           <input type="text" 
             onChange={this.handleInputChange} 
             name="userEmail" 
-            className="input--text full breath"
+            className="input full breath"
             value={this.state.userEmail}/>
-          <label className="label--text">Password</label>
+          <label className="label">Password</label>
           <input type="password" 
             onChange={this.handleInputChange} 
             name="userPassword"
-            className="input--text full breath"
+            className="input full breath"
             value={this.state.userPassword}/>
-          <label className="label--text">Alpha Key</label>
+          <label className="label">Alpha Key</label>
           <input type="password" 
             onChange={this.handleInputChange} 
-            name="userPassword"
-            className="input--text full breath"
-            value={this.state.userPassword}/>
+            name="key"
+            className="input full breath"
+            value={this.state.key}/>
           {/* <label className="label--text">Confirm Password</label>
           <input type="password" userPassword placeholder="Password" className="input--text full breath"/> */}
         </fieldset>
-        <fieldset className="form__field txt-center">
-          <label className="label--text side">Agree to <Link to="/dashboard">Alpha Terms</Link></label>
-          <input className="input--checkbox" id="terms" type="checkbox"/>
-          <label className="label--checkbox" htmlFor="terms">
-            <i className="fas fa-check input__check"></i>
-          </label>
+        <fieldset className="field">
+            <label className="label side">Agree to <Link to="/dashboard">Alpha Terms</Link></label>
+            <input className="input--checkbox" onChange={this.toggleTerms} id="terms" type="checkbox"/>
+            <label className="label--checkbox" htmlFor="terms"></label>
         </fieldset>
-        <fieldset className="form__field">
+        <fieldset className="field">
           <button className="btn tiny action breath" type="button" onClick={this.handleRegister}>Create Account</button>
           <Link to="/login" className="btn tiny alt-action breath">Login</Link>
         </fieldset>
-        {/* <fieldset className="form__field">
-          <label className="label--text">Other ways to Sign Up</label>
+        {/* <fieldset className="field">
+          <label className="label">Other ways to Sign Up</label>
           <button className="btn icon tiny breath google"><i className="fab fa-google"></i> Google</button>
           <button className="btn icon tiny breath github"><i className="fab fa-github"></i> Github</button>
         </fieldset> */}
-        <fieldset className="form__field">
-          <Link className="tiny policy__links" to="">Terms of Use</Link>
-          <Link className="tiny policy__links" to="">Privacy Policy</Link>
+        <fieldset className="field">
+          <Link className="tiny policy__links" to="/alphaterms">Terms of Use</Link>
+          <Link className="tiny policy__links" to="/privacy">Privacy Policy</Link>
         </fieldset>
       </form>
     </section>

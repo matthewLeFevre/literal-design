@@ -20,8 +20,8 @@ const UserNav = (props) => {
           </figcaption>
         </figure>
       </section>
-      <fieldset className="form__field txt-center">
-         <button className="btn breath primary">Edit User Data</button>
+      <fieldset className="field txt-center">
+         <button type="button" onClick={props.toggleUserSettings} className="btn breath primary">Edit User Data</button>
       </fieldset>
     </nav>
   );

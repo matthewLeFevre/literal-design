@@ -7,9 +7,11 @@ const Privacy = (props) => {
       <article className="format_text">
         <h1>Privacy Policy</h1>
         <p><strong>Disclaimer:</strong> This is a makeshift policy and will be updated and brought up to standards as soon as avaliable.</p>
-        <p>Due to the nature of this web app being very new and still in the construction phase we discourage the use of any valid information and instead incourage Alpha users to put in fake yet rememberable email addresses on registration. There currently is no email validation for accounts but there will be eventually.</p>
-        <p>All information that this website is used to publish will eventually be deleted. We encourage all that use leinary to backup what they create before the end of alpha.</p>
-        <p>If it is discovered that a user is exploiting anything to do with this web app that user will be removed from alpha and be unable to ever use the web app in an capacity.</p>
+        <p>Leinary is a style guide creation tool that requires users create and account with at least an email, username, and password. The passwords will be stored in a database and will be hashed so as to prevent threat actors from imediatly viewing plain text passwords upon gaining access to the database.</p>
+        <h2>Personal information</h2>
+        <p>As with any website the threat of losing personal information is present. Leinary assumes no responsibility for any theaft of personal information for those participating in this closed alpha version of the software. Due to the nature of alpha testing data that is created by the user will not be saved permently and exist for only the duration of the alpha testing stage.</p>
+        <h2>Account Creation</h2>
+        <p>As an account creator your awknoledge that the information that you supply and that you create will be deleted. You alsow awknowledge the possible vulnerability of the data being stolen.</p>
       </article>
     </section>
   );

@@ -200,7 +200,7 @@ class ItemSelect extends Component {
               <span>Code</span>
             </li>
           </ul>
-          <fieldset className="form__field">
+          <fieldset className="field">
             <button onClick={this.props.toggleItem} 
             className="btn danger full breath" 
             type="button" >Cancel Select</button>

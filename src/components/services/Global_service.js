@@ -4,7 +4,8 @@
 
 class Globals {
 
-  url= 'http://site2/server.php';
+  url= 'http://site4/server.php';
+  // url= '/server.php';
 
   headers= {
     "Content-Type": "application/json",

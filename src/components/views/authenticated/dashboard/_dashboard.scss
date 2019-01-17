@@ -1,0 +1,50 @@
+.user-settings__view {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $theme-orange;
+  z-index: $z-2;
+}
+.user-settings {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: $light;
+  height: 100%;
+  overflow-x: auto;
+}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+
+.project-card__group {
+  @include flex(row, wrap, center, space-around);
+  list-style: none;
+}
+.project-card {
+  @include flex(row, nowrap, center, center);
+  position: relative;
+  width: 250px;
+  height: 200px;
+  background-color: $light;
+  border-radius: $br2;
+  margin: .5em;
+}
+.project-card__body {}
+.project-card__title {font-size: $mid;}
+.project-card__settings {
+  @include flex(row, nowrap, center, center);
+  position: absolute;
+  padding: 1em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  border-radius: 0 0 $br2 $br2;
+}

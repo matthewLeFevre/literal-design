@@ -116,7 +116,7 @@
   .input {
     padding: 0.5em;
     border: 0;
-    background-color: #eee;
+    background-color: $white;
     transition: background-color 300ms ease-in-out;
     &:focus {
       outline: 0;
@@ -173,7 +173,7 @@
     overflow-y: auto;
     padding: 0.5em;
     border: 0;
-    background-color: #eee;
+    background-color: $white;
     transition: background-color 300ms ease-in-out;
     &:focus {
       outline: 0;

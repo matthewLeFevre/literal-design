@@ -12,76 +12,76 @@ body {
   line-height: 1.7; }
 
 .bg-grey {
-  background-color: #697479; }
+  background-color: #697479 !important; }
 
 .txt-grey {
-  color: #697479; }
+  color: #697479 !important; }
 
 .bg-blue {
-  background-color: #084887; }
+  background-color: #084887 !important; }
 
 .txt-blue {
-  color: #084887; }
+  color: #084887 !important; }
 
 .bg-green {
-  background-color: #56BF00; }
+  background-color: #56BF00 !important; }
 
 .txt-green {
-  color: #56BF00; }
+  color: #56BF00 !important; }
 
 .bg-yellow {
-  background-color: #FFCC42; }
+  background-color: #FFCC42 !important; }
 
 .txt-yellow {
-  color: #FFCC42; }
+  color: #FFCC42 !important; }
 
 .bg-red {
-  background-color: #D33115; }
+  background-color: #D33115 !important; }
 
 .txt-red {
-  color: #D33115; }
+  color: #D33115 !important; }
 
 .bg-purple {
-  background-color: #5F0F40; }
+  background-color: #5F0F40 !important; }
 
 .txt-purple {
-  color: #5F0F40; }
+  color: #5F0F40 !important; }
 
 .bg-white {
-  background-color: #fff; }
+  background-color: #fff !important; }
 
 .txt-white {
-  color: #fff; }
+  color: #fff !important; }
 
 .bg-black {
-  background-color: #000; }
+  background-color: #000 !important; }
 
 .txt-black {
-  color: #000; }
+  color: #000 !important; }
 
 .bg-light {
-  background-color: #eee; }
+  background-color: #eee !important; }
 
 .txt-light {
-  color: #eee; }
+  color: #eee !important; }
 
 .bg-theme-purple {
-  background-color: #320A28; }
+  background-color: #320A28 !important; }
 
 .txt-theme-purple {
-  color: #320A28; }
+  color: #320A28 !important; }
 
 .bg-theme-orange {
-  background-color: #F7B267; }
+  background-color: #F7B267 !important; }
 
 .txt-theme-orange {
-  color: #F7B267; }
+  color: #F7B267 !important; }
 
 .bg-theme-red {
-  background-color: #EF476F; }
+  background-color: #EF476F !important; }
 
 .txt-theme-red {
-  color: #EF476F; }
+  color: #EF476F !important; }
 
 .tiny {
   font-size: 0.75em; }
@@ -1031,7 +1031,7 @@ h6 {
 .input {
   padding: 0.5em;
   border: 0;
-  background-color: #eee;
+  background-color: #fff;
   transition: background-color 300ms ease-in-out; }
   .input:focus {
     outline: 0;
@@ -1077,7 +1077,7 @@ h6 {
   overflow-y: auto;
   padding: 0.5em;
   border: 0;
-  background-color: #eee;
+  background-color: #fff;
   transition: background-color 300ms ease-in-out; }
   .input--textarea:focus {
     outline: 0;
@@ -1681,6 +1681,8 @@ code {
       vertical-align: middle;
       width: 100%;
       overflow: hidden; }
+    .format_text figure video {
+      width: 100%; }
     .format_text figure figcaption {
       color: #5A676C;
       font-style: italic;
@@ -1688,6 +1690,9 @@ code {
       margin-top: 10px;
       font-size: 0.9em;
       padding: 0 1em; }
+    .format_text figure iframe {
+      width: 100%;
+      height: 100%; }
 
 .login {
   position: relative;
@@ -2139,14 +2144,15 @@ code {
     .styleGuide__entry__author a:hover {
       color: #C3C7C9; }
 
-.settings__container {
+.settings__view {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 60px;
   left: 0;
-  right: 0;
-  overflow-y: scroll;
-  background-color: #1F2D3D; }
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F7B267;
+  z-index: 20; }
 
 .settings__form {
   display: block;
@@ -2158,6 +2164,8 @@ code {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  transition: color 300ms ease-in-out;
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;
@@ -2167,6 +2175,8 @@ code {
   border-radius: 0 0 0.25em 0;
   color: #eee;
   font-size: 1.6em; }
+  .settings__close:hover {
+    color: #ccc; }
 
 .settings__header {
   display: flex;
@@ -2175,6 +2185,66 @@ code {
   align-items: center;
   padding-left: 1em;
   height: 60px; }
+
+.settings {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #eee;
+  height: 100%;
+  overflow-x: auto; }
+
+.user-settings__view {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F7B267;
+  z-index: 20; }
+
+.user-settings {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #eee;
+  height: 100%;
+  overflow-x: auto; }
+
+.project-card__group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: space-around;
+  list-style: none; }
+
+.project-card {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 250px;
+  height: 200px;
+  background-color: #eee;
+  border-radius: 8px;
+  margin: .5em; }
+
+.project-card__title {
+  font-size: 1.25em; }
+
+.project-card__settings {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 1em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  border-radius: 0 0 8px 8px; }
 
 .styleGuide__title {
   font-size: 1.25em; }
@@ -2195,11 +2265,13 @@ code {
       align-items: flex-start; } }
 
 .section--public__content {
-  padding: .75em 2em;
   max-width: 700px; }
+  @media screen and (min-width: 48em) {
+    .section--public__content {
+      padding: .75em 2em; } }
 
 .section--public__title-container {
-  padding: 1em 0; }
+  padding-top: 1em; }
   .section--public__title-container h2 {
     font-size: 1.9em; }
     @media screen and (min-width: 48em) {
@@ -2207,20 +2279,26 @@ code {
         font-size: 2.5em; } }
   .section--public__title-container p {
     font-size: 1em;
-    margin: 1em 0; }
+    margin-top: 1em; }
     @media screen and (min-width: 48em) {
       .section--public__title-container p {
         font-size: 1.125em; } }
 
 .section--public__heading {
   position: relative;
-  padding-bottom: .5em;
-  margin-bottom: 1em; }
+  font-size: 1.25em;
+  margin-top: 30px; }
 
 .styleGuide__sectionTextBox {
-  font-size: 0.9em;
-  margin-bottom: 3em;
+  font-size: 1em;
+  margin-top: 15px;
   line-height: 150%; }
+  .styleGuide__sectionTextBox div br {
+    display: block;
+    content: ' ';
+    margin-top: 15px; }
+  .styleGuide__sectionTextBox ul, .styleGuide__sectionTextBox ol {
+    padding: 1em 2em; }
 
 .section--public__img-container {
   max-width: 100%; }
@@ -2228,10 +2306,11 @@ code {
 .section--public__img {
   max-width: 100%;
   vertical-align: middle;
-  margin-bottom: 1.5em; }
+  margin-top: 30px;
+  margin-bottom: 15px; }
 
 .section--public__colorPallet {
-  margin-bottom: 1.5em; }
+  margin-top: 15px; }
   @media screen and (min-width: 48em) {
     .section--public__colorPallet {
       display: flex;

@@ -8,7 +8,7 @@ class Login extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.state = {
-      userEmail: null,
+      userNameOrEmail: null,
       userPassword: null,
     }
   }
@@ -21,11 +21,11 @@ class Login extends Component {
     });
   }
   handleLogin() {
-    if( this.state.userEmail === null || this.state.userPassword === null) {
+    if( this.state.userNameOrEmail === null || this.state.userPassword === null) {
       this.props.handleAlert("Please fill in both username and password fields");
     } else {
       let data = {
-        'userEmail': this.state.userEmail,
+        'userNameOrEmail': this.state.userNameOrEmail,
         'userPassword': this.state.userPassword,
       }
 
@@ -51,19 +51,19 @@ class Login extends Component {
       <section className="col--12 page__full-height login">
         <form className="login__form">
           <h1 className="primary-heading">Login</h1>
-          <fieldset className="form__field">
-            <label className="label--text">Email</label>
+          <fieldset className="field">
+            <label className="label">Email/Username</label>
             <input type="text" 
               onChange={this.handleInputChange} 
-              name="userEmail" 
-              className="input--text full breath"/>
-            <label className="label--text">Password</label>
+              name="userNameOrEmail" 
+              className="input full breath bg-white"/>
+            <label className="label">Password</label>
             <input type="password" 
               onChange={this.handleInputChange} 
               name="userPassword" 
-              className="input--text full breath"/>
+              className="input full breath bg-white"/>
           </fieldset>
-          <fieldset className="form__field">
+          <fieldset className="field">
             <button className="btn tiny action breath" type="button" onClick={this.handleLogin}>Login</button>
             <Link className="btn tiny alt-action breath" to="/signup">Sign Up</Link>
           </fieldset>
@@ -72,9 +72,9 @@ class Login extends Component {
             <button className="btn icon tiny breath google"><i className="fab fa-google"></i> Google</button>
             <button className="btn icon tiny breath github"><i className="fab fa-github"></i> Github</button>
           </fieldset> */}
-          <fieldset className="form__field">
-            <Link className="tiny" to="">Terms of Use</Link>
-            <Link className="tiny" to="">Privacy Policy</Link>
+          <fieldset className="field">
+            <Link className="tiny" to="/alphaterms">Terms of Use</Link>
+            <Link className="tiny" to="/privacy">Privacy Policy</Link>
           </fieldset>
         </form>
       </section>

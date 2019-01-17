@@ -70,7 +70,7 @@ class SectionPublicView extends React.Component {
 
   render() {
     return (
-      <section className="section--public__container col--12">
+      <section className="section--public__container page__full-height col--12">
 
         <SectionPublicNav 
           sectionNavToggle={this.state.sectionNavToggle}
@@ -239,7 +239,7 @@ class Code extends React.Component {
 
   render() {
     return (
-      <pre><code ref={this.codeMarkup}></code></pre>
+      <pre className="spacing--top--2 spacing--bottom--2"><code ref={this.codeMarkup}></code></pre>
     );
   }
 }
