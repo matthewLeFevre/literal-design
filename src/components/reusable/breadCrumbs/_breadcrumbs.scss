@@ -1,0 +1,38 @@
+.dash-crumbs {
+  padding-left: 1em;
+  height: 60px;
+}
+.dash-crumbs__list {
+  list-style: none;
+  padding: .5em;
+  @include flex(row, nowrap, flex-start, space-around);
+}
+.dash-crumbs__item {
+  margin-right: 2em;
+
+}
+.dash-crumbs__link {
+  display: block;
+  text-align: center;
+  font-size: $mdm;
+  font-weight: 700;
+  line-height: 1;
+}
+.dash-crumbs__label {
+  display: block;
+  font-size: $tiny;
+  font-style: italic;
+  font-weight: 700;
+  color: $grey-200;
+}
+.dash-crumbs__icon {
+  @include bp-sml {
+    display: none;
+  }
+}
+.dash-crumbs__text {
+  display: none;
+  @include bp-sml {
+    display: inline;
+  }
+}

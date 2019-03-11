@@ -32,95 +32,95 @@
   height: 60px;
 }
 
-.header--auth__title {
-  font-weight: 700;
-  margin-left: .5em;
-  display: block;
-  font-size: $main;
-}
-.header--auth__nav__toggle {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-  @include flex(row, nowrap, center, center);
-  @include bp-sml {
-    display: none;
-  }
-}
-.header--auth {}
-.header--auth {}
+// .header--auth__title {
+//   font-weight: 700;
+//   margin-left: .5em;
+//   display: block;
+//   font-size: $main;
+// }
+// .header--auth__nav__toggle {
+//   height: 40px;
+//   width: 40px;
+//   cursor: pointer;
+//   @include flex(row, nowrap, center, center);
+//   @include bp-sml {
+//     display: none;
+//   }
+// }
+// .header--auth {}
+// .header--auth {}
 
-.nav--auth {
-  @include transition;
-  z-index: $z-5;
-  position: fixed;
-  top: 60px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-height: 0;
-  background-color: $light;
-  overflow: hidden;
-  &.open { max-height: 100vh}
-  @include bp-sml {
-    z-index: $z-0;
-    grid-column: span 4;
-    position: static;
-    max-height: 100%;
-    min-height: calc(100vh - 60px);
-    width: 100%;
-    // max-width: 300px;
-    justify-self: end;
-    border-radius: $br;
-    overflow: hidden;
-  }
-  @include bp-mdm {
-    grid-column: span 3;
-  }
-}
+// .nav--auth {
+//   @include transition;
+//   z-index: $z-5;
+//   position: fixed;
+//   top: 60px;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   max-height: 0;
+//   background-color: $light;
+//   overflow: hidden;
+//   &.open { max-height: 100vh}
+//   @include bp-sml {
+//     z-index: $z-0;
+//     grid-column: span 4;
+//     position: static;
+//     max-height: 100%;
+//     min-height: calc(100vh - 60px);
+//     width: 100%;
+//     // max-width: 300px;
+//     justify-self: end;
+//     border-radius: $br;
+//     overflow: hidden;
+//   }
+//   @include bp-mdm {
+//     grid-column: span 3;
+//   }
+// }
 
-.nav--auth__toggle {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-  @include flex(row, nowrap, center, center);
-  @include bp-sml {
-    display: none;
-  }
-}
-.nav--auth__header {
-  @include flex (row, nowrap, space-between, center);
-  padding-left: 1em;
-  padding-right: 1em;
-  height: 60px;
-  // box-shadow: $box-shadow2;
-  // background-color: $grey-150;
-  @include bp-sml {
-    @include flex(row, nowrap, flex-end, center);
-  }
-}
-.nav--auth__header__btn{
-  @include transition;
-  padding: 1em 0;
-  height: 60px;
-  width: 60px;
-  @include flex(column, nowrap, space-between, center);
-  text-decoration: none;
-  color: $theme-purple;
-  span {
-    font-size: $ex-tiny;
-    font-weight: 700;
-  }
-  &:hover {
-    color: $grey;
-  }
-}
-.nav--auth__header{}
-.nav--auth__body{
-  padding: 1em;
-  text-align: center;
-}
-.nav--auth__body{}
-.nav--auth__header__btns{
-  @include flex(row, nowrap, center, center);
-}
+// .nav--auth__toggle {
+//   height: 40px;
+//   width: 40px;
+//   cursor: pointer;
+//   @include flex(row, nowrap, center, center);
+//   @include bp-sml {
+//     display: none;
+//   }
+// }
+// .nav--auth__header {
+//   @include flex (row, nowrap, space-between, center);
+//   padding-left: 1em;
+//   padding-right: 1em;
+//   height: 60px;
+//   // box-shadow: $box-shadow2;
+//   // background-color: $grey-150;
+//   @include bp-sml {
+//     @include flex(row, nowrap, flex-end, center);
+//   }
+// }
+// .nav--auth__header__btn{
+//   @include transition;
+//   padding: 1em 0;
+//   height: 60px;
+//   width: 60px;
+//   @include flex(column, nowrap, space-between, center);
+//   text-decoration: none;
+//   color: $theme-purple;
+//   span {
+//     font-size: $ex-tiny;
+//     font-weight: 700;
+//   }
+//   &:hover {
+//     color: $grey;
+//   }
+// }
+// .nav--auth__header{}
+// .nav--auth__body{
+//   padding: 1em;
+//   text-align: center;
+// }
+// .nav--auth__body{}
+// .nav--auth__header__btns{
+//   @include flex(row, nowrap, center, center);
+// }

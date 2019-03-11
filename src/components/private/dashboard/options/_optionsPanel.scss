@@ -1,0 +1,68 @@
+.options {
+  padding: .5em;
+  background-color: $light;
+  border-radius: $br;
+  width: 90%;
+  margin: 1em auto;
+  box-shadow: $box-shadow1;
+}
+
+.options-header {
+  @include flex(row, nowrap, space-between, center);
+  padding: 0 1em;
+  font-size: $initial;
+  
+  @include bp-sml {
+    justify-content: center;
+  }
+}
+
+.options__title {
+  cursor: pointer;
+  @include bp-sml{cursor: default;}
+}
+
+.options-toggle {
+  position: relative;
+  cursor: pointer;
+  @include bp-sml {
+    display: none;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.options-body {
+  padding: 0 1em;
+  max-height: 0;
+  overflow: hidden;
+  @include transition;
+  &.open {
+    height: auto;
+    max-height: 80vh;
+  }
+  @include bp-sml {
+    height: auto;
+    max-height: 100vh;
+  }
+}
+
+.options-item {
+  padding: 1em;
+}
+
+.options-item__title {
+  margin-bottom: .5em;
+  text-align: center;
+}
+
+.options-item__date {
+  display: block;
+  margin: 1em 0;
+}

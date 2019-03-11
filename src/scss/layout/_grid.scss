@@ -35,6 +35,13 @@
 }
 
 .grid--nested { @include grid("grid--nested");}
+@each $size, $break in $break-points {
+    .grid--nested--#{$size} {
+        @include bp($break) {
+            @include grid("grid--nested");
+        }
+    }
+}
 
 .col {
     $column: 1;

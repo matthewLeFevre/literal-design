@@ -5,8 +5,7 @@ const Alert = (props) =>  {
     props.hideAlert();
   }, 5000);
     return (
-      <div className={props.classes}
-        onClick={props.hideAlert}>
+      <div className={props.classes} onClick={props.hideAlert}>
         {props.message}
         <i className="fas fa-times close"></i>
       </div>

@@ -29,6 +29,10 @@ $grey-400: 		#5A676C;
 $grey-500: 		#4A585E;
 $grey-trans:  rgba(255,255,255, .5);
 
+//semi-transparent background
+
+$semi-trans: rgba(0,0,0,.6);
+
 $colors: (
 	"grey": 	$grey,
 	"blue": 	$blue,
@@ -145,3 +149,12 @@ $btn-types: "full" "icon" "round" "long" "adder";
 // Panel types
 
 $panel-types: "basic" "responsive";
+
+$card-sizes: (
+	"tiny": 200px,
+	"sml": 300px,
+	"normal": 400px,
+	"main": 500px,
+	"mdm": 700px,
+	"lrg": 900px
+);

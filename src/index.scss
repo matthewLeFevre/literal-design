@@ -26,20 +26,23 @@
 
 @import "scss/custom/login_view";
 @import "scss/custom/section_view";
-@import "scss/custom/dashboard_view";
 @import "scss/custom/home_view";
 @import "scss/custom/styleGuides_view";
 @import "scss/custom/settings";
-@import "components/views/authenticated/dashboard/dashboard";
+@import "components/private/dashboard/dashboard";
+@import "components/reusable/breadCrumbs/breadcrumbs";
+@import "components/private/dashboard/options/optionsPanel";
+@import "components/private/dashboard/settings/settings";
 
-@import "components/views/public/section_public_view/section_public_view";
-@import "components/views/public/styleguide_public_view/styleGuide_public_view";
-@import "components/views/authenticated/section/items/font_comp/font_comp";
-@import "components/views/authenticated/section/items/colorPallet_comp/colorPallet_edit";
-@import "components/views/authenticated/section/items/image_comp/image_edit";
-@import "components/views/authenticated/section/items/notice_comp/notice_edit";
-@import "components/views/authenticated/section/items/code_comp/code_comp";
-@import "components/views/authenticated/section/items/textbox_comp/textbox_comp";
+@import "components/public/section_public_view/section_public_view";
+@import "components/public/styleguide_public_view/styleGuide_public_view";
+@import "components/private/section/items/font_comp/font_comp";
+@import "components/private/section/items/colorPallet_comp/colorPallet_edit";
+@import "components/private/section/items/image_comp/image_edit";
+@import "components/private/section/items/notice_comp/notice_edit";
+@import "components/private/section/items/code_comp/code_comp";
+@import "components/private/section/items/textbox_comp/textbox_comp";
+@import "components/private/project/projectCard/projectCard";
 
 //testing
 @import "scss/testing/colorPallet";

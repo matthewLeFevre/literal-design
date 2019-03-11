@@ -1,0 +1,87 @@
+.user-settings__view {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $theme-orange;
+  z-index: $z-2;
+}
+.user-settings {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: $light;
+  height: 100%;
+  overflow-x: auto;
+}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+.user-settings {}
+
+
+
+.dashboard {}
+.dashboard__container{
+  padding: 1em;
+  min-height: calc(100vh - 120px);
+}
+.dashboard__banner {}
+.dashboard__section {}
+.dashboard__section__sub-heading {
+  padding: .3em 1em;
+  margin: .5em 0;
+}
+.dashboard__section__heading {
+  padding: .3em 0;
+}
+.dashboard__section__title {
+  display: block;
+  // padding-left: 1rem;
+  // border-bottom: 3px dashed $theme-purple;
+  // color: $theme-red;
+  color: $theme-black;
+}
+.dashboard__section__sub-title {
+  display: block;
+  padding-left: 1rem;
+  border-left: 3px solid $theme-orange;
+  font-style: italic;
+}
+
+.user-info {
+  padding: 1em;
+  margin: 1em auto;
+}
+.user__avatar {
+  @include flex(column, nowrap, center, center);
+  margin-top: 1em;
+}
+.user__avatar__img {
+  height: 100px;
+  width: 100px;
+  vertical-align: middle;
+  
+}
+.user__avatar__img__wrapper {
+  overflow: hidden;
+  border-radius: 50px;
+  background-color: white;
+  margin-bottom: 1em;
+  box-shadow: $box-shadow1;
+}
+.user__avatar-info {
+  font-weight: bold;
+}
+.user__avatar__name {
+  padding: .25em 0;
+  font-size: $mdm;
+  text-align: center;
+}
+.user__avatar__name__wrapper {}
+.user__avatar-info__list {
+  list-style: none;
+}

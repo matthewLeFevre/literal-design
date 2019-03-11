@@ -1,0 +1,76 @@
+.project-card__group {
+  // @include flex(row, wrap, center, space-around);
+  list-style: none;
+  padding: 0 1em;
+}
+
+.project-card {
+  @include flex(row, nowrap, space-between, center);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: $box-shadow1;
+  height: 60px;
+  background-color: $light;
+  border-radius: $br2;
+  margin: .5em 0;
+}
+
+.project-card__link {
+  padding-left: 1em;
+  @include flex(row, nowrap, space-between, center);
+  text-decoration: none;
+  flex-grow: 1;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+.project-card__title {
+  color: $theme-purple;
+  font-family: $accent;
+  font-size: $main;
+}
+
+.project-card__options {
+  @include flex(row, nowrap, flex-end, center);
+  height: 100%;
+}
+.project-card__settings {
+  @include flex(row, nowrap, center, center);
+  @include transition;
+  cursor: pointer;
+  margin-left: 1em;
+  width: 60px;
+  height: 100%;
+  border: none;
+  border-radius: 0 $br2 $br2 0;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: $z-05;
+  }
+  // Change this color effect to be something
+  // with less contrast
+  &:hover {
+    background-color: $theme-purple;
+    color: $light;
+  }
+}
+.project-card__date {
+  font-size: $tiny;
+  font-family: $accent;
+  color: $theme-red;
+}

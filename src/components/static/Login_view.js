@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import Globals from '../services/Global_service';
-const Global = new Globals();
+import Request from '../../service/reqService';
+import {AppContext} from '../context/appContext';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -12,32 +13,32 @@ class Login extends Component {
       userPassword: null,
     }
   }
-  handleInputChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    this.setState({
-      [name]: value
-    });
+
+  handleInputChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({[name]: value});
   }
+
   handleLogin() {
     if( this.state.userNameOrEmail === null || this.state.userPassword === null) {
       this.props.handleAlert("Please fill in both username and password fields");
     } else {
       let data = {
-        'userNameOrEmail': this.state.userNameOrEmail,
-        'userPassword': this.state.userPassword,
+        userNameOrEmail: this.state.userNameOrEmail,
+        userPassword: this.state.userPassword,
       }
 
-      const req = Global.createRequestBody('user', 'loginUser', data);
+      const req = Request.createRequestBody('user', 'loginUser', data);
 
-      fetch(Global.url, req)
+      fetch(Request.reqUrl, req)
       .then(res => res.json())
       .then(res => {
         if(res.status === 'failure') {
           this.props.handleAlert(res.message, 'failure');
         } else {
-          this.props.handleAlert(res.message, 'success');
+          // this.props.handleAlert(res.message, 'success');
+          this.context.handleAlert(res.message, 'success');
           this.props.onLogin(res.data);
         }
       })
@@ -81,5 +82,7 @@ class Login extends Component {
     );
   }
 }
+
+Login.contextType = AppContext;
 
 export default Login;

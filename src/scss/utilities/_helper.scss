@@ -33,3 +33,17 @@ $directions: "left" "right" "top" "bottom" "all";
 .display-none {
   display: none;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+
+@each $size, $break in $break-points {
+  .show--#{$size} {
+    display: none !important;
+    @include bp($break) {
+      display: block !important;
+    }
+  }
+}

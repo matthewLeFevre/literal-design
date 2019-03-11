@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Globals from '../services/Global_service';
-
-const Global = new Globals();
+import Request from '../../service/reqService';
 
 class SignUp extends Component {
 
@@ -13,7 +11,7 @@ class SignUp extends Component {
       userName: '',
       userEmail: '',
       userPassword: '',
-      alphaKey: "alphaU$er2018",
+      alphaKey: "alphaUser2019",
       key: '',
       terms: false,
     }
@@ -40,7 +38,7 @@ class SignUp extends Component {
   }
 
   handleRegister() {
-    if(this.state.userEmail == null || this.state.userPassword == null || this.state.terms === false || this.state.key !== "alphaU$er2018") {
+    if(this.state.userEmail == null || this.state.userPassword == null || this.state.terms === false || this.state.key !== "alphaUser2019") {
       this.props.handleAlert("Password, email and username are required. Agreeing to terms of use is also required as well as the alpha key.", "error");
     } else {
       const data = {
@@ -48,19 +46,19 @@ class SignUp extends Component {
           userPassword: this.state.userPassword,
           userName: this.state.userName
       };
-      const req = Global.createRequestBody('user', 'registerUser', data);
-      fetch(Global.url, req)
-      .then(response => response.json())
-      .then(data => {
-        if(data.status === "success") {
-          this.props.handleAlert(data.message, "success");
+      const req = Request.createRequestBody('user', 'registerUser', data);
+      fetch(Request.reqUrl, req)
+      .then(res => res.json())
+      .then(res => {
+        if(res.status === "success") {
+          this.props.handleAlert(res.message, "success");
           this.setState((prevstate) => ({
             userPassword: '',
             userEmail: '',
             userName: '',
           }));
         } else {
-          this.props.handleAlert(data.message, "failure");
+          this.props.handleAlert(res.message, "failure");
           this.setState((prevstate) => ({
             userPassword: '',
           }));
